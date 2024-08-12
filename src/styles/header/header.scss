@@ -1,13 +1,14 @@
 @import "../mixin.scss";
 
-@mixin headerCommon($header-logo-font-size) {
+// 사이즈에 상관 없이 똑같이 적용되는 스타일
+@mixin headerCommon($header-logo-font-size, $header-padding) {
     header {
         display:flex;
         align-items: center;
         justify-content: space-between;
         background-color: antiquewhite;
         height: 40px;
-    
+        padding: $header-padding
     }
 
     .header-logo {
@@ -39,14 +40,18 @@
         height: 32px;
     }
 }
+
+// 모바일과 테블릿에서만 적용되는 스타일
 @mixin mobileAndTablet() {
-    @include headerCommon(20px);
+    @include headerCommon(20px, 12px 16px);
 
 }
 
+// 사실 모바일과 테블릿은 같음. 하지만 혹시 몰라서 모바일, 테블릿 분리해놨고, 일단 여기서는 함께 사용
 @include mobileAndTablet();
 
+// 데스크탑일때만 적용되는
 @include desktop {
-    @include headerCommon(24px);
+    @include headerCommon(24px, 12px 0px);
 }
 

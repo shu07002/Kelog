@@ -4,7 +4,7 @@ import "../styles/header/header.scss";
 const Header = () => {
   return (
     <header>
-      <p className="header-logo">Blog</p>
+      <h1 className="header-logo">Blog</h1>
       <div className="header-buttons">
         <img className="header-icons" src="icons/bell-regular.svg" alt="bell" />
         <img

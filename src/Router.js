@@ -3,11 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 const Router = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/"></Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/"></Route>
+    </Routes>
   );
 };
 
