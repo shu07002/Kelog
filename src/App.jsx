@@ -1,7 +1,17 @@
 import React from "react";
+import Header from "./common/Header";
+import Router from "./Router";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
-  return <div>앱 컴포넌트 입니다.</div>;
+  return (
+    <div className="">
+      <BrowserRouter>
+        <Header />
+        <Router />
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;
