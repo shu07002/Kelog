@@ -1,0 +1,43 @@
+@import "../mixin.scss";
+
+@mixin navCommon($nav-padding) {
+    .navigation {
+        background-color: cadetblue;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $nav-padding
+    }
+    
+    .nav-section {
+        display: flex;
+        align-items: center;
+        height: 100px;
+    }
+    
+    .nav-section-category {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .nav-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .nav-bars-icon {
+        width: 24px;
+    }
+}
+
+
+@mixin mobileAndTablet() {
+    @include navCommon(12px 16px);
+}
+
+@include mobileAndTablet();
+
+@include desktop {
+    @include navCommon(12px 0px);
+}
