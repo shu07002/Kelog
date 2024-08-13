@@ -1,0 +1,30 @@
+@import "../mixin.scss";
+
+.postlist{
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+    @include postTwo {
+            grid-template-columns: 1fr 1fr;
+    }
+    @include postOne {
+        grid-template-columns: 1fr;
+    }
+}
+
+.postcard {
+    background-color: green;
+    list-style-type: none;
+    width: 100%;
+}
+
+// .postcard-image {
+    
+// }
+

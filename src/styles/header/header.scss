@@ -14,6 +14,7 @@
     .header-logo {
         font-size: ($header-logo-font-size);
         background-color: aqua;
+        margin-right: 15px;
     }
 
     .header-buttons {
@@ -38,6 +39,7 @@
         font-weight: bold;
         padding: 1px 16px;
         height: 32px;
+        min-width: 80px;
     }
 }
 

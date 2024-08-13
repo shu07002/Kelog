@@ -15,7 +15,7 @@ const NavigationBar = () => {
         <div className="nav-option">
           <select name="timeline">
             <option>오늘</option>
-            <option>이번 주</option>
+            <option defaultValue>이번 주</option>
             <option>이번 달</option>
             <option>올해</option>
           </select>

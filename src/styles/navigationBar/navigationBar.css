@@ -7,23 +7,27 @@
 }
 
 .nav-section {
+  background-color: blueviolet;
   display: flex;
   align-items: center;
-  height: 100px;
+  height: 48px;
 }
 
 .nav-section-category {
+  background-color: coral;
   display: flex;
   gap: 10px;
 }
 
 .nav-option {
+  background-color: darkkhaki;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .nav-bars-icon {
+  background-color: darkgoldenrod;
   width: 24px;
 }
 
@@ -36,20 +40,24 @@
     padding: 12px 0px;
   }
   .nav-section {
+    background-color: blueviolet;
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 48px;
   }
   .nav-section-category {
+    background-color: coral;
     display: flex;
     gap: 10px;
   }
   .nav-option {
+    background-color: darkkhaki;
     display: flex;
     align-items: center;
     gap: 10px;
   }
   .nav-bars-icon {
+    background-color: darkgoldenrod;
     width: 24px;
   }
 }/*# sourceMappingURL=navigationBar.css.map */
