@@ -5,14 +5,16 @@ const ListItem = () => {
   return (
     <li className="postcard">
       <div>
-        <img
-          className="postcard-image"
-          src="https://picsum.photos/1000/700"
-          alt="랜덤이미지"
-        />
+        <a href="www.naver.com">
+          <img
+            className="postcard-image"
+            src="https://picsum.photos/1000/700"
+            alt="랜덤이미지"
+          />
+        </a>
       </div>
       <div className="postcard-content">
-        <a href="#" className="postcard-aTag">
+        <a href="www.naver.com" className="postcard-aTag">
           <h4 className="postcard-title">
             김경우는 지금 가짜 데이터로 UI 구현중입니다.
           </h4>
