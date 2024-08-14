@@ -3,7 +3,7 @@ import "../styles/navigationBar/navigationBar.scss";
 
 const NavigationBar = () => {
   return (
-    <nav className="navigation">
+    <nav>
       <section className="nav-section">
         <div className="nav-section-category">
           <h4>트렌딩</h4>
