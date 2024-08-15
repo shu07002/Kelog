@@ -18,10 +18,13 @@
     }
 
     @include postThree {
-        >.postcard:hover {
-            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        > .postcard:hover {
             transform: translateY(-8px);
         }
+    }
+
+    >.postcard:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 
     > .postcard {
