@@ -66,7 +66,7 @@ export const mockData = [
     id: 8,
     title: "김경우는 새로운 프로토타입을 개발 중입니다.",
     summary: "이번 프로젝트는 매우 도전적입니다.",
-    date: new Date(2024, 6, 23),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "15",
     writer: "설계자",
     like_count: "141",
@@ -93,7 +93,7 @@ export const mockData = [
     id: 11,
     title: "김경우는 새롭게 출시된 서비스를 홍보 중입니다.",
     summary: "이 서비스는 사용자의 생활을 혁신적으로 바꿀 것입니다.",
-    date: new Date(2024, 6, 6),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "86",
     writer: "마케터",
     like_count: "70",
@@ -165,7 +165,7 @@ export const mockData = [
     id: 19,
     title: "김경우는 AI 기술로 새로운 가능성을 모색 중입니다.",
     summary: "이 실험은 AI 연구에 중대한 영향을 미칠 것입니다.",
-    date: new Date(2024, 11, 12),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "35",
     writer: "기술 연구자",
     like_count: "155",
@@ -174,7 +174,7 @@ export const mockData = [
     id: 20,
     title: "김경우는 새로운 데이터 분석 방법을 도입했습니다.",
     summary: "이 프로젝트는 혁신적 도전과제로서 큰 가치를 지닙니다.",
-    date: new Date(2024, 6, 28),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "15",
     writer: "데이터 분석가",
     like_count: "71",
@@ -183,7 +183,7 @@ export const mockData = [
     id: 21,
     title: "김경우는 데이터 분석을 통해 새로운 패턴을 발견했습니다.",
     summary: "이 프로젝트는 향후 연구에 큰 영향을 미칠 것입니다.",
-    date: new Date(2024, 8, 9),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "25",
     writer: "분석 전문가",
     like_count: "184",
@@ -201,7 +201,7 @@ export const mockData = [
     id: 23,
     title: "김경우는 가짜 데이터 생성 도구를 개발하고 있습니다.",
     summary: "이 도구는 데이터 처리 효율성을 크게 향상시킬 것입니다.",
-    date: new Date(2024, 10, 12),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "40",
     writer: "도구 개발자",
     like_count: "110",
@@ -210,7 +210,7 @@ export const mockData = [
     id: 24,
     title: "김경우는 자동화된 데이터 생성 기술을 연구 중입니다.",
     summary: "이 기술은 연구 개발에 중요한 기여를 할 것입니다.",
-    date: new Date(2024, 7, 28),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "59",
     writer: "연구 개발자",
     like_count: "193",
@@ -246,7 +246,7 @@ export const mockData = [
     id: 28,
     title: "김경우는 새로운 기술 트렌드를 연구 중입니다.",
     summary: "이 연구는 업계 전반에 걸쳐 중요한 통찰을 제공합니다.",
-    date: new Date(2024, 0, 8),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "10",
     writer: "기술 분석가",
     like_count: "17",
@@ -255,7 +255,7 @@ export const mockData = [
     id: 29,
     title: "김경우는 미래 기술을 위한 새로운 프로젝트를 시작했습니다.",
     summary: "이 프로젝트는 혁신적이며, 큰 가치를 지닙니다.",
-    date: new Date(2024, 10, 25),
+    date: new Date(), // 미래 날짜였던 항목을 현재 날짜로 변경
     comment_count: "64",
     writer: "혁신가",
     like_count: "58",
