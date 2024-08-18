@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import ListItem from "./ListItem";
+import { mockData } from "./mockData";
 import "../../styles/list/listItem.scss";
 
+let end = 9;
+
 const List = () => {
-  const [items, setItems] = useState(mockData.slice(0, 9));
+  const [items, setItems] = useState(mockData.slice(0, end));
   const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
 
   const elementRef = useRef(null);
 
@@ -14,11 +16,10 @@ const List = () => {
 
     if (firstEntry.isIntersecting && hasMore) {
       //API CALLS!!!!
-      if (items.length < 200) {
+      if (end < mockData.length) {
         setTimeout(() => {
-          const newItems = mockData.slice((page + 1) * 9 - 9, (page + 1) * 9);
-          setItems((items) => [...items, ...newItems]);
-          setPage((prevPage) => prevPage + 1);
+          end += 9;
+          setItems(mockData.slice(0, end));
         }, 500);
       } else setHasMore(false);
     }
@@ -42,54 +43,12 @@ const List = () => {
     <div>
       <ul className="postlist">
         {items.map((item, index) => {
-          console.log(items.length);
-          return <ListItem key={index} />;
+          return <ListItem key={index} item={item} />;
         })}
-        {hasMore && <div ref={elementRef}>Load More Items</div>}
+        {hasMore && <div ref={elementRef}>{console.log(hasMore)}</div>}
       </ul>
     </div>
   );
 };
 
 export default List;
-
-const mockData = [
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-  "abc",
-];

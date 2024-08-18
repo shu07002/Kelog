@@ -1,62 +1,68 @@
-.navigation {
+nav {
   background-color: cadetblue;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
 }
-
-.nav-section {
+nav > section {
   background-color: blueviolet;
   display: flex;
   align-items: center;
   height: 48px;
 }
-
-.nav-section-category {
+nav > section > .nav-section-category {
   background-color: coral;
   display: flex;
   gap: 10px;
+  min-width: 132px;
 }
-
-.nav-option {
+nav > section > .nav-section-category > h4 {
+  cursor: pointer;
+}
+nav > section .nav-option {
   background-color: darkkhaki;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.nav-bars-icon {
+nav > section .nav-option .nav-bars-icon {
+  cursor: pointer;
   background-color: darkgoldenrod;
   width: 24px;
 }
 
 @media (min-width: 1024px) {
-  .navigation {
+  nav {
     background-color: cadetblue;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 0px;
   }
-  .nav-section {
+  nav > section {
     background-color: blueviolet;
     display: flex;
     align-items: center;
     height: 48px;
   }
-  .nav-section-category {
+  nav > section > .nav-section-category {
     background-color: coral;
     display: flex;
     gap: 10px;
+    min-width: 132px;
   }
-  .nav-option {
+  nav > section > .nav-section-category > h4 {
+    cursor: pointer;
+  }
+  nav > section .nav-option {
     background-color: darkkhaki;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  .nav-bars-icon {
+  nav > section .nav-option .nav-bars-icon {
+    cursor: pointer;
     background-color: darkgoldenrod;
     width: 24px;
   }

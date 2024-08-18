@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/list/listItem.scss";
 
-const ListItem = () => {
+const ListItem = ({ item }) => {
   return (
     <li className="postcard">
       <div>
@@ -15,27 +15,25 @@ const ListItem = () => {
       </div>
       <div className="postcard-content">
         <a href="www.naver.com" className="postcard-aTag">
-          <h4 className="postcard-title">
-            김경우는 지금 가짜 데이터로 UI 구현중입니다.
-          </h4>
-          <p className="postcard-summary">
-            아무노래나 일단 틀어 아무거나 신나는 걸로 아무렇게나 춤 춰 아무렇지
-            않아 보이게
-          </p>
+          <h4 className="postcard-title">{item.title}</h4>
+          <p className="postcard-summary">{item.summary}</p>
         </a>
         <div className="postcard-timeAndComment">
-          <span>약 6시간 전</span>
+          <span>{item.date.toLocaleDateString()}</span>
           <span> · </span>
-          <span>27개의 댓글</span>
+          <span>{item.comment_count}개의 댓글</span>
         </div>
       </div>
       <div className="postcard-info">
         <div>
-          <span className="postcard-info-by">by </span> <b>작성자</b>
+          <span className="postcard-info-by">by </span>{" "}
+          <b>
+            {item.writer},{item.id}
+          </b>
         </div>
         <div className="postcard-info-likes">
           <img src="icons/heart-solid.svg" alt="하트" />
-          <span className="postcard-info-likes-count">50</span>
+          <span className="postcard-info-likes-count">{item.like_count}</span>
         </div>
       </div>
     </li>

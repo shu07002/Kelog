@@ -15,10 +15,15 @@
             height: 48px;
 
             > .nav-section-category {
+                
                 background-color: coral;
                 display: flex;
                 gap: 10px;
                 min-width: 132px;
+                
+                > h4 {
+                    cursor: pointer;
+                }
             }
 
             .nav-option {
@@ -28,8 +33,9 @@
                 gap: 10px;
 
                 .nav-bars-icon {
+                    cursor: pointer;
                     background-color: darkgoldenrod;
-                    width: 24px;
+                    width: 24px;        
                 }
             }
         }

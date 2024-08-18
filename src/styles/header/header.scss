@@ -11,6 +11,7 @@
         padding: $header-padding;
 
         > h1 {
+            cursor: pointer;
             font-size: ($header-logo-font-size);
             background-color: aqua;
             margin-right: 15px;
@@ -20,14 +21,32 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            
+            >div {
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                &:hover {
+                    background-color: rgb(215, 215, 215);
+                    border-radius: 50%;
+                }
+            }
 
             .header-icons {
-                background-color: blueviolet;
+                
+                cursor: pointer;
                 width: 24px;
                 height: 24px;
             }
 
             > button {
+                &:hover {
+                    background-color: #343a40;
+                }
+                cursor: pointer;
                 border: none;
                 outline: none;
                 color:white;
