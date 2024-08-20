@@ -4,7 +4,59 @@ import "../styles/post/post.scss";
 
 const Post = () => {
   const { postId } = useParams();
-  return <div className="posting">{postId}</div>;
+  return (
+    <div className="posting">
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+      <p>asdasd</p>
+    </div>
+  );
 };
 
 export default Post;

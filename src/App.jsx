@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./common/Header";
 import Router from "./Router";
 import { BrowserRouter, useLocation } from "react-router-dom";
@@ -23,8 +23,11 @@ const Content = () => {
 
   return (
     <div className="App">
-      <Header />
-      {location.pathname === "/" && <NavigationBar />}
+      <div id="scroll-evnet">
+        <Header />
+        {location.pathname === "/" && <NavigationBar />}
+      </div>
+
       <Router />
     </div>
   );

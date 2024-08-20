@@ -1,4 +1,8 @@
 .App {
   max-width: 1024px;
   margin: 0 auto;
+}
+
+.header.hide {
+  top: -70px;
 }/*# sourceMappingURL=App.css.map */

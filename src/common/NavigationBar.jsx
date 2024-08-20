@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import "../styles/navigationBar/navigationBar.scss";
 import { DateFilterContext } from "../context/DateFilterContext";
 
@@ -12,8 +12,32 @@ const NavigationBar = () => {
 
   const { dateFilter, setDateFilter } = useContext(DateFilterContext);
 
+  const navRef = useRef();
+
+  let lastScrollY = 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (navRef.current) {
+        if (window.scrollY > lastScrollY) {
+          navRef.current.style.setProperty("transform", "translateY(-200%)");
+          navRef.current.style.setProperty("transition", "0.15s");
+        } else {
+          navRef.current.style.removeProperty("transform");
+        }
+        lastScrollY = window.scrollY;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav>
+    <nav ref={navRef}>
       <section className="nav-section">
         <div className="nav-section-category">
           <h4>트렌딩</h4>
