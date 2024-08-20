@@ -57,7 +57,7 @@ export const mockData = [
     id: 7,
     title: "김경우는 클라우드 컴퓨팅을 도입했습니다.",
     summary: "클라우드 기술로 혁신을 주도하고 있습니다.",
-    date: new Date(2022, 5, 4),
+    date: new Date(2024, 7, 10),
     comment_count: "82",
     writer: "개발자",
     like_count: "168",

@@ -2,6 +2,11 @@
 
 @mixin navCommon($nav-padding) {
     nav {
+        position:fixed;
+        top:64px;
+        width:100%;
+        max-width: $breakpoint-desktop;
+        z-index: 5;
         background-color: cadetblue;
         display: flex;
         align-items: center;

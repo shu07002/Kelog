@@ -1,4 +1,9 @@
 nav {
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  max-width: 1024px;
+  z-index: 5;
   background-color: cadetblue;
   display: flex;
   align-items: center;
@@ -34,6 +39,11 @@ nav > section .nav-option .nav-bars-icon {
 
 @media (min-width: 1024px) {
   nav {
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    max-width: 1024px;
+    z-index: 5;
     background-color: cadetblue;
     display: flex;
     align-items: center;

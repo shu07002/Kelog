@@ -1,23 +1,24 @@
 import React from "react";
 import "../../styles/list/listItem.scss";
+import { Link } from "react-router-dom";
 
 const ListItem = ({ item }) => {
   return (
     <li className="postcard">
       <div>
-        <a href="www.naver.com">
+        <Link to={`/posting/${item.id}`}>
           <img
             className="postcard-image"
             src="https://picsum.photos/1000/700"
             alt="랜덤이미지"
           />
-        </a>
+        </Link>
       </div>
       <div className="postcard-content">
-        <a href="www.naver.com" className="postcard-aTag">
+        <Link to={`/posting/${item.id}`} className="postcard-aTag">
           <h4 className="postcard-title">{item.title}</h4>
           <p className="postcard-summary">{item.summary}</p>
-        </a>
+        </Link>
         <div className="postcard-timeAndComment">
           <span>{item.date.toLocaleDateString()}</span>
           <span> · </span>
