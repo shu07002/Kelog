@@ -10,13 +10,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAffbO7aLS_QLp_bQ54Co-xRmyuA2RLlOI",
-  authDomain: "clone-velog.firebaseapp.com",
-  projectId: "clone-velog",
-  storageBucket: "clone-velog.appspot.com",
-  messagingSenderId: "235406224978",
-  appId: "1:235406224978:web:cf9f098c8a77cf31caf98b",
-  measurementId: "G-4SVZ367NJM",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 // Initialize Firebase
