@@ -1,0 +1,106 @@
+.login-box {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.5);
+}
+.login-box .modal-body {
+  width: 606px;
+  height: 530px;
+  z-index: 30;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: darkkhaki;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-box .modal-body .content {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+.login-box .modal-body .content .welcome {
+  width: 216px;
+  height: 100%;
+  background-color: darksalmon;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.login-box .modal-body .content .welcome > div > div {
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: 20px;
+}
+.login-box .modal-body .content .loginDiv {
+  padding: 24px;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  background-color: gold;
+}
+.login-box .modal-body .content .loginDiv .X-button {
+  display: flex;
+  justify-content: end;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+.login-box .modal-body .content .loginDiv .X-button:hover {
+  cursor: pointer;
+}
+.login-box .modal-body .content .loginDiv .loginInput {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login-box .modal-body .content .loginDiv div > h2 {
+  font-size: 21px;
+  margin: 0;
+}
+.login-box .modal-body .content .loginDiv div > section > form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+.login-box .modal-body .content .loginDiv div > section > form .formInput {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+.login-box .modal-body .content .loginDiv div > section > form > button {
+  height: 3rem;
+  border: none;
+  font-size: 1rem;
+  background-color: #12b886;
+  font-weight: bold;
+  color: white;
+}
+.login-box .modal-body .content .loginDiv div > section > form > button:hover {
+  cursor: pointer;
+}
+.login-box .modal-body .content .loginDiv .moveToRegister {
+  display: flex;
+  background-color: white;
+  color: #12b886;
+  justify-content: end;
+}
+.login-box .modal-body .content .loginDiv .moveToRegister > span {
+  margin-right: 4px;
+}
+.login-box .modal-body .content .loginDiv .moveToRegister > div {
+  font-weight: bold;
+}
+.login-box .modal-body .content .loginDiv .moveToRegister > div:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=login.css.map */

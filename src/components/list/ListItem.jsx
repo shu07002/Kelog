@@ -6,19 +6,19 @@ const ListItem = ({ item }) => {
   return (
     <li className="postcard">
       <div>
-        <Link to={`/posting/${item.id}`}>
+        <a href={`/posting/${item.title}`}>
           <img
             className="postcard-image"
             src="https://picsum.photos/1000/700"
             alt="랜덤이미지"
           />
-        </Link>
+        </a>
       </div>
       <div className="postcard-content">
-        <Link to={`/posting/${item.id}`} className="postcard-aTag">
+        <a href={`/posting/${item.title}`} className="postcard-aTag">
           <h4 className="postcard-title">{item.title}</h4>
           <p className="postcard-summary">{item.summary}</p>
-        </Link>
+        </a>
         <div className="postcard-timeAndComment">
           <span>{item.date.toLocaleDateString()}</span>
           <span> · </span>

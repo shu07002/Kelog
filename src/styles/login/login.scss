@@ -1,0 +1,130 @@
+
+.login-box {
+    z-index:20;
+    position:fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255,255,255, 0.5); 
+
+    .modal-body {
+        width:606px;
+        height:530px;
+        z-index: 30;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        background-color: darkkhaki;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .content {
+            display: flex;
+            background-color: white;
+            width:100%;
+            height:100%;
+
+            .welcome {
+                width: 216px;
+                height:100%;
+                background-color: darksalmon;
+                padding: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+
+                > div > div {
+                    font-weight: bold;
+                    font-size: 28px;
+                    margin-top: 20px;
+
+                }
+            }
+
+            .loginDiv{
+                padding: 24px;
+                flex: 1 1;
+                display: flex;
+                flex-direction: column;
+                background-color: gold;
+
+                .X-button {
+                    display: flex;
+                    justify-content: end;
+                    font-size: 24px;
+                    margin-bottom: 24px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+                .loginInput {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                div {
+                    > h2 {
+                        font-size: 21px;
+                        margin: 0;
+                    }
+                    > section  {
+                        > form {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+
+                            width: 100%;
+                            .formInput {
+                                width:100%;
+                                padding: 1rem;
+                                font-size: 1rem;
+                            }
+
+                            > button {
+                                height: 3rem;
+                                border: none;
+                                font-size: 1rem;
+                                background-color: #12b886;
+                                font-weight: bold;
+                                color: white;
+
+                                &:hover {
+                                    cursor: pointer;
+                                   
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+
+                .moveToRegister {
+                    display:flex;
+                    background-color: white;
+                    color:#12b886;
+                    justify-content: end;
+
+                    >span {
+                        margin-right: 4px;
+                    }
+
+                    > div {
+                        font-weight: bold;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

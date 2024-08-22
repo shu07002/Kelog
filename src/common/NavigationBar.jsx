@@ -12,20 +12,19 @@ const NavigationBar = () => {
 
   const { dateFilter, setDateFilter } = useContext(DateFilterContext);
 
+  let lastScrollY = 136;
   const navRef = useRef();
-
-  let lastScrollY = 0;
 
   useEffect(() => {
     const handleScroll = () => {
       if (navRef.current) {
-        if (window.scrollY > lastScrollY) {
+        if (window.scrollY >= lastScrollY) {
           navRef.current.style.setProperty("transform", "translateY(-200%)");
           navRef.current.style.setProperty("transition", "0.15s");
         } else {
           navRef.current.style.removeProperty("transform");
         }
-        lastScrollY = window.scrollY;
+        if (window.scrollY > 136) lastScrollY = window.scrollY;
       }
     };
 

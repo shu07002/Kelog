@@ -1,3 +1,82 @@
 .posting {
-  margin-top: 160px;
+  width: 100%;
+  max-width: 768px;
+  margin: 152px 120px 0px;
+  background-color: antiquewhite;
+}
+.posting .posting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: rgb(0, 184, 184);
+}
+.posting .posting-info > h1 {
+  margin: 0;
+  font-size: 3rem;
+}
+.posting .posting-info > div .posting-writer {
+  font-weight: bold;
+}
+.posting .posting-info .main-image {
+  width: 100%;
+}
+.posting .posting-info .main-image > img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.posting .like-share-box {
+  position: relative;
+  top: 2rem;
+  background-color: aquamarine;
+}
+.posting .like-share-box > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  left: -7rem;
+  width: 64px;
+  height: 150px;
+  background-color: cadetblue;
+  border-radius: 100px;
+  padding: 8px;
+}
+.posting .like-share-box > div .heart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: chartreuse;
+  border-radius: 100px;
+}
+.posting .like-share-box > div .heart > img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.posting .like-share-box > div .like-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+}
+.posting .like-share-box > div .like-count > p {
+  margin: 0;
+}
+.posting .like-share-box > div .share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: chartreuse;
+  border-radius: 100px;
+}
+.posting .like-share-box > div .share > img {
+  width: 24px;
+  height: 24px;
 }/*# sourceMappingURL=post.css.map */

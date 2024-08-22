@@ -2,7 +2,7 @@ header {
   top: 0;
   position: fixed;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1026px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@ header > div {
   align-items: center;
   gap: 15px;
 }
-header > div > div {
+header > div .alarm {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ header > div > div {
   width: 40px;
   height: 40px;
 }
-header > div > div:hover {
+header > div .alarm:hover {
   background-color: rgb(215, 215, 215);
   border-radius: 50%;
 }
@@ -56,12 +56,12 @@ header > div > button:hover {
   background-color: #343a40;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1026px) {
   header {
     top: 0;
     position: fixed;
     width: 100%;
-    max-width: 1024px;
+    max-width: 1026px;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -81,7 +81,7 @@ header > div > button:hover {
     align-items: center;
     gap: 15px;
   }
-  header > div > div {
+  header > div .alarm {
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -89,7 +89,7 @@ header > div > button:hover {
     width: 40px;
     height: 40px;
   }
-  header > div > div:hover {
+  header > div .alarm:hover {
     background-color: rgb(215, 215, 215);
     border-radius: 50%;
   }

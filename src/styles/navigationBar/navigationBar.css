@@ -2,7 +2,7 @@ nav {
   position: fixed;
   top: 64px;
   width: 100%;
-  max-width: 1024px;
+  max-width: 1026px;
   z-index: 5;
   background-color: cadetblue;
   display: flex;
@@ -37,12 +37,12 @@ nav > section .nav-option .nav-bars-icon {
   width: 24px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1026px) {
   nav {
     position: fixed;
     top: 64px;
     width: 100%;
-    max-width: 1024px;
+    max-width: 1026px;
     z-index: 5;
     background-color: cadetblue;
     display: flex;
