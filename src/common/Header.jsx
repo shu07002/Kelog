@@ -5,15 +5,19 @@ import { LoginModalPortal } from "../portal/LoginModalPortal";
 import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   let lastScrollY = 136;
   const headerRef = useRef(null);
 
   const [loginModal, setLoginModal] = useState(false);
+  const [authInfo, setAuthInfo] = useState();
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   const onClickLogin = () => {
     setLoginModal(!loginModal);
@@ -50,9 +54,17 @@ const Header = () => {
     };
   }, []);
 
+  const onClickLogo = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0 });
+    }
+  };
+
   return (
     <header ref={headerRef}>
-      <h1 className="header-logo">Blog</h1>
+      <h1 className="header-logo" onClick={onClickLogo}>
+        {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+      </h1>
 
       <div className="header-buttons">
         <div className="alarm">
@@ -64,10 +76,15 @@ const Header = () => {
         </div>
 
         {isLoggedIn ? (
-          <div>
+          <div className="loggedInDiv">
             <button>새 글 작성</button>
             <button onClick={onLogout}>로그아웃</button>
-            <div>사용자 정보</div>
+            <div>
+              <img
+                src="https://velcdn.com/images/user-thumbnail.png"
+                alt="user-image"
+              />
+            </div>
           </div>
         ) : (
           <button className="header-login-button" onClick={onClickLogin}>
@@ -78,7 +95,7 @@ const Header = () => {
 
       {loginModal && (
         <LoginModalPortal>
-          <LoginModal onClickLogin={onClickLogin} />
+          <LoginModal onClickLogin={onClickLogin} setAuthInfo={setAuthInfo} />
         </LoginModalPortal>
       )}
     </header>

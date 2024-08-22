@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-const LoginComponent = ({ onClickLogin, onClickLR }) => {
+const LoginComponent = ({ onClickLogin, onClickLR, setAuthInfo }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authInfo, setAuthInfo] = useState();
 
   const navigate = useNavigate("/");
 

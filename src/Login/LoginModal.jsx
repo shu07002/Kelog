@@ -3,7 +3,7 @@ import "../styles/login/login.scss";
 import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
 
-const LoginModal = ({ onClickLogin }) => {
+const LoginModal = ({ onClickLogin, setAuthInfo }) => {
   const handleModalBodyClick = (event) => {
     event.stopPropagation(); // 이벤트 전파를 막음
   };
@@ -257,7 +257,11 @@ const LoginModal = ({ onClickLogin }) => {
             </div>
           </div>
           {loginPage ? (
-            <LoginComponent onClickLogin={onClickLogin} onClickLR={onClickLR} />
+            <LoginComponent
+              onClickLogin={onClickLogin}
+              onClickLR={onClickLR}
+              setAuthInfo={setAuthInfo}
+            />
           ) : (
             <RegisterComponent
               onClickLogin={onClickLogin}
