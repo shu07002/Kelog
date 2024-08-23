@@ -77,8 +77,8 @@ const Header = () => {
 
         {isLoggedIn ? (
           <div className="loggedInDiv">
-            <button>
-              <a href="/write">새 글 작성</a>
+            <button onClick={() => (window.location.href = "/write")}>
+              새 글 작성
             </button>
             <button onClick={onLogout}>로그아웃</button>
             <div>

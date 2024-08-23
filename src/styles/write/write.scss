@@ -39,11 +39,10 @@
         .out {
             a {
                 text-decoration-line: none;
-                color:black
+                color:black;
+                
             }
-
-            
-
+            background-color: #eaeaea;
         }
 
         .post {
@@ -57,6 +56,11 @@
 .w-md-editor {
     --color-bg-default: #ffffff;
     --color-text-primary: #000000;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
   
 .w-md-editor-preview {
@@ -82,10 +86,7 @@ background-color: white;
 color: black;
 }
 
-svg {
-    width: 20px;
-    height: 20px;
-}
+
 
 .w-md-editor-toolbar li > button {
     height: 28px;
