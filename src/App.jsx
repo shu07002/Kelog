@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./common/Header";
 import Router from "./Router";
-import { BrowserRouter, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import "./App.scss";
 import NavigationBar from "./common/NavigationBar";
 import { DateFilterContext } from "./context/DateFilterContext";
@@ -47,7 +47,9 @@ const Content = ({ onLogout }) => {
 
   return (
     <div className="App">
-      <Header />
+      {(location.pathname === "/" || location.pathname === "/post") && (
+        <Header />
+      )}
       {location.pathname === "/" && <NavigationBar />}
       <Router />
     </div>

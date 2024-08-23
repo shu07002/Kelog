@@ -69,9 +69,17 @@
                     &:hover {
                         cursor: pointer;
                         outline: none;
-                        color:white;
+                        
                         background-color: black;
                         
+                    }
+
+                    > a {
+                        text-decoration-line: none;
+                        color: black;
+                        &:hover {
+                            color:white;
+                        }
                     }
 
                 }

@@ -1,0 +1,120 @@
+.writing-component {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+
+    .title {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        outline: none;
+        font-weight: bold;
+        font-size: 3rem;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 90px;
+
+        
+
+        button {
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+
+            &:hover {
+                cursor: pointer;
+                opacity: 0.9;
+
+            }
+        }
+
+        .out {
+            a {
+                text-decoration-line: none;
+                color:black
+            }
+
+            
+
+        }
+
+        .post {
+            color:white;
+            background-color: #12B886;
+        }
+    }
+}
+
+/* Editor.css */
+.w-md-editor {
+    --color-bg-default: #ffffff;
+    --color-text-primary: #000000;
+}
+  
+.w-md-editor-preview {
+    background-color: #ffffff !important;
+    color: #000000 !important;            
+}
+
+.w-md-editor-text{
+    min-height: 100% !important;
+}
+
+.w-md-editor, .w-md-editor .w-md-editor-text {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.w-md-editor .w-md-editor-toolbar {
+background-color: #f5f5f5 !important;
+}
+
+.wmde-markdown {
+background-color: white;
+color: black;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
+
+.w-md-editor-toolbar li > button {
+    height: 28px;
+}
+
+.w-md-editor-bar {
+    display: none;;
+}
+
+.wmde-markdown pre code, .wmde-markdown pre tt{
+    background-color: #f5f5f5;
+}
+
+.code-line {
+    background-color: #f5f5f5;
+}
+
+.code {
+    background-color: #f5f5f5;
+}
+
+.wmde-markdown code, .wmde-markdown tt {
+    background-color: #f5f5f5;
+    padding: 12px;
+}
+.wmde-markdown table tr {
+    background-color: white;;
+}
+
+.wmde-markdown table tr:nth-child(2n) {
+    background-color: #f5f5f5;
+}
