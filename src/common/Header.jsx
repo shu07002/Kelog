@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "../styles/header/header.scss";
-import LoginModal from "../Login/LoginModal";
+import LoginModal from "../components/Login/LoginModal";
 import { LoginModalPortal } from "../portal/LoginModalPortal";
 import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase";
@@ -12,7 +12,6 @@ const Header = () => {
   const headerRef = useRef(null);
 
   const [loginModal, setLoginModal] = useState(false);
-  const [authInfo, setAuthInfo] = useState();
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const Header = () => {
   const onLogout = async () => {
     try {
       await auth.signOut();
-
+      window.localStorage.removeItem("CURRENT_USER");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -97,7 +96,7 @@ const Header = () => {
 
       {loginModal && (
         <LoginModalPortal>
-          <LoginModal onClickLogin={onClickLogin} setAuthInfo={setAuthInfo} />
+          <LoginModal onClickLogin={onClickLogin} />
         </LoginModalPortal>
       )}
     </header>

@@ -1,8 +1,16 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { auth } from "../firebase";
+import { auth, database, USER_COLLECTION } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 
 const RegisterComponent = ({ onClickLogin, onClickLR }) => {
   const [email, setEmail] = useState("");
@@ -22,22 +30,68 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
     setNickname(e.target.value);
   };
 
+  const isNicknameAvailable = async () => {
+    const q = query(
+      collection(database, "users"),
+      where("nickname", "==", nickname)
+    );
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.empty;
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    const isAvail = await isNicknameAvailable();
+    if (!isAvail) {
+      alert("이미 사용중인 닉네입니다.");
+      return;
+    }
     try {
-      const createdUser = await createUserWithEmailAndPassword(
+      const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      const userDoc = doc(USER_COLLECTION, user.uid);
+      await setDoc(userDoc, {
+        uid: user.uid,
+        email: email,
+        nickname: nickname,
+        profile_image_url: "",
+        following_count: [],
+        follower_count: [],
+        cerated_at: Date.now(),
+      });
 
-      console.log(createdUser);
+      const CURRENT_USER = {
+        email: email,
+        nickname: nickname,
+      };
+
+      window.localStorag.setItem("CURRENT_USER", JSON.stringify(CURRENT_USER));
+      console.log(user);
       console.log("성공");
       onClickLogin();
       navigate("/");
     } catch (error) {
-      alert("실패");
-      console.error(error);
+      switch (error.code) {
+        case "auth/invalid-email": {
+          alert("이메일을 바르게 입력해주세요");
+          break;
+        }
+        case "auth/weak-password": {
+          alert("비밀번호가 너무 쉬워요");
+          break;
+        }
+        case "auth/email-already-in-use": {
+          alert("이미 등록된 이메일입니다.");
+          break;
+        }
+        default: {
+          alert("회원가입 실패");
+          break;
+        }
+      }
     }
   };
 

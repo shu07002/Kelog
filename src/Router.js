@@ -1,15 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/main/MainPage";
-import Post from "./post/Post";
-import Writing from "./write/Writing";
+import PostPage from "./pages/post/PostPage";
+import WritePage from "./pages/write/WritePage";
 
 const Router = () => {
   return (
     <Routes>
       <Route exact path="/" element={<MainPage />}></Route>
-      <Route path="/posting/:postId" element={<Post />}></Route>
-      <Route path="/write" element={<Writing />}></Route>
+      <Route path="/posting/:postId" element={<PostPage />}></Route>
+      <Route path="/write" element={<WritePage />}></Route>
     </Routes>
   );
 };

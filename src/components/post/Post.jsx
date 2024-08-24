@@ -1,11 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "../styles/post/post.scss";
-import { mockData } from "../components/list/mockData";
+import "../../styles/post/post.scss";
+import { mockData } from "../list/mockData";
 
-const Post = () => {
-  const { postId } = useParams();
-
+const Post = ({ postId }) => {
   // console.log(typeof postId); // string
   // console.log(typeof mockData[0].id); // number
 

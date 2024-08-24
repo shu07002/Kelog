@@ -42,14 +42,13 @@ const App = () => {
   );
 };
 
-const Content = ({ onLogout }) => {
+const Content = () => {
   const location = useLocation();
 
   return (
     <div className="App">
-      {(location.pathname === "/" || location.pathname === "/post") && (
-        <Header />
-      )}
+      {(location.pathname === "/" ||
+        location.pathname.startsWith("/posting")) && <Header />}
       {location.pathname === "/" && <NavigationBar />}
       <Router />
     </div>

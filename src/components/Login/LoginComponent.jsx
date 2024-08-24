@@ -1,9 +1,10 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "../firebase";
+import { auth, database } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-const LoginComponent = ({ onClickLogin, onClickLR, setAuthInfo }) => {
+const LoginComponent = ({ onClickLogin, onClickLR }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,6 +18,15 @@ const LoginComponent = ({ onClickLogin, onClickLR, setAuthInfo }) => {
     setPassword(e.target.value);
   };
 
+  const findCurrentUser = async () => {
+    const q = query(collection(database, "users"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+    return querySnapshot;
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -24,10 +34,14 @@ const LoginComponent = ({ onClickLogin, onClickLR, setAuthInfo }) => {
 
       const { uid, stsTokenManager } = user;
 
-      console.log(user);
       console.log({ uid, email, authToken: stsTokenManager });
-      setAuthInfo({ uid, email, authToken: stsTokenManager });
+
       console.log("성공");
+      const currentUser = await findCurrentUser();
+      window.localStorage.setItem(
+        "CURRENT_USER",
+        JSON.stringify(currentUser.docs[0].data())
+      );
       onClickLogin();
       navigate("/");
     } catch (error) {

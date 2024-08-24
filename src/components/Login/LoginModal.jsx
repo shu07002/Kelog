@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "../styles/login/login.scss";
+import "../../styles/login/login.scss";
 import LoginComponent from "./LoginComponent";
 import RegisterComponent from "./RegisterComponent";
 
-const LoginModal = ({ onClickLogin, setAuthInfo }) => {
+const LoginModal = ({ onClickLogin }) => {
   const handleModalBodyClick = (event) => {
     event.stopPropagation(); // 이벤트 전파를 막음
   };
@@ -257,11 +257,7 @@ const LoginModal = ({ onClickLogin, setAuthInfo }) => {
             </div>
           </div>
           {loginPage ? (
-            <LoginComponent
-              onClickLogin={onClickLogin}
-              onClickLR={onClickLR}
-              setAuthInfo={setAuthInfo}
-            />
+            <LoginComponent onClickLogin={onClickLogin} onClickLR={onClickLR} />
           ) : (
             <RegisterComponent
               onClickLogin={onClickLogin}
