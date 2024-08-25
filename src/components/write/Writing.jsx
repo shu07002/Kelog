@@ -34,7 +34,7 @@ const Writing = () => {
         content: content,
         authorId: CURRENT_USER.nickname,
         summary: content.split(".")[0] + ".",
-        createdAt: new Date().toLocaleDateString(),
+        createdAt: new Date().getTime(),
         likes: [],
         comments: [],
         mainImage: "",

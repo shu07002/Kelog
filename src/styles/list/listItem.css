@@ -39,8 +39,12 @@
   width: 100%;
   position: relative;
 }
-.postlist > .postcard div {
+.postlist > .postcard .postcard-image-div {
   width: 100%;
+  background-color: #868E96;
+}
+.postlist > .postcard .postcard-image-div a {
+  height: 50px;
 }
 .postlist > .postcard div > a > img {
   width: 100%;

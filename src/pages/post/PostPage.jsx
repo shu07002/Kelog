@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom";
 
 const PostPage = () => {
   const { postId } = useParams();
-  return (
-    <div>
-      <Post postId={postId} />
-    </div>
-  );
+  return <Post postId={postId} />;
 };
 
 export default PostPage;

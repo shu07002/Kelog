@@ -5,93 +5,82 @@ import { DateFilterContext } from "../../context/DateFilterContext";
 import { collection, getDocs } from "firebase/firestore";
 import { database } from "../../firebase";
 
-let end = 0;
+let end = 9;
 
 const List = () => {
   const { dateFilter } = useContext(DateFilterContext);
   const today = new Date();
 
   const [posts, setPosts] = useState([]);
+  const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const allPostsRef = useRef([]);
   const elementRef = useRef(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postsData = await getPosts();
+      setPosts(postsData);
+    };
+    fetchData();
+  }, []);
 
   const getPosts = async () => {
     const querySnapshot = await getDocs(collection(database, "posts"));
     const postsData = querySnapshot.docs.map((doc) => doc.data());
-    allPostsRef.current = postsData;
-
-    setPosts(allPostsRef.current.slice(0, end));
-    end += 9;
+    return postsData;
   };
 
-  useEffect(() => {
-    getPosts();
-  }, []);
-
-  const filteredData = () => {
+  const filteredData = useMemo(() => {
     switch (dateFilter) {
       case "오늘": {
-        return posts
-          .filter((data) => {
-            return (
-              new Date(data.createdAt).getTime() >=
-              today.getTime() - 1 * 24 * 60 * 60 * 1000
-            );
-          })
-          .reverse();
+        return posts.filter(
+          (data) => data.createdAt >= today.getTime() - 1 * 24 * 60 * 60 * 1000
+        );
       }
       case "이번 주": {
-        return posts
-          .filter(
-            (data) =>
-              new Date(data.createdAt).getTime() >=
-              today.getTime() - 7 * 24 * 60 * 60 * 1000
-          )
-          .reverse();
+        return posts.filter(
+          (data) => data.createdAt >= today.getTime() - 7 * 24 * 60 * 60 * 1000
+        );
       }
       case "이번 달": {
-        return posts
-          .filter(
-            (data) =>
-              new Date(data.createdAt).getMonth() === today.getMonth() &&
-              new Date(data.createdAt).getFullYear() === today.getFullYear()
-          )
-          .reverse();
+        return posts.filter(
+          (data) =>
+            new Date(data.createdAt).getMonth() === today.getMonth() &&
+            new Date(data.createdAt).getFullYear() === today.getFullYear()
+        );
       }
       case "올해": {
-        return posts
-          .filter(
-            (data) =>
-              new Date(data.createdAt).getFullYear() === today.getFullYear()
-          )
-          .reverse();
+        return posts.filter(
+          (data) =>
+            new Date(data.createdAt).getFullYear() === today.getFullYear()
+        );
       }
       default: {
         return posts;
       }
     }
-  };
+  }, [dateFilter, posts]);
 
   const onIntersection = (entries) => {
     const firstEntry = entries[0];
     if (firstEntry.isIntersecting && hasMore) {
-      console.log("detected");
-
-      if (end > allPostsRef.current.length) setHasMore(false);
-
-      console.log(end, allPostsRef.current.length, posts.length);
-      setPosts(allPostsRef.current.slice(0, end));
-      end += 9;
-      console.log(end, allPostsRef.current.length, posts.length);
+      if (end < filteredData.length) {
+        setTimeout(() => {
+          end += 9;
+          setItems((prevItems) => [
+            ...prevItems,
+            ...filteredData.slice(prevItems.length, end),
+          ]);
+        }, 500);
+      } else setHasMore(false);
     }
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(onIntersection);
-
     if (elementRef.current) {
       observer.observe(elementRef.current);
+      console.log("detect!!");
     }
 
     return () => {
@@ -101,12 +90,18 @@ const List = () => {
     };
   }, [hasMore]);
 
+  useEffect(() => {
+    // dateFilter가 바뀔 때 filteredData에 따라 items 초기화
+    setItems(filteredData.slice(0, end));
+    setHasMore(filteredData.length > end);
+  }, [filteredData]);
+
   return (
     <ul className="postlist">
-      {posts.map((post, index) => {
+      {items.map((post, index) => {
         return <ListItem key={index} post={post} />;
       })}
-      {hasMore && <div ref={elementRef}>loading</div>}
+      {hasMore && <div ref={elementRef}></div>}
     </ul>
   );
 };

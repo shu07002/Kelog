@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import "../../styles/post/post.scss";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "../../firebase";
+import MDEditor from "@uiw/react-md-editor";
 
 const Post = ({ postId }) => {
   const [post, setPost] = useState(null);
@@ -48,10 +49,10 @@ const Post = ({ postId }) => {
         <h1>{post.title}</h1>
 
         <div>
-          <span className="posting-writer">{post.writer}</span>
+          <span className="posting-writer">{post.authorId}</span>
           <span> · </span>
           <span className="posting-date">
-            {new Date(post.date).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString()}
           </span>
         </div>
 
@@ -74,7 +75,7 @@ const Post = ({ postId }) => {
       </div>
 
       <article>
-        <p>{post.content}</p>
+        <MDEditor.Markdown source={post.content} />
       </article>
 
       <section>사용자 정보 영역</section>

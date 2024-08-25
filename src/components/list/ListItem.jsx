@@ -4,7 +4,7 @@ import "../../styles/list/listItem.scss";
 const ListItem = ({ post }) => {
   return (
     <li className="postcard">
-      <div>
+      <div className="postcard-image-div">
         <a href={`/posting/${post.id}`}>
           <img
             className="postcard-image"
@@ -19,7 +19,7 @@ const ListItem = ({ post }) => {
           <p className="postcard-summary">{post.summary}</p>
         </a>
         <div className="postcard-timeAndComment">
-          <span>{post.createdAt}</span>
+          <span>{new Date(post.createdAt).toLocaleDateString()}</span>
           <span> · </span>
           <span>{post.comments.length}개의 댓글</span>
         </div>
