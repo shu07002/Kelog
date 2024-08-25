@@ -2,108 +2,155 @@ import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
 import ListItem from "./ListItem";
 import "../../styles/list/listItem.scss";
 import { DateFilterContext } from "../../context/DateFilterContext";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+  where,
+} from "firebase/firestore";
 import { database } from "../../firebase";
 
-let end = 9;
+const today = new Date();
+
+let startOfToday = new Date(
+  today.getFullYear(),
+  today.getMonth(),
+  today.getDate()
+);
+startOfToday.setHours(0, 0, 0, 0);
+startOfToday = startOfToday.getTime();
+
+const dayOfWeek = today.getDay();
+let startOfWeek = new Date(today);
+startOfWeek.setDate(today.getDate() - dayOfWeek);
+startOfWeek.setHours(0, 0, 0, 0);
+startOfWeek = startOfWeek.getTime();
+
+let startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+startOfMonth.setHours(0, 0, 0, 0);
+startOfMonth = startOfMonth.getTime();
+
+let startOfYear = new Date(today.getFullYear(), 0, 1);
+startOfYear.setHours(0, 0, 0, 0);
+startOfYear = startOfYear.getTime();
 
 const List = () => {
   const { dateFilter } = useContext(DateFilterContext);
-  const today = new Date();
 
   const [posts, setPosts] = useState([]);
-  const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const elementRef = useRef(null);
+  const lastVisibleRef = useRef(null);
+  const loadRef = useRef();
+  const mountRef = useRef(false);
 
   const ref = useRef(1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const postsData = await getPosts();
-      setPosts(postsData);
-    };
-    fetchData();
-  }, []);
+  const getPosts = async (compare, Timestamp) => {
+    console.log(ref.current++);
 
-  const getPosts = async () => {
-    const querySnapshot = await getDocs(collection(database, "posts"));
+    let q = query(
+      collection(database, "posts"),
+      where("createdAt", compare, Timestamp),
+      orderBy("createdAt"),
+      limit(9)
+    );
+
+    if (lastVisibleRef.current) {
+      q = query(
+        collection(database, "posts"),
+        where("createdAt", compare, Timestamp),
+        orderBy("createdAt"),
+        startAfter(lastVisibleRef.current),
+        limit(9)
+      );
+    }
+
+    const querySnapshot = await getDocs(q);
+
+    const lastPost = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+    if (querySnapshot.docs.length < 9) setHasMore(false);
+
+    lastVisibleRef.current = lastPost;
+
     const postsData = querySnapshot.docs.map((doc) => doc.data());
+    console.log(postsData);
     return postsData;
   };
 
-  const filteredData = useMemo(() => {
+  useEffect(() => {
+    console.log(ref.current++);
+    setPosts([]);
+    lastVisibleRef.current = null;
+    setHasMore(true);
+  }, [dateFilter]);
+
+  const filteredData = async () => {
+    console.log(ref.current++);
     switch (dateFilter) {
       case "오늘": {
-        return posts.filter(
-          (data) => data.createdAt >= today.getTime() - 1 * 24 * 60 * 60 * 1000
-        );
+        const posts = await getPosts(">=", startOfToday);
+        setPosts((prev) => [...prev, ...posts]);
+        break;
       }
       case "이번 주": {
-        return posts.filter(
-          (data) => data.createdAt >= today.getTime() - 7 * 24 * 60 * 60 * 1000
-        );
+        const posts = await getPosts(">=", startOfWeek);
+        setPosts((prev) => [...prev, ...posts]);
+
+        break;
       }
       case "이번 달": {
-        return posts.filter(
-          (data) =>
-            new Date(data.createdAt).getMonth() === today.getMonth() &&
-            new Date(data.createdAt).getFullYear() === today.getFullYear()
-        );
+        const posts = await getPosts(">=", startOfMonth);
+        setPosts((prev) => [...prev, ...posts]);
+        break;
       }
       case "올해": {
-        return posts.filter(
-          (data) =>
-            new Date(data.createdAt).getFullYear() === today.getFullYear()
-        );
+        const posts = await getPosts(">=", startOfYear);
+        setPosts((prev) => [...prev, ...posts]);
+        break;
       }
-      default: {
-        return posts;
-      }
+
+      default:
+        return null;
     }
-  }, [dateFilter, posts]);
+  };
+
+  // useEffect(() => {
+  //   console.log(ref.current++);
+  //   lastVisibleRef.current = null;
+  //   filteredData();
+  // }, [dateFilter]);
 
   const onIntersection = (entries) => {
     const firstEntry = entries[0];
     if (firstEntry.isIntersecting && hasMore) {
-      if (end < filteredData.length) {
-        setTimeout(() => {
-          end += 9;
-          setItems((prevItems) => [
-            ...prevItems,
-            ...filteredData.slice(prevItems.length, end),
-          ]);
-        }, 500);
-      } else setHasMore(false);
+      filteredData();
     }
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver(onIntersection);
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-      console.log("detect!!");
+
+    if (loadRef.current) {
+      observer.observe(loadRef.current);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (loadRef.current) {
+        observer.unobserve(loadRef.current);
       }
     };
-  }, [hasMore]);
-
-  useEffect(() => {
-    // dateFilter가 바뀔 때 filteredData에 따라 items 초기화
-    setItems(filteredData.slice(0, end));
-    setHasMore(filteredData.length > end);
-  }, [filteredData]);
+  }, [hasMore, dateFilter]);
 
   return (
     <ul className="postlist">
-      {items.map((post, index) => {
+      {posts.map((post, index) => {
         return <ListItem key={index} post={post} />;
       })}
-      {hasMore && <div ref={elementRef}></div>}
+      {hasMore && <div ref={loadRef}>Im here</div>}
     </ul>
   );
 };
