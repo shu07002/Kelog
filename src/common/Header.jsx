@@ -12,6 +12,7 @@ const Header = () => {
   const headerRef = useRef(null);
 
   const [loginModal, setLoginModal] = useState(false);
+  const [expand, setExpand] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -41,7 +42,12 @@ const Header = () => {
         } else {
           headerRef.current.style.removeProperty("transform");
         }
-        if (window.scrollY > 136) scrollRef.current = window.scrollY;
+        if (window.scrollY > 80) {
+          scrollRef.current = window.scrollY;
+        }
+
+        if (window.scrollY > 136) setExpand(true);
+        else setExpand(false);
       }
     };
     console.log(isLoggedIn);
@@ -60,7 +66,7 @@ const Header = () => {
   };
 
   return (
-    <header ref={headerRef}>
+    <header ref={headerRef} className={`${expand ? "expand-header" : ""}`}>
       <h1 className="header-logo" onClick={onClickLogo}>
         {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
       </h1>

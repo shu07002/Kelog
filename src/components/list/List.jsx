@@ -16,6 +16,8 @@ const List = () => {
   const [hasMore, setHasMore] = useState(true);
   const elementRef = useRef(null);
 
+  const ref = useRef(1);
+
   useEffect(() => {
     const fetchData = async () => {
       const postsData = await getPosts();

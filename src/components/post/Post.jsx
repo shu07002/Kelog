@@ -70,7 +70,7 @@ const Post = ({ postId }) => {
           </div>
         </aside>
         <div className="main-image">
-          <img src={`https://picsum.photos/1000/700`} alt="main_image" />
+          <img src={post.mainImage} alt="main_image" />
         </div>
       </div>
 

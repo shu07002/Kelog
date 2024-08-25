@@ -1,3 +1,8 @@
+.expand-header {
+  background-color: white;
+  max-width: 100rem;
+}
+
 header {
   top: 0;
   position: fixed;
@@ -7,14 +12,14 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: antiquewhite;
+  background-color: white;
   height: 64px;
-  padding: 12px 16px;
+  padding: 12px 8px;
 }
 header > h1 {
   cursor: pointer;
   font-size: 20px;
-  background-color: aqua;
+  background-color: white;
   margin-right: 15px;
 }
 header > h1 > a {
@@ -94,6 +99,10 @@ header > div > button:hover {
 }
 
 @media (min-width: 1026px) {
+  .expand-header {
+    background-color: white;
+    max-width: 100rem;
+  }
   header {
     top: 0;
     position: fixed;
@@ -103,14 +112,14 @@ header > div > button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: antiquewhite;
+    background-color: white;
     height: 64px;
-    padding: 12px 0px;
+    padding: 12px 8px;
   }
   header > h1 {
     cursor: pointer;
     font-size: 24px;
-    background-color: aqua;
+    background-color: white;
     margin-right: 15px;
   }
   header > h1 > a {

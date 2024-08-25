@@ -3,6 +3,11 @@
 
 // 사이즈에 상관 없이 똑같이 적용되는 스타일
 @mixin headerCommon($header-logo-font-size, $header-padding) {
+    .expand-header {
+        background-color: white;
+        max-width: 100rem;
+        $header-padding: 12px 8px;
+      }
     header {
         top:0;
         position:fixed;
@@ -12,14 +17,14 @@
         display:flex;
         align-items: center;
         justify-content: space-between;
-        background-color: antiquewhite;
+        background-color: white;
         height: 64px;
         padding: $header-padding;
 
         > h1 {
             cursor: pointer;
             font-size: ($header-logo-font-size);
-            background-color: aqua;
+            background-color: white;
             margin-right: 15px;
 
             > a {
@@ -119,6 +124,6 @@
 
 // 데스크탑
 @include desktop {
-    @include headerCommon(24px, 12px 0px);
+    @include headerCommon(24px, 12px 8px);
 }
 
