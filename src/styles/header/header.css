@@ -17,6 +17,10 @@ header > h1 {
   background-color: aqua;
   margin-right: 15px;
 }
+header > h1 > a {
+  color: black;
+  text-decoration-line: none;
+}
 header > div {
   display: flex;
   align-items: center;
@@ -38,6 +42,39 @@ header > div .header-icons {
   cursor: pointer;
   width: 24px;
   height: 24px;
+}
+header > div .loggedInDiv {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+header > div .loggedInDiv > button {
+  transition: 0.15s ease-in-out;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 1px 16px;
+  height: 32px;
+  min-width: 80px;
+  border: 1px solid black;
+}
+header > div .loggedInDiv > button:hover {
+  cursor: pointer;
+  outline: none;
+  color: white;
+  background-color: black;
+}
+header > div .loggedInDiv > button > a {
+  text-decoration-line: none;
+  color: black;
+}
+header > div .loggedInDiv > div > img {
+  border-radius: 100px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+header > div .loggedInDiv > div > img:hover {
+  cursor: pointer;
 }
 header > div > button {
   cursor: pointer;
@@ -76,6 +113,10 @@ header > div > button:hover {
     background-color: aqua;
     margin-right: 15px;
   }
+  header > h1 > a {
+    color: black;
+    text-decoration-line: none;
+  }
   header > div {
     display: flex;
     align-items: center;
@@ -97,6 +138,39 @@ header > div > button:hover {
     cursor: pointer;
     width: 24px;
     height: 24px;
+  }
+  header > div .loggedInDiv {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  header > div .loggedInDiv > button {
+    transition: 0.15s ease-in-out;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 1px 16px;
+    height: 32px;
+    min-width: 80px;
+    border: 1px solid black;
+  }
+  header > div .loggedInDiv > button:hover {
+    cursor: pointer;
+    outline: none;
+    color: white;
+    background-color: black;
+  }
+  header > div .loggedInDiv > button > a {
+    text-decoration-line: none;
+    color: black;
+  }
+  header > div .loggedInDiv > div > img {
+    border-radius: 100px;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  header > div .loggedInDiv > div > img:hover {
+    cursor: pointer;
   }
   header > div > button {
     cursor: pointer;
