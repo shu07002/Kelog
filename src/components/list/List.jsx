@@ -65,39 +65,8 @@ const List = () => {
     }
   }, [dateFilter]);
 
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
   const elementRef = useRef(null);
-
-  const onIntersection = (entries) => {
-    const firstEntry = entries[0];
-
-    if (firstEntry.isIntersecting && hasMore) {
-      console.log(filteredData.length);
-      if (end < filteredData.length) {
-        setTimeout(() => {
-          end += 9;
-          setPosts((prevItems) => [
-            ...prevItems,
-            ...filteredData.slice(prevItems.length, end),
-          ]);
-        }, 500);
-      } else setHasMore(false);
-    }
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(onIntersection);
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
-    };
-  }, [hasMore]);
 
   return (
     <ul className="postlist">
