@@ -21,9 +21,6 @@ const LoginComponent = ({ onClickLogin, onClickLR }) => {
   const findCurrentUser = async () => {
     const q = query(collection(database, "users"), where("email", "==", email));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
     return querySnapshot;
   };
 

@@ -68,30 +68,19 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
         nickname: nickname,
       };
 
-      window.localStorag.setItem("CURRENT_USER", JSON.stringify(CURRENT_USER));
+      window.localStorage.setItem("CURRENT_USER", JSON.stringify(CURRENT_USER));
       console.log(user);
       console.log("성공");
       onClickLogin();
       navigate("/");
     } catch (error) {
-      switch (error.code) {
-        case "auth/invalid-email": {
-          alert("이메일을 바르게 입력해주세요");
-          break;
-        }
-        case "auth/weak-password": {
-          alert("비밀번호가 너무 쉬워요");
-          break;
-        }
-        case "auth/email-already-in-use": {
-          alert("이미 등록된 이메일입니다.");
-          break;
-        }
-        default: {
-          alert("회원가입 실패");
-          break;
-        }
-      }
+      if (error.code === "auth/invalid-email") {
+        alert("이메일을 바르게 입력해주세요");
+      } else if (error.code === "auth/weak-password") {
+        alert("비밀번호가 너무 쉬워요");
+      } else if (error.code === "auth/email-already-in-use") {
+        alert("이미 등록된 이메일입니다.");
+      } else console.log(error);
     }
   };
 

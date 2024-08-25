@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
 import ListItem from "./ListItem";
-import { mockData } from "./mockData";
 import "../../styles/list/listItem.scss";
 import { DateFilterContext } from "../../context/DateFilterContext";
-import { Link } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { database } from "../../firebase";
 
 let end = 9;
 
@@ -11,52 +11,72 @@ const List = () => {
   const { dateFilter } = useContext(DateFilterContext);
   const today = new Date();
 
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = async () => {
+    const querySnapshot = await getDocs(collection(database, "posts"));
+    const postsData = querySnapshot.docs.map((doc) => doc.data());
+    setPosts(postsData);
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   const filteredData = useMemo(() => {
     switch (dateFilter) {
       case "오늘": {
-        return mockData.filter(
-          (data) =>
-            data.date.getTime() >= today.getTime() - 1 * 24 * 60 * 60 * 1000
-        );
+        return posts
+          .filter(
+            (data) =>
+              new Date(data.date).getTime() >=
+              today.getTime() - 1 * 24 * 60 * 60 * 1000
+          )
+          .reverse();
       }
       case "이번 주": {
-        return mockData.filter(
-          (data) =>
-            data.date.getTime() >= today.getTime() - 7 * 24 * 60 * 60 * 1000
-        );
+        return posts
+          .filter(
+            (data) =>
+              new Date(data.date).getTime() >=
+              today.getTime() - 7 * 24 * 60 * 60 * 1000
+          )
+          .reverse();
       }
       case "이번 달": {
-        return mockData.filter(
-          (data) =>
-            data.date.getMonth() === today.getMonth() &&
-            data.date.getFullYear() === today.getFullYear()
-        );
+        return posts
+          .filter(
+            (data) =>
+              new Date(data.date).getMonth() === today.getMonth() &&
+              new Date(data.date).getFullYear() === today.getFullYear()
+          )
+          .reverse();
       }
       case "올해": {
-        return mockData.filter(
-          (data) => data.date.getFullYear() === today.getFullYear()
-        );
+        return posts
+          .filter(
+            (data) => new Date(data.date).getFullYear() === today.getFullYear()
+          )
+          .reverse();
       }
       default: {
-        return mockData;
+        return posts;
       }
     }
   }, [dateFilter]);
 
-  const [items, setItems] = useState(filteredData.slice(0, end));
-  const [hasMore, setHasMore] = useState(filteredData.length > end);
-
+  const [hasMore, setHasMore] = useState(true);
   const elementRef = useRef(null);
 
   const onIntersection = (entries) => {
     const firstEntry = entries[0];
 
     if (firstEntry.isIntersecting && hasMore) {
-      // API CALLS!!!!
+      console.log(filteredData.length);
       if (end < filteredData.length) {
         setTimeout(() => {
           end += 9;
-          setItems((prevItems) => [
+          setPosts((prevItems) => [
             ...prevItems,
             ...filteredData.slice(prevItems.length, end),
           ]);
@@ -79,21 +99,13 @@ const List = () => {
     };
   }, [hasMore]);
 
-  useEffect(() => {
-    // dateFilter가 바뀔 때 filteredData에 따라 items 초기화
-    setItems(filteredData.slice(0, end));
-    setHasMore(filteredData.length > end);
-  }, [filteredData]);
-
   return (
-    <div>
-      <ul className="postlist">
-        {items.map((item, index) => {
-          return <ListItem key={index} item={item} />;
-        })}
-        {hasMore && <div ref={elementRef}></div>}
-      </ul>
-    </div>
+    <ul className="postlist">
+      {posts.map((post, index) => {
+        return <ListItem key={index} post={post} />;
+      })}
+      {hasMore && <div ref={elementRef}>loading</div>}
+    </ul>
   );
 };
 

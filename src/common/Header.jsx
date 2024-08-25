@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  let lastScrollY = 136;
+  const scrollRef = useRef(136);
   const headerRef = useRef(null);
 
   const [loginModal, setLoginModal] = useState(false);
@@ -35,13 +35,13 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
-        if (window.scrollY >= lastScrollY) {
+        if (window.scrollY >= scrollRef.current) {
           headerRef.current.style.setProperty("transform", "translateY(-200%)");
           headerRef.current.style.setProperty("transition", "0.15s");
         } else {
           headerRef.current.style.removeProperty("transform");
         }
-        if (window.scrollY > 136) lastScrollY = window.scrollY;
+        if (window.scrollY > 136) scrollRef.current = window.scrollY;
       }
     };
     console.log(isLoggedIn);
