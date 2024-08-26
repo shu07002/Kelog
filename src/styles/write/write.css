@@ -13,33 +13,45 @@
   font-weight: bold;
   font-size: 3rem;
 }
-.writing-component .buttons {
+.writing-component > .buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 90px;
 }
-.writing-component .buttons button {
+.writing-component > .buttons > button {
   padding: 12px 16px;
   font-size: 1rem;
   font-weight: bold;
   border: none;
   border-radius: 5px;
 }
-.writing-component .buttons button:hover {
+.writing-component > .buttons > button:hover {
   cursor: pointer;
   opacity: 0.9;
 }
-.writing-component .buttons .out {
+.writing-component > .buttons > .out {
   background-color: #eaeaea;
 }
-.writing-component .buttons .out a {
+.writing-component > .buttons > .out a {
   text-decoration-line: none;
   color: black;
 }
-.writing-component .buttons .post {
+.writing-component > .buttons > .post {
   color: white;
   background-color: #12B886;
+}
+.writing-component > .showupdown {
+  background-color: white;
+  max-width: 100vw;
+  max-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
 }
 
 /* Editor.css */
@@ -110,4 +122,8 @@
 
 .wmde-markdown hr {
   background-color: #f5f5f5;
+}
+
+.wmde-markdown img {
+  background-color: white;
 }/*# sourceMappingURL=write.css.map */

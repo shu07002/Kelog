@@ -1,0 +1,100 @@
+.detail-bg {
+  flex: 1;
+  background-color: white;
+  max-width: 100rem;
+  display: flex;
+  justify-content: center;
+}
+.detail-bg .detail {
+  display: flex;
+  justify-content: center;
+  width: 450px;
+}
+.detail-bg .detail > .left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 1 0%;
+}
+.detail-bg .detail > .left > h3 {
+  margin: 0;
+}
+.detail-bg .detail > .left > .image-bg {
+  padding: 3rem 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  background-color: #E9ECEF;
+}
+.detail-bg .detail > .left > .image-bg > button {
+  background-color: white;
+  color: #20C997;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.25rem 2rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.detail-bg .detail > .left > .summary {
+  width: 100%;
+}
+.detail-bg .detail > .left > .summary > .summary-textarea {
+  width: 100%;
+  height: 7.375rem;
+  resize: none;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(218, 218, 218);
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 0px 4px 0px;
+}
+.detail-bg .detail > .left > .summary > .counting-letters {
+  text-align: right;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #868E96;
+}
+.detail-bg .detail > .left > .buttons {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+.detail-bg .detail > .left > .buttons > .cancle {
+  color: #12B886;
+  border: none;
+  font-size: 1.125rem;
+  padding: 0 1.125rem;
+  font-weight: bold;
+  height: 2.5rem;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.detail-bg .detail > .left > .buttons > .cancle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.detail-bg .detail > .left > .buttons > .post {
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #12B886;
+}
+.detail-bg .detail > .left > .buttons > .post:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+.detail-bg .detail > .middle {
+  width: 1px;
+  margin: 0 2rem;
+  background-color: #E9ECEF;
+}
+.detail-bg .detail > .right {
+  flex: 1 1 0%;
+}/*# sourceMappingURL=writeDetail.css.map */

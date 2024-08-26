@@ -40,7 +40,7 @@ const Post = ({ postId }) => {
   }, []);
 
   if (!post) {
-    return <div>No post found.</div>; // 포스트가 없을 때 표시할 내용
+    return <div>No post found.</div>;
   }
 
   return (

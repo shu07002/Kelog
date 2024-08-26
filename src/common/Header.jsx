@@ -60,16 +60,14 @@ const Header = () => {
   }, []);
 
   const onClickLogo = () => {
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 0 });
-    }
+    navigate("/");
   };
 
   return (
     <div>
       <header>
         <h1 className="header-logo" onClick={onClickLogo}>
-          {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+          Blog
         </h1>
 
         <div className="header-buttons">
@@ -83,9 +81,7 @@ const Header = () => {
 
           {isLoggedIn ? (
             <div className="loggedInDiv">
-              <button onClick={() => (window.location.href = "/write")}>
-                새 글 작성
-              </button>
+              <button onClick={() => navigate("/write")}>새 글 작성</button>
               <button onClick={onLogout}>로그아웃</button>
               <div>
                 <img
