@@ -38,7 +38,7 @@ const Header = () => {
       if (headerRef.current) {
         if (window.scrollY >= scrollRef.current) {
           headerRef.current.style.setProperty("transform", "translateY(-200%)");
-          headerRef.current.style.setProperty("transition", "0.15s");
+          headerRef.current.style.setProperty("transition", "transform 0.15s");
         } else {
           headerRef.current.style.removeProperty("transform");
         }
@@ -66,46 +66,91 @@ const Header = () => {
   };
 
   return (
-    <header ref={headerRef} className={`${expand ? "expand-header" : ""}`}>
-      <h1 className="header-logo" onClick={onClickLogo}>
-        {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
-      </h1>
+    <div>
+      <header>
+        <h1 className="header-logo" onClick={onClickLogo}>
+          {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+        </h1>
 
-      <div className="header-buttons">
-        <div className="alarm">
-          <img
-            className="header-icons"
-            src="../../icons/bell-regular.svg"
-            alt="bell"
-          />
+        <div className="header-buttons">
+          <div className="alarm">
+            <img
+              className="header-icons"
+              src="../../icons/bell-regular.svg"
+              alt="bell"
+            />
+          </div>
+
+          {isLoggedIn ? (
+            <div className="loggedInDiv">
+              <button onClick={() => (window.location.href = "/write")}>
+                새 글 작성
+              </button>
+              <button onClick={onLogout}>로그아웃</button>
+              <div>
+                <img
+                  src="https://velcdn.com/images/user-thumbnail.png"
+                  alt="user-image"
+                />
+              </div>
+            </div>
+          ) : (
+            <button className="header-login-button" onClick={onClickLogin}>
+              로그인
+            </button>
+          )}
         </div>
 
-        {isLoggedIn ? (
-          <div className="loggedInDiv">
-            <button onClick={() => (window.location.href = "/write")}>
-              새 글 작성
-            </button>
-            <button onClick={onLogout}>로그아웃</button>
-            <div>
-              <img
-                src="https://velcdn.com/images/user-thumbnail.png"
-                alt="user-image"
-              />
-            </div>
-          </div>
-        ) : (
-          <button className="header-login-button" onClick={onClickLogin}>
-            로그인
-          </button>
+        {loginModal && (
+          <LoginModalPortal>
+            <LoginModal onClickLogin={onClickLogin} />
+          </LoginModalPortal>
         )}
-      </div>
+      </header>
+      <header
+        ref={headerRef}
+        className={`${expand ? "expand-header" : "normal-header"}`}
+      >
+        <h1 className="header-logo" onClick={onClickLogo}>
+          {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+        </h1>
 
-      {loginModal && (
-        <LoginModalPortal>
-          <LoginModal onClickLogin={onClickLogin} />
-        </LoginModalPortal>
-      )}
-    </header>
+        <div className="header-buttons">
+          <div className="alarm">
+            <img
+              className="header-icons"
+              src="../../icons/bell-regular.svg"
+              alt="bell"
+            />
+          </div>
+
+          {isLoggedIn ? (
+            <div className="loggedInDiv">
+              <button onClick={() => (window.location.href = "/write")}>
+                새 글 작성
+              </button>
+              <button onClick={onLogout}>로그아웃</button>
+              <div>
+                <img
+                  src="https://velcdn.com/images/user-thumbnail.png"
+                  alt="user-image"
+                />
+              </div>
+            </div>
+          ) : (
+            <button className="header-login-button" onClick={onClickLogin}>
+              로그인
+            </button>
+          )}
+        </div>
+
+        {loginModal && (
+          <LoginModalPortal>
+            <LoginModal onClickLogin={onClickLogin} />
+          </LoginModalPortal>
+        )}
+      </header>
+    </div>
   );
 };
 

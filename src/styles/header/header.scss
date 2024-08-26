@@ -5,12 +5,15 @@
 @mixin headerCommon($header-logo-font-size, $header-padding) {
     .expand-header {
         background-color: white;
-        max-width: 100rem;
-        $header-padding: 12px 8px;
+        position: fixed;
+        top:0;
+        display: flex;
+      }
+
+      .normal-header {
+        display: none;
       }
     header {
-        top:0;
-        position:fixed;
         width:100%;
         max-width: $breakpoint-desktop;
         z-index: 10;

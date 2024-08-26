@@ -1,12 +1,15 @@
 .expand {
   background-color: white;
-  max-width: 100rem;
   box-shadow: 0 1px 5px -4px black;
+  position: fixed;
+  top: 64px;
+}
+
+.normal {
+  display: none;
 }
 
 nav {
-  position: fixed;
-  top: 64px;
   width: 100%;
   max-width: 1026px;
   z-index: 5;
@@ -46,12 +49,14 @@ nav > section .nav-option .nav-bars-icon {
 @media (min-width: 1026px) {
   .expand {
     background-color: white;
-    max-width: 100rem;
     box-shadow: 0 1px 5px -4px black;
-  }
-  nav {
     position: fixed;
     top: 64px;
+  }
+  .normal {
+    display: none;
+  }
+  nav {
     width: 100%;
     max-width: 1026px;
     z-index: 5;

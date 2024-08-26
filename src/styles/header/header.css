@@ -1,11 +1,15 @@
 .expand-header {
   background-color: white;
-  max-width: 100rem;
+  position: fixed;
+  top: 0;
+  display: flex;
+}
+
+.normal-header {
+  display: none;
 }
 
 header {
-  top: 0;
-  position: fixed;
   width: 100%;
   max-width: 1026px;
   z-index: 10;
@@ -14,7 +18,7 @@ header {
   justify-content: space-between;
   background-color: white;
   height: 64px;
-  padding: 12px 8px;
+  padding: 12px 16px;
 }
 header > h1 {
   cursor: pointer;
@@ -101,11 +105,14 @@ header > div > button:hover {
 @media (min-width: 1026px) {
   .expand-header {
     background-color: white;
-    max-width: 100rem;
+    position: fixed;
+    top: 0;
+    display: flex;
+  }
+  .normal-header {
+    display: none;
   }
   header {
-    top: 0;
-    position: fixed;
     width: 100%;
     max-width: 1026px;
     z-index: 10;
