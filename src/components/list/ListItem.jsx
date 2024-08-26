@@ -4,7 +4,11 @@ import "../../styles/list/listItem.scss";
 const ListItem = ({ post }) => {
   return (
     <li className="postcard">
-      <div className="postcard-image-div">
+      <div
+        className={`postcard-image-div ${
+          post.mainImage === "" && "no-display"
+        }`}
+      >
         <a href={`/posting/${post.id}`}>
           {post.mainImage !== "" && (
             <img
@@ -18,7 +22,11 @@ const ListItem = ({ post }) => {
       <div className="postcard-content">
         <a href={`/posting/${post.id}`} className="postcard-aTag">
           <h4 className="postcard-title">{post.title}</h4>
-          <p className="postcard-summary">{post.summary}</p>
+          <p
+            className={`postcard-summary ${post.mainImage !== "" && "reduced"}`}
+          >
+            {post.summary}
+          </p>
         </a>
         <div className="postcard-timeAndComment">
           <span>{new Date(post.createdAt).toLocaleDateString()}</span>
