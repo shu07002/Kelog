@@ -1,6 +1,6 @@
 .detail-bg {
   flex: 1;
-  background-color: white;
+  background-color: #F8F9FA;
   max-width: 100rem;
   display: flex;
   justify-content: center;
@@ -19,6 +19,18 @@
 .detail-bg .detail > .left > h3 {
   margin: 0;
 }
+.detail-bg .detail > .left > .reup-delete {
+  display: flex;
+  justify-content: end;
+}
+.detail-bg .detail > .left > .reup-delete > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #868E96;
+  text-decoration: underline;
+  font-size: 1rem;
+}
 .detail-bg .detail > .left > .image-bg {
   padding: 3rem 0px;
   display: flex;
@@ -28,6 +40,15 @@
   gap: 1rem;
   width: 100%;
   background-color: #E9ECEF;
+}
+.detail-bg .detail > .left > .image-bg > .image-div {
+  overflow: hidden;
+}
+.detail-bg .detail > .left > .image-bg > .image-div > img {
+  aspect-ratio: 48/23;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
 }
 .detail-bg .detail > .left > .image-bg > button {
   background-color: white;
@@ -39,6 +60,15 @@
   padding: 0.25rem 2rem;
   border-radius: 4px;
   font-weight: bold;
+}
+.detail-bg .detail > .left > .image-bg > button:hover {
+  opacity: 0.7;
+}
+.detail-bg .detail > .left > .image-bg > .no-display {
+  display: none;
+}
+.detail-bg .detail > .left > .delete-padding {
+  padding: 0;
 }
 .detail-bg .detail > .left > .summary {
   width: 100%;
@@ -57,6 +87,9 @@
   margin-top: 0.25rem;
   font-size: 0.75rem;
   color: #868E96;
+}
+.detail-bg .detail > .left > .summary > .letter-limit {
+  color: rgb(250, 82, 82);
 }
 .detail-bg .detail > .left > .buttons {
   display: flex;
@@ -97,4 +130,8 @@
 }
 .detail-bg .detail > .right {
   flex: 1 1 0%;
+}
+
+#file {
+  display: none;
 }/*# sourceMappingURL=writeDetail.css.map */

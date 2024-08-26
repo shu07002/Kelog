@@ -42,7 +42,7 @@
   background-color: #12B886;
 }
 .writing-component > .showupdown {
-  background-color: white;
+  background-color: #F8F9FA;
   max-width: 100vw;
   max-height: 100vh;
   position: fixed;
@@ -52,6 +52,13 @@
   bottom: 0;
   display: flex;
   align-items: center;
+  transition: transform 0.3s linear;
+}
+.writing-component .up {
+  transform: translateY(0);
+}
+.writing-component .down {
+  transform: translateY(100%);
 }
 
 /* Editor.css */

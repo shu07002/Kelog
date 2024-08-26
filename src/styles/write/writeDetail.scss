@@ -14,10 +14,25 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
+            flex: 1 1 0%;
             > h3 {
                 margin: 0;
             }
-            flex: 1 1 0%;
+
+            > .reup-delete {
+                display: flex;
+                justify-content: end;
+
+                > button {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: #868E96;
+                    text-decoration: underline;
+                    font-size: 1rem;
+                }
+            }
+
             > .image-bg {
                 padding: 3rem 0px;
                 display: flex;
@@ -28,7 +43,18 @@
                 width: 100%;
                 background-color: #E9ECEF;
 
-                >button {
+                
+
+                > .image-div {
+                    overflow:hidden;
+                    > img {
+                        aspect-ratio: 48 / 23;
+                        object-fit: cover;
+                        width: 100%;
+                    }
+                } 
+
+                > button {
                     background-color: white;
                     color: #20C997;
                     border: none;
@@ -38,7 +64,19 @@
                     padding: 0.25rem 2rem;
                     border-radius: 4px;
                     font-weight: bold;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                } 
+
+                > .no-display {
+                    display:none;
                 }
+            }
+
+            > .delete-padding {
+                padding: 0;
             }
 
             > .summary {
@@ -60,6 +98,10 @@
                     font-size: 0.75rem;
                     color: #868E96;
                 }
+
+                > .letter-limit {
+                    color: rgb(250, 82, 82);;
+                }  
             }
 
             > .buttons {
@@ -112,4 +154,8 @@
         }
     }
 
+}
+
+#file {
+    display: none;
 }

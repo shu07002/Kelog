@@ -23,37 +23,6 @@ const Writing = () => {
     return () => window.removeEventListener("resize", handleEditorHeight);
   }, []);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const CURRENT_USER = JSON.parse(
-      window.localStorage.getItem("CURRENT_USER")
-    );
-
-    try {
-      const newPostRef = await addDoc(collection(database, "posts"), {
-        title: title,
-        content: content,
-        authorId: CURRENT_USER.nickname,
-        summary: content.split(".")[0] + ".",
-        createdAt: new Date().getTime(),
-        likes: [],
-        comments: [],
-        mainImage: "",
-      });
-
-      await updateDoc(newPostRef, {
-        id: newPostRef.id,
-      });
-
-      console.log("성공!!!!");
-      alert("포스팅 했습니다.");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <div className="writing-component">
       <input
@@ -81,6 +50,8 @@ const Writing = () => {
 
       <div className={`showupdown ${showWriteDetail ? "up" : "down"}`}>
         <WriteDetail
+          title={title}
+          content={content}
           showWriteDetail={showWriteDetail}
           setShowWriteDetail={setShowWriteDetail}
         />

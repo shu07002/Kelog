@@ -6,11 +6,13 @@ const ListItem = ({ post }) => {
     <li className="postcard">
       <div className="postcard-image-div">
         <a href={`/posting/${post.id}`}>
-          <img
-            className="postcard-image"
-            src="https://picsum.photos/1000/700"
-            alt="랜덤이미지"
-          />
+          {post.mainImage !== "" && (
+            <img
+              className="postcard-image"
+              src={post.mainImage}
+              alt="랜덤이미지"
+            />
+          )}
         </a>
       </div>
       <div className="postcard-content">
