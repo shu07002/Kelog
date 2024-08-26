@@ -1,8 +1,10 @@
 .expand-header {
   background-color: white;
+  max-width: 100vw;
   position: fixed;
   top: 0;
-  display: flex;
+  left: 0;
+  right: 0;
 }
 
 .normal-header {
@@ -105,9 +107,11 @@ header > div > button:hover {
 @media (min-width: 1026px) {
   .expand-header {
     background-color: white;
+    max-width: 100vw;
     position: fixed;
     top: 0;
-    display: flex;
+    left: 0;
+    right: 0;
   }
   .normal-header {
     display: none;

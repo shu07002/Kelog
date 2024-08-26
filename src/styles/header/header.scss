@@ -1,13 +1,13 @@
 @import "../mixin.scss";
-
-
 // 사이즈에 상관 없이 똑같이 적용되는 스타일
 @mixin headerCommon($header-logo-font-size, $header-padding) {
     .expand-header {
         background-color: white;
+        max-width: 100vw;
         position: fixed;
         top:0;
-        display: flex;
+        left: 0;
+        right:0;
       }
 
       .normal-header {
