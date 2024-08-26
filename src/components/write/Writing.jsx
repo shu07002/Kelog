@@ -79,14 +79,12 @@ const Writing = () => {
         </button>
       </div>
 
-      {showWriteDetail && (
-        <div className="showupdown">
-          <WriteDetail
-            showWriteDetail={showWriteDetail}
-            setShowWriteDetail={setShowWriteDetail}
-          />
-        </div>
-      )}
+      <div className={`showupdown ${showWriteDetail ? "up" : "down"}`}>
+        <WriteDetail
+          showWriteDetail={showWriteDetail}
+          setShowWriteDetail={setShowWriteDetail}
+        />
+      </div>
     </div>
   );
 };
