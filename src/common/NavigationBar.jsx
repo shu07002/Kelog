@@ -40,7 +40,7 @@ const NavigationBar = () => {
   }, []);
 
   return (
-    <div>
+    <div className="nav-layout">
       <nav>
         <section className="nav-section">
           <div className="nav-section-category">
@@ -70,34 +70,36 @@ const NavigationBar = () => {
         </section>
       </nav>
 
-      <nav ref={navRef} className={`${expand ? "expand" : "normal"}`}>
-        <section className="nav-section">
-          <div className="nav-section-category">
-            <h4>트렌딩</h4>
-            <h4>최신</h4>
-            <h4>피드</h4>
-          </div>
-        </section>
-        <section>
-          <div className="nav-option">
-            <select
-              onChange={(e) => setDateFilter(e.target.value)}
-              value={dateFilter}
-            >
-              {options.map((option) => (
-                <option key={option.value} defaultValue={"이번 주"}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <img
-              className="nav-bars-icon"
-              src="icons/bars-solid.svg"
-              alt="menu"
-            />
-          </div>
-        </section>
-      </nav>
+      <div className="nav-expander" ref={navRef}>
+        <nav className={`${expand ? "expand-nav" : "normal-nav"}`}>
+          <section className="nav-section">
+            <div className="nav-section-category">
+              <h4>트렌딩</h4>
+              <h4>최신</h4>
+              <h4>피드</h4>
+            </div>
+          </section>
+          <section>
+            <div className="nav-option">
+              <select
+                onChange={(e) => setDateFilter(e.target.value)}
+                value={dateFilter}
+              >
+                {options.map((option) => (
+                  <option key={option.value} defaultValue={"이번 주"}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <img
+                className="nav-bars-icon"
+                src="icons/bars-solid.svg"
+                alt="menu"
+              />
+            </div>
+          </section>
+        </nav>
+      </div>
     </div>
   );
 };

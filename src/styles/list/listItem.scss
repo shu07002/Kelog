@@ -12,17 +12,27 @@
     
     @include postTwo {
             grid-template-columns: 1fr 1fr;
-            padding: 12px 16px;
     }
     @include postOne {
         grid-template-columns: 1fr;
-        padding: 12px 16px;
     }
 
     @include postThree {
         > .postcard:hover {
             transform: translateY(-8px);
         }
+    }
+
+    @include desktop {
+        width: $breakpoint-desktop;
+    }
+
+    @include tablet {
+        width: $breakpoint-tablet;
+    }
+
+    @include mobile {
+        
     }
 
     >.postcard:hover {

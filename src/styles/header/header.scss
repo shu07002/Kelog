@@ -1,18 +1,31 @@
 @import "../mixin.scss";
+
+
+
 // 사이즈에 상관 없이 똑같이 적용되는 스타일
+
+.header-layout {
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @mixin headerCommon($header-logo-font-size, $header-padding) {
-    .expand-header {
-        background-color: white;
-        max-width: 100vw;
+
+    .header-expander {
+        background-color: #fff;
         position: fixed;
         top:0;
         left: 0;
         right:0;
-      }
-
-      .normal-header {
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        .normal-header {
         display: none;
-      }
+        }
+    }
+    
     header {
         width:100%;
         max-width: $breakpoint-desktop;

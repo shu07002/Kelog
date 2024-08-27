@@ -11,18 +11,26 @@
 @media (min-width: 768px) and (max-width: 1055px) {
   .postlist {
     grid-template-columns: 1fr 1fr;
-    padding: 12px 16px;
   }
 }
 @media (max-width: 767px) {
   .postlist {
     grid-template-columns: 1fr;
-    padding: 12px 16px;
   }
 }
 @media (min-width: 1056px) {
   .postlist > .postcard:hover {
     transform: translateY(-8px);
+  }
+}
+@media (min-width: 1024px) {
+  .postlist {
+    width: 1024px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .postlist {
+    width: 768px;
   }
 }
 .postlist > .postcard:hover {

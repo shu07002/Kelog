@@ -65,7 +65,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div className="header-layout">
       <header>
         <h1 className="header-logo" onClick={onClickLogo}>
           Blog
@@ -135,49 +135,59 @@ const Header = () => {
           </LoginModalPortal>
         )}
       </header>
-      <header
-        ref={headerRef}
-        className={`${expand ? "expand-header" : "normal-header"}`}
-      >
-        <h1 className="header-logo" onClick={onClickLogo}>
-          {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
-        </h1>
+      <div className="header-expander" ref={headerRef}>
+        <header className={`${expand ? "expand-header" : "normal-header"}`}>
+          <h1 className="header-logo" onClick={onClickLogo}>
+            {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+          </h1>
 
-        <div className="header-buttons">
-          <div className="alarm">
-            <img
-              className="header-icons"
-              src="../../icons/bell-regular.svg"
-              alt="bell"
-            />
+          <div className="header-buttons">
+            <div className="alarm">
+              <img
+                className="header-icons"
+                src="../../icons/bell-regular.svg"
+                alt="bell"
+              />
+            </div>
+
+            {isLoggedIn ? (
+              <div className="loggedInDiv">
+                <button onClick={() => (window.location.href = "/write")}>
+                  새 글 작성
+                </button>
+                <button onClick={onLogout}>로그아웃</button>
+                <div className="detail" onClick={() => setOpenMenu(!openMenu)}>
+                  <img
+                    src="https://velcdn.com/images/user-thumbnail.png"
+                    alt="user-image"
+                  />
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 24 24"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M7 10l5 5 5-5z"></path>
+                  </svg>
+                </div>
+              </div>
+            ) : (
+              <button className="header-login-button" onClick={onClickLogin}>
+                로그인
+              </button>
+            )}
           </div>
 
-          {isLoggedIn ? (
-            <div className="loggedInDiv">
-              <button onClick={() => (window.location.href = "/write")}>
-                새 글 작성
-              </button>
-              <button onClick={onLogout}>로그아웃</button>
-              <div>
-                <img
-                  src="https://velcdn.com/images/user-thumbnail.png"
-                  alt="user-image"
-                />
-              </div>
-            </div>
-          ) : (
-            <button className="header-login-button" onClick={onClickLogin}>
-              로그인
-            </button>
+          {loginModal && (
+            <LoginModalPortal>
+              <LoginModal onClickLogin={onClickLogin} />
+            </LoginModalPortal>
           )}
-        </div>
-
-        {loginModal && (
-          <LoginModalPortal>
-            <LoginModal onClickLogin={onClickLogin} />
-          </LoginModalPortal>
-        )}
-      </header>
+        </header>
+      </div>
     </div>
   );
 };

@@ -47,9 +47,12 @@ const Content = () => {
 
   return (
     <div className="App">
-      {(location.pathname === "/" ||
-        location.pathname.startsWith("/posting")) && <Header />}
-      {location.pathname === "/" && <NavigationBar />}
+      <div className="layout">
+        {(location.pathname === "/" ||
+          location.pathname.startsWith("/posting")) && <Header />}
+        {location.pathname === "/" && <NavigationBar />}
+      </div>
+
       <Router />
     </div>
   );
