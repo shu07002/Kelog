@@ -14,36 +14,30 @@
         display: none;
     }
     nav {
-
         width:100%;
         max-width: $breakpoint-desktop;
         z-index: 5;
-        background-color: white;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: $nav-padding;
 
         > section {
-            background-color: white;
             display: flex;
             align-items: center;
             height: 48px;
 
             > .nav-section-category {
-                
-                background-color: white;
                 display: flex;
                 gap: 10px;
                 min-width: 132px;
-                
                 > h4 {
                     cursor: pointer;
                 }
             }
 
             .nav-option {
-                background-color: white;
+
                 display: flex;
                 align-items: center;
                 gap: 10px;

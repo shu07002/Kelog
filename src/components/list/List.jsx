@@ -54,7 +54,7 @@ const List = () => {
     let q = query(
       collection(database, "posts"),
       where("createdAt", compare, Timestamp),
-      orderBy("createdAt"),
+      orderBy("createdAt", "desc"),
       limit(9)
     );
 
@@ -62,7 +62,7 @@ const List = () => {
       q = query(
         collection(database, "posts"),
         where("createdAt", compare, Timestamp),
-        orderBy("createdAt"),
+        orderBy("createdAt", "desc"),
         startAfter(lastVisibleRef.current),
         limit(9)
       );
@@ -150,7 +150,7 @@ const List = () => {
       {posts.map((post, index) => {
         return <ListItem key={index} post={post} />;
       })}
-      {hasMore && <div ref={loadRef}>Im here</div>}
+      {hasMore && <div ref={loadRef}></div>}
     </ul>
   );
 };

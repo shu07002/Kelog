@@ -13,6 +13,7 @@ const Header = () => {
 
   const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -83,12 +84,43 @@ const Header = () => {
             <div className="loggedInDiv">
               <button onClick={() => navigate("/write")}>새 글 작성</button>
               <button onClick={onLogout}>로그아웃</button>
-              <div>
+              <div className="detail" onClick={() => setOpenMenu(!openMenu)}>
                 <img
                   src="https://velcdn.com/images/user-thumbnail.png"
                   alt="user-image"
                 />
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 24 24"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M7 10l5 5 5-5z"></path>
+                </svg>
               </div>
+
+              {openMenu && (
+                <div className="menu">
+                  <a>
+                    <div>내 블로그</div>
+                  </a>
+                  <a>
+                    <div>임시 글</div>
+                  </a>
+                  <a>
+                    <div>읽기 목록</div>
+                  </a>
+                  <a>
+                    <div>설정</div>
+                  </a>
+                  <a>
+                    <div>로그아웃</div>
+                  </a>
+                </div>
+              )}
             </div>
           ) : (
             <button className="header-login-button" onClick={onClickLogin}>

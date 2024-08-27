@@ -20,14 +20,12 @@
         display:flex;
         align-items: center;
         justify-content: space-between;
-        background-color: white;
         height: 64px;
         padding: $header-padding;
 
         > h1 {
             cursor: pointer;
             font-size: ($header-logo-font-size);
-            background-color: white;
             margin-right: 15px;
 
             > a {
@@ -36,10 +34,11 @@
             }
         }
 
-        > div {
+        > .header-buttons {
             display: flex;
             align-items: center;
             gap: 15px;
+            position: relative;
             
             .alarm {
                 margin: 0 auto;
@@ -64,8 +63,24 @@
                 display: flex;
                 gap: 8px;
                 align-items: center;
+
+                &:hover {
+                    cursor: pointer;
+                }
                 
-                >button {
+                > .detail {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    >img {
+                        border-radius: 100px;
+                        width:2.5rem;
+                        height: 2.5rem;
+                    }
+                }
+                
+                > button {
                     transition: 0.15s ease-in-out;
                     border-radius: 40px;
                     font-size: 16px;
@@ -88,15 +103,29 @@
                     }
 
                 }
-                > div {
-                    >img {
-                        border-radius: 100px;
-                        width:2.5rem;
-                        height: 2.5rem;
+
+                > .menu {
+                    position: absolute;
+                    width: 12rem;
+                    background-color: white;
+                    right: 0;
+                    top: 100%;
+                    margin-top: 1rem;
+                    z-index: 20;
+                    display: flex;
+                    flex-direction: column;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+
+                    > a {
+                        padding: 0.75rem 1rem;
+                        cursor: pointer;
                         &:hover {
-                            cursor: pointer;
+                            background: #F8F9FA;
+                            color:#12B886;
                         }
+                        
                     }
+
                 }
             }
 
@@ -127,6 +156,6 @@
 
 // 데스크탑
 @include desktop {
-    @include headerCommon(24px, 12px 8px);
+    @include headerCommon(24px, 12px 0px);
 }
 

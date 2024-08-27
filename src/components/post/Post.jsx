@@ -48,12 +48,18 @@ const Post = ({ postId }) => {
       <div className="posting-info">
         <h1>{post.title}</h1>
 
-        <div>
-          <span className="posting-writer">{post.authorId}</span>
-          <span> · </span>
-          <span className="posting-date">
-            {new Date(post.createdAt).toLocaleDateString()}
-          </span>
+        <div className="top-user-info">
+          <div>
+            <span className="posting-writer">{post.authorId}</span>
+            <span> · </span>
+            <span className="posting-date">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </span>
+          </div>
+
+          <div className="follow-btn">
+            <button>팔로우</button>
+          </div>
         </div>
 
         <aside ref={leftSideRef} className="like-share-box">
@@ -69,16 +75,32 @@ const Post = ({ postId }) => {
             </div>
           </div>
         </aside>
-        <div className="main-image">
-          <img src={post.mainImage} alt="main_image" />
-        </div>
+        {post.mainImage !== "" && (
+          <div className="main-image">
+            <img src={post.mainImage} alt="main_image" />
+          </div>
+        )}
       </div>
 
       <article>
         <MDEditor.Markdown source={post.content} />
       </article>
 
-      <section>사용자 정보 영역</section>
+      <section className="userInfo">
+        <div className="userImage">
+          <img
+            src="https://velcdn.com/images/user-thumbnail.png"
+            alt="userImage"
+          />
+        </div>
+        <div className="user">
+          <h3>유저 닉네임</h3>
+          <p>유저 자기소개</p>
+        </div>
+        <div className="follow-btn">
+          <button>팔로우</button>
+        </div>
+      </section>
       <section>댓글 작성 영역</section>
       <section>댓글 조회 영역</section>
     </div>

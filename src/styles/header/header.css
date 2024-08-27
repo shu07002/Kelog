@@ -18,26 +18,25 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
   height: 64px;
   padding: 12px 16px;
 }
 header > h1 {
   cursor: pointer;
   font-size: 20px;
-  background-color: white;
   margin-right: 15px;
 }
 header > h1 > a {
   color: black;
   text-decoration-line: none;
 }
-header > div {
+header > .header-buttons {
   display: flex;
   align-items: center;
   gap: 15px;
+  position: relative;
 }
-header > div .alarm {
+header > .header-buttons .alarm {
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -45,21 +44,34 @@ header > div .alarm {
   width: 40px;
   height: 40px;
 }
-header > div .alarm:hover {
+header > .header-buttons .alarm:hover {
   background-color: rgb(215, 215, 215);
   border-radius: 50%;
 }
-header > div .header-icons {
+header > .header-buttons .header-icons {
   cursor: pointer;
   width: 24px;
   height: 24px;
 }
-header > div .loggedInDiv {
+header > .header-buttons .loggedInDiv {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-header > div .loggedInDiv > button {
+header > .header-buttons .loggedInDiv:hover {
+  cursor: pointer;
+}
+header > .header-buttons .loggedInDiv > .detail {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+header > .header-buttons .loggedInDiv > .detail > img {
+  border-radius: 100px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+header > .header-buttons .loggedInDiv > button {
   transition: 0.15s ease-in-out;
   border-radius: 40px;
   font-size: 16px;
@@ -69,25 +81,37 @@ header > div .loggedInDiv > button {
   min-width: 80px;
   border: 1px solid black;
 }
-header > div .loggedInDiv > button:hover {
+header > .header-buttons .loggedInDiv > button:hover {
   cursor: pointer;
   outline: none;
   color: white;
   background-color: black;
 }
-header > div .loggedInDiv > button > a {
+header > .header-buttons .loggedInDiv > button > a {
   text-decoration-line: none;
   color: black;
 }
-header > div .loggedInDiv > div > img {
-  border-radius: 100px;
-  width: 2.5rem;
-  height: 2.5rem;
+header > .header-buttons .loggedInDiv > .menu {
+  position: absolute;
+  width: 12rem;
+  background-color: white;
+  right: 0;
+  top: 100%;
+  margin-top: 1rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 }
-header > div .loggedInDiv > div > img:hover {
+header > .header-buttons .loggedInDiv > .menu > a {
+  padding: 0.75rem 1rem;
   cursor: pointer;
 }
-header > div > button {
+header > .header-buttons .loggedInDiv > .menu > a:hover {
+  background: #F8F9FA;
+  color: #12B886;
+}
+header > .header-buttons > button {
   cursor: pointer;
   border: none;
   outline: none;
@@ -100,7 +124,7 @@ header > div > button {
   height: 32px;
   min-width: 80px;
 }
-header > div > button:hover {
+header > .header-buttons > button:hover {
   background-color: #343a40;
 }
 
@@ -123,26 +147,25 @@ header > div > button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
     height: 64px;
-    padding: 12px 8px;
+    padding: 12px 0px;
   }
   header > h1 {
     cursor: pointer;
     font-size: 24px;
-    background-color: white;
     margin-right: 15px;
   }
   header > h1 > a {
     color: black;
     text-decoration-line: none;
   }
-  header > div {
+  header > .header-buttons {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
   }
-  header > div .alarm {
+  header > .header-buttons .alarm {
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -150,21 +173,34 @@ header > div > button:hover {
     width: 40px;
     height: 40px;
   }
-  header > div .alarm:hover {
+  header > .header-buttons .alarm:hover {
     background-color: rgb(215, 215, 215);
     border-radius: 50%;
   }
-  header > div .header-icons {
+  header > .header-buttons .header-icons {
     cursor: pointer;
     width: 24px;
     height: 24px;
   }
-  header > div .loggedInDiv {
+  header > .header-buttons .loggedInDiv {
     display: flex;
     gap: 8px;
     align-items: center;
   }
-  header > div .loggedInDiv > button {
+  header > .header-buttons .loggedInDiv:hover {
+    cursor: pointer;
+  }
+  header > .header-buttons .loggedInDiv > .detail {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  header > .header-buttons .loggedInDiv > .detail > img {
+    border-radius: 100px;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  header > .header-buttons .loggedInDiv > button {
     transition: 0.15s ease-in-out;
     border-radius: 40px;
     font-size: 16px;
@@ -174,25 +210,37 @@ header > div > button:hover {
     min-width: 80px;
     border: 1px solid black;
   }
-  header > div .loggedInDiv > button:hover {
+  header > .header-buttons .loggedInDiv > button:hover {
     cursor: pointer;
     outline: none;
     color: white;
     background-color: black;
   }
-  header > div .loggedInDiv > button > a {
+  header > .header-buttons .loggedInDiv > button > a {
     text-decoration-line: none;
     color: black;
   }
-  header > div .loggedInDiv > div > img {
-    border-radius: 100px;
-    width: 2.5rem;
-    height: 2.5rem;
+  header > .header-buttons .loggedInDiv > .menu {
+    position: absolute;
+    width: 12rem;
+    background-color: white;
+    right: 0;
+    top: 100%;
+    margin-top: 1rem;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
   }
-  header > div .loggedInDiv > div > img:hover {
+  header > .header-buttons .loggedInDiv > .menu > a {
+    padding: 0.75rem 1rem;
     cursor: pointer;
   }
-  header > div > button {
+  header > .header-buttons .loggedInDiv > .menu > a:hover {
+    background: #F8F9FA;
+    color: #12B886;
+  }
+  header > .header-buttons > button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -205,7 +253,7 @@ header > div > button:hover {
     height: 32px;
     min-width: 80px;
   }
-  header > div > button:hover {
+  header > .header-buttons > button:hover {
     background-color: #343a40;
   }
 }/*# sourceMappingURL=header.css.map */
