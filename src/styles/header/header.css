@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "HakgyoansimPuzzleTTF-Black";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimPuzzleTTF-Black.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 .header-layout {
   max-width: 100vw;
   display: flex;
@@ -33,6 +39,18 @@ header > h1 {
   cursor: pointer;
   font-size: 20px;
   margin-right: 15px;
+  font-family: HakgyoansimPuzzleTTF-Black;
+}
+header > h1 .logo-and-nickname {
+  display: flex;
+  gap: 12px;
+}
+header > h1 .logo-and-nickname .logo-box {
+  background-color: black;
+  color: white;
+  width: 35px;
+  text-align: center;
+  border-radius: 5px;
 }
 header > h1 > a {
   color: black;
@@ -164,6 +182,18 @@ header > .header-buttons > button:hover {
     cursor: pointer;
     font-size: 24px;
     margin-right: 15px;
+    font-family: HakgyoansimPuzzleTTF-Black;
+  }
+  header > h1 .logo-and-nickname {
+    display: flex;
+    gap: 12px;
+  }
+  header > h1 .logo-and-nickname .logo-box {
+    background-color: black;
+    color: white;
+    width: 35px;
+    text-align: center;
+    border-radius: 5px;
   }
   header > h1 > a {
     color: black;

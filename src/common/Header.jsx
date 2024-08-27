@@ -68,7 +68,19 @@ const Header = () => {
     <div className="header-layout">
       <header>
         <h1 className="header-logo" onClick={onClickLogo}>
-          Blog
+          {location.pathname.startsWith("/posting") ? (
+            <div className="logo-and-nickname">
+              <div className="logo-box">K</div>
+              <div>
+                {
+                  JSON.parse(window.localStorage.getItem("CURRENT_USER"))
+                    .nickname
+                }
+              </div>
+            </div>
+          ) : (
+            "Kelog"
+          )}
         </h1>
 
         <div className="header-buttons">
@@ -138,7 +150,19 @@ const Header = () => {
       <div className="header-expander" ref={headerRef}>
         <header className={`${expand ? "expand-header" : "normal-header"}`}>
           <h1 className="header-logo" onClick={onClickLogo}>
-            {location.pathname === "/" ? "Blog" : <a href="/">Blog</a>}
+            {location.pathname.startsWith("/posting") ? (
+              <div className="logo-and-nickname">
+                <div className="logo-box">K</div>
+                <div>
+                  {
+                    JSON.parse(window.localStorage.getItem("CURRENT_USER"))
+                      .nickname
+                  }
+                </div>
+              </div>
+            ) : (
+              "Kelog"
+            )}
           </h1>
 
           <div className="header-buttons">

@@ -22,7 +22,7 @@ const Post = ({ postId }) => {
   useEffect(() => {
     const handleScroll = () => {
       if (leftSideRef.current) {
-        if (window.scrollY > 285) {
+        if (window.scrollY > 225) {
           leftSideRef.current.style.setProperty("position", "fixed");
           leftSideRef.current.style.setProperty("top", "90px");
         } else {

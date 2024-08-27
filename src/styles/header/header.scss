@@ -1,7 +1,12 @@
 @import "../mixin.scss";
 
 
-
+@font-face {
+    font-family: 'HakgyoansimPuzzleTTF-Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimPuzzleTTF-Black.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 // 사이즈에 상관 없이 똑같이 적용되는 스타일
 
 .header-layout {
@@ -40,6 +45,20 @@
             cursor: pointer;
             font-size: ($header-logo-font-size);
             margin-right: 15px;
+            font-family: HakgyoansimPuzzleTTF-Black;
+
+            .logo-and-nickname {
+                display:flex;
+                gap: 12px;
+                .logo-box {
+                    background-color: black;
+                    color:white;
+                    width: 35px;
+                    text-align: center;
+                    border-radius: 5px;;
+                }
+            }
+            
 
             > a {
                 color: black;
