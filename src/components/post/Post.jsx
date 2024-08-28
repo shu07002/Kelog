@@ -27,13 +27,10 @@ const Post = ({ postId }) => {
 
     const handleScroll = () => {
       if (leftSideRef.current) {
-        if (
-          -1 * titleRef.current.getBoundingClientRect().top >
-          titleRef.current.offsetHeight
-        ) {
-          console.log("SDf", titleRef.current.getBoundingClientRect().top);
+        if (window.scrollY > titleRef.current.offsetHeight + 64) {
+          console.log("SDf", titleRef.current.clientHeight);
           leftSideRef.current.style.setProperty("position", "fixed");
-          leftSideRef.current.style.setProperty("top", "95px");
+          leftSideRef.current.style.setProperty("top", "80px");
         } else {
           leftSideRef.current.style.setProperty("position", "relative");
           leftSideRef.current.style.setProperty("top", "2rem");
@@ -54,9 +51,13 @@ const Post = ({ postId }) => {
 
   return (
     <div className="posting">
-      <div className="posting-info">
-        <h1 ref={titleRef}>{post.title}</h1>
+      <div ref={titleRef}>
+        <div className="for-size-bar">
+          <h1>{post.title}</h1>
+        </div>
+      </div>
 
+      <div className="posting-info">
         <div className="top-user-info">
           <div>
             <span className="posting-writer">{post.authorId}</span>

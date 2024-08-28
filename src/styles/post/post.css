@@ -1,26 +1,27 @@
 .posting {
   width: 100%;
   max-width: 768px;
-  margin-top: 5.5rem;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
+}
+.posting > div > .for-size-bar {
+  margin-top: 5.5rem;
+}
+.posting > div > .for-size-bar > h1 {
+  margin: 0;
+  font-size: 3rem;
 }
 .posting .posting-info {
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 .posting .posting-info > .top-user-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.posting .posting-info > h1 {
-  margin: 0;
-  font-size: 3rem;
 }
 .posting .posting-info > div .posting-writer {
   font-weight: bold;
