@@ -99,6 +99,12 @@
                 gap: 8px;
                 align-items: center;
 
+                >.write {
+                    @media (max-width: 1024px) {
+                        display: none;
+                    }
+                }
+
                 &:hover {
                     cursor: pointer;
                 }
@@ -152,16 +158,29 @@
                     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
                     > div {
                         position: relative;
+
+                        > .responsive-write {
+                            display: none;
+                            @media (max-width: 1024px) {
+                                display: block;
+                            }
+                        }
                         > a {
                             display: block;
                             cursor: pointer;
+
+                            
                             &:hover {
                                 background: #F8F9FA;
                                 color:#12B886;
                             }
                             > div{
                                 padding: 0.75rem 1rem;
+
+                                
                             }
+
+                            
                             
                         }
                     }

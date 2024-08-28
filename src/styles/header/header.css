@@ -92,6 +92,11 @@
   gap: 8px;
   align-items: center;
 }
+@media (max-width: 1024px) {
+  .header-layout header > .header-buttons .loggedInDiv > .write {
+    display: none;
+  }
+}
 .header-layout header > .header-buttons .loggedInDiv:hover {
   cursor: pointer;
 }
@@ -139,6 +144,14 @@
 }
 .header-layout header > .header-buttons .loggedInDiv > .menu > div {
   position: relative;
+}
+.header-layout header > .header-buttons .loggedInDiv > .menu > div > .responsive-write {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .header-layout header > .header-buttons .loggedInDiv > .menu > div > .responsive-write {
+    display: block;
+  }
 }
 .header-layout header > .header-buttons .loggedInDiv > .menu > div > a {
   display: block;
@@ -255,6 +268,13 @@
     gap: 8px;
     align-items: center;
   }
+}
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .header-layout header > .header-buttons .loggedInDiv > .write {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
   .header-layout header > .header-buttons .loggedInDiv:hover {
     cursor: pointer;
   }
@@ -303,6 +323,16 @@
   .header-layout header > .header-buttons .loggedInDiv > .menu > div {
     position: relative;
   }
+  .header-layout header > .header-buttons .loggedInDiv > .menu > div > .responsive-write {
+    display: none;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1024px) {
+  .header-layout header > .header-buttons .loggedInDiv > .menu > div > .responsive-write {
+    display: block;
+  }
+}
+@media (min-width: 1024px) {
   .header-layout header > .header-buttons .loggedInDiv > .menu > div > a {
     display: block;
     cursor: pointer;

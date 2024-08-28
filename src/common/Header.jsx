@@ -11,6 +11,7 @@ const Header = () => {
   const scrollRef = useRef(136);
   const headerRef = useRef(null);
   const closeMenuRef = useRef();
+  const menuRef = useRef();
 
   const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
@@ -26,7 +27,8 @@ const Header = () => {
     setLoginModal(!loginModal);
   };
 
-  const onLogout = async () => {
+  const onLogout = async (e) => {
+    e.stopPropagation();
     try {
       await auth.signOut();
       window.localStorage.removeItem("CURRENT_USER");
@@ -37,7 +39,12 @@ const Header = () => {
   };
 
   const clickOutside = (e) => {
-    if (!closeMenuRef.current.contains(e.target)) {
+    if (
+      closeMenuRef.current &&
+      !closeMenuRef.current.contains(e.target) &&
+      menuRef.current &&
+      !menuRef.current.contains(e.target)
+    ) {
       setOpenMenu1(false);
       setOpenMenu2(false);
     }
@@ -89,6 +96,8 @@ const Header = () => {
     }
   };
 
+  const currentUser = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
+
   return (
     <div className="header-layout">
       <header>
@@ -96,12 +105,7 @@ const Header = () => {
           {location.pathname.startsWith("/posting") ? (
             <div className="logo-and-nickname">
               <div className="logo-box">K</div>
-              <div>
-                {
-                  JSON.parse(window.localStorage.getItem("CURRENT_USER"))
-                    .nickname
-                }
-              </div>
+              <div>{currentUser?.nickname}</div>
             </div>
           ) : (
             "Kelog"
@@ -117,21 +121,17 @@ const Header = () => {
             />
           </div>
 
-          {isLoggedIn ? (
+          {isLoggedIn && currentUser ? (
             <div className="loggedInDiv">
-              <button onClick={() => navigate("/write")}>새 글 작성</button>
+              <button className="write" onClick={() => navigate("/write")}>
+                새 글 작성
+              </button>
               <div
                 ref={closeMenuRef}
                 className="detail"
                 onClick={() => onClickMenu(1)}
               >
-                <img
-                  src={`${
-                    JSON.parse(window.localStorage.getItem("CURRENT_USER"))
-                      .profile_image_url
-                  }`}
-                  alt="user-image"
-                />
+                <img src={currentUser.profile_image_url} alt="user-image" />
                 <svg
                   stroke="currentColor"
                   fill="currentColor"
@@ -146,10 +146,13 @@ const Header = () => {
               </div>
 
               {openMenu1 && (
-                <div className="menu">
+                <div className="menu" ref={menuRef}>
                   <div>
                     <a>
                       <div>내 블로그</div>
+                    </a>
+                    <a className="responsive-write">
+                      <div>새 글 작성</div>
                     </a>
                     <a>
                       <div>임시 글</div>
@@ -186,12 +189,7 @@ const Header = () => {
             {location.pathname.startsWith("/posting") ? (
               <div className="logo-and-nickname">
                 <div className="logo-box">K</div>
-                <div>
-                  {
-                    JSON.parse(window.localStorage.getItem("CURRENT_USER"))
-                      .nickname
-                  }
-                </div>
+                <div>{currentUser?.nickname}</div>
               </div>
             ) : (
               "Kelog"
@@ -207,9 +205,12 @@ const Header = () => {
               />
             </div>
 
-            {isLoggedIn ? (
+            {isLoggedIn && currentUser ? (
               <div className="loggedInDiv">
-                <button onClick={() => (window.location.href = "/write")}>
+                <button
+                  className="write"
+                  onClick={() => (window.location.href = "/write")}
+                >
                   새 글 작성
                 </button>
                 <div className="detail" onClick={() => onClickMenu(2)}>
@@ -231,10 +232,13 @@ const Header = () => {
                 </div>
 
                 {openMenu2 && (
-                  <div className="menu">
+                  <div className="menu" ref={menuRef}>
                     <div>
                       <a>
                         <div>내 블로그</div>
+                      </a>
+                      <a className="responsive-write">
+                        <div>새 글 작성</div>
                       </a>
                       <a>
                         <div>임시 글</div>
