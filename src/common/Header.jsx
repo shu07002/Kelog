@@ -14,8 +14,8 @@ const Header = () => {
 
   const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
-  const [openMenu, setOpenMenu] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  const [openMenu1, setOpenMenu1] = useState(false);
+  const [openMenu2, setOpenMenu2] = useState(false);
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -66,6 +66,19 @@ const Header = () => {
     navigate("/");
   };
 
+  const onClickMenu = (type) => {
+    if ((openMenu1 && type === 2) || (openMenu2 && type === 1)) {
+      setOpenMenu1(!openMenu1);
+      setOpenMenu2(!openMenu2);
+    }
+
+    if (type === 1) {
+      setOpenMenu1(!openMenu1);
+    } else if (type === 2) {
+      setOpenMenu2(!openMenu2);
+    }
+  };
+
   return (
     <div className="header-layout">
       <header>
@@ -98,7 +111,7 @@ const Header = () => {
             <div className="loggedInDiv">
               <button onClick={() => navigate("/write")}>새 글 작성</button>
               <button onClick={onLogout}>로그아웃</button>
-              <div className="detail" onClick={() => setOpenMenu(!openMenu)}>
+              <div className="detail" onClick={() => onClickMenu(1)}>
                 <img
                   src={`${
                     JSON.parse(window.localStorage.getItem("CURRENT_USER"))
@@ -119,7 +132,7 @@ const Header = () => {
                 </svg>
               </div>
 
-              {openMenu && (
+              {openMenu1 && (
                 <div className="menu">
                   <div>
                     <a>
@@ -187,7 +200,7 @@ const Header = () => {
                   새 글 작성
                 </button>
                 <button onClick={onLogout}>로그아웃</button>
-                <div className="detail" onClick={() => setOpenMenu(!openMenu)}>
+                <div className="detail" onClick={() => onClickMenu(2)}>
                   <img
                     src="https://velcdn.com/images/user-thumbnail.png"
                     alt="user-image"
@@ -205,7 +218,7 @@ const Header = () => {
                   </svg>
                 </div>
 
-                {openMenu && (
+                {openMenu2 && (
                   <div className="menu">
                     <div>
                       <a>
