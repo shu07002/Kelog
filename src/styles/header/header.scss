@@ -200,12 +200,12 @@
     justify-content: center;
     align-items: center;
     // 모바일과 테블릿에서만 적용되는 스타일
-    @include headerCommon(20px, 0 0);
+    @include headerCommon(20px, 12px 0);
 
 
     // 데스크탑
     @include desktop {
-        @include headerCommon(24px, 0 0);
+        @include headerCommon(24px, 12px 0);
     }
     
 }

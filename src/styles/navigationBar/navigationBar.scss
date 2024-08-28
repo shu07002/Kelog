@@ -75,10 +75,8 @@
  
 }
 
-@include navCommon(0 0);
+@include navCommon(12px 0);
 
 @include desktop {
-    @include navCommon(0 0);
-
-    
+    @include navCommon(12px 0);
 }

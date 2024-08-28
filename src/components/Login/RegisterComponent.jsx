@@ -52,21 +52,19 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
         email,
         password
       );
-      const userDoc = doc(USER_COLLECTION, user.uid);
-      await setDoc(userDoc, {
+
+      const CURRENT_USER = {
         uid: user.uid,
         email: email,
         nickname: nickname,
-        profile_image_url: "",
+        profile_image_url: "https://velcdn.com/images/user-thumbnail.png",
         following_count: [],
         follower_count: [],
         cerated_at: Date.now(),
-      });
-
-      const CURRENT_USER = {
-        email: email,
-        nickname: nickname,
       };
+
+      const userDoc = doc(USER_COLLECTION, user.uid);
+      await setDoc(userDoc, CURRENT_USER);
 
       window.localStorage.setItem("CURRENT_USER", JSON.stringify(CURRENT_USER));
       console.log(user);

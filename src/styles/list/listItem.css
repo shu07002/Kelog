@@ -6,6 +6,7 @@
   padding: 0px;
   margin: 0px;
   margin-bottom: 16px;
+  margin-top: 32px;
 }
 @media (min-width: 768px) and (max-width: 1055px) {
   .postlist {

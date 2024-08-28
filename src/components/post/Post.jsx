@@ -18,13 +18,22 @@ const Post = ({ postId }) => {
   }, []);
 
   const leftSideRef = useRef();
+  const titleRef = useRef();
 
   useEffect(() => {
+    if (titleRef.current) {
+      console.log(titleRef.current.offsetHeight);
+    }
+
     const handleScroll = () => {
       if (leftSideRef.current) {
-        if (window.scrollY > 225) {
+        if (
+          -1 * titleRef.current.getBoundingClientRect().top >
+          titleRef.current.offsetHeight
+        ) {
+          console.log("SDf", titleRef.current.getBoundingClientRect().top);
           leftSideRef.current.style.setProperty("position", "fixed");
-          leftSideRef.current.style.setProperty("top", "90px");
+          leftSideRef.current.style.setProperty("top", "95px");
         } else {
           leftSideRef.current.style.setProperty("position", "relative");
           leftSideRef.current.style.setProperty("top", "2rem");
@@ -46,7 +55,7 @@ const Post = ({ postId }) => {
   return (
     <div className="posting">
       <div className="posting-info">
-        <h1>{post.title}</h1>
+        <h1 ref={titleRef}>{post.title}</h1>
 
         <div className="top-user-info">
           <div>

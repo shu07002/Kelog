@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding: 0 0;
+  padding: 12px 0;
 }
 @media (min-width: 1024px) {
   .header-layout header {
@@ -197,7 +197,7 @@
     align-items: center;
     justify-content: space-between;
     height: 64px;
-    padding: 0 0;
+    padding: 12px 0;
   }
 }
 @media (min-width: 1024px) and (min-width: 1024px) {

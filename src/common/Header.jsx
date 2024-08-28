@@ -3,9 +3,10 @@ import "../styles/header/header.scss";
 import LoginModal from "../components/Login/LoginModal";
 import { LoginModalPortal } from "../portal/LoginModalPortal";
 import { AuthContext } from "../context/AuthContext";
-import { auth } from "../firebase";
+import { auth, database } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const Header = () => {
   const scrollRef = useRef(136);
@@ -14,6 +15,7 @@ const Header = () => {
   const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
 
   const { isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -98,7 +100,10 @@ const Header = () => {
               <button onClick={onLogout}>로그아웃</button>
               <div className="detail" onClick={() => setOpenMenu(!openMenu)}>
                 <img
-                  src="https://velcdn.com/images/user-thumbnail.png"
+                  src={`${
+                    JSON.parse(window.localStorage.getItem("CURRENT_USER"))
+                      .profile_image_url
+                  }`}
                   alt="user-image"
                 />
                 <svg
