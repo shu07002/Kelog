@@ -11,6 +11,7 @@
   margin-top: 5.5rem;
 }
 .posting > div > .for-size-bar > h1 {
+  line-height: 1.5;
   margin: 0;
   font-size: 3rem;
 }

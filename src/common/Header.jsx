@@ -6,11 +6,11 @@ import { AuthContext } from "../context/AuthContext";
 import { auth, database } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 const Header = () => {
   const scrollRef = useRef(136);
   const headerRef = useRef(null);
+  const closeMenuRef = useRef();
 
   const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
@@ -36,7 +36,16 @@ const Header = () => {
     }
   };
 
+  const clickOutside = (e) => {
+    if (!closeMenuRef.current.contains(e.target)) {
+      setOpenMenu1(false);
+      setOpenMenu2(false);
+    }
+  };
+
   useEffect(() => {
+    window.addEventListener("mousedown", clickOutside);
+
     const handleScroll = () => {
       if (headerRef.current) {
         if (window.scrollY >= scrollRef.current) {
@@ -59,6 +68,7 @@ const Header = () => {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousedown", clickOutside);
     };
   }, []);
 
@@ -110,8 +120,11 @@ const Header = () => {
           {isLoggedIn ? (
             <div className="loggedInDiv">
               <button onClick={() => navigate("/write")}>새 글 작성</button>
-              <button onClick={onLogout}>로그아웃</button>
-              <div className="detail" onClick={() => onClickMenu(1)}>
+              <div
+                ref={closeMenuRef}
+                className="detail"
+                onClick={() => onClickMenu(1)}
+              >
                 <img
                   src={`${
                     JSON.parse(window.localStorage.getItem("CURRENT_USER"))
@@ -148,7 +161,7 @@ const Header = () => {
                       <div>설정</div>
                     </a>
                     <a>
-                      <div>로그아웃</div>
+                      <div onClick={onLogout}>로그아웃</div>
                     </a>
                   </div>
                 </div>
@@ -199,7 +212,6 @@ const Header = () => {
                 <button onClick={() => (window.location.href = "/write")}>
                   새 글 작성
                 </button>
-                <button onClick={onLogout}>로그아웃</button>
                 <div className="detail" onClick={() => onClickMenu(2)}>
                   <img
                     src="https://velcdn.com/images/user-thumbnail.png"
@@ -234,7 +246,7 @@ const Header = () => {
                         <div>설정</div>
                       </a>
                       <a>
-                        <div>로그아웃</div>
+                        <div onClick={onLogout}>로그아웃</div>
                       </a>
                     </div>
                   </div>

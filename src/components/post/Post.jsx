@@ -27,13 +27,13 @@ const Post = ({ postId }) => {
 
     const handleScroll = () => {
       if (leftSideRef.current) {
-        if (window.scrollY > titleRef.current.offsetHeight + 64) {
+        if (window.scrollY > titleRef.current.offsetHeight + 54) {
           console.log("SDf", titleRef.current.clientHeight);
           leftSideRef.current.style.setProperty("position", "fixed");
-          leftSideRef.current.style.setProperty("top", "80px");
+          leftSideRef.current.style.setProperty("top", "112px");
         } else {
           leftSideRef.current.style.setProperty("position", "relative");
-          leftSideRef.current.style.setProperty("top", "2rem");
+          leftSideRef.current.style.setProperty("top", "3rem");
         }
       }
     };
