@@ -116,21 +116,23 @@ const Header = () => {
 
               {openMenu && (
                 <div className="menu">
-                  <a>
-                    <div>내 블로그</div>
-                  </a>
-                  <a>
-                    <div>임시 글</div>
-                  </a>
-                  <a>
-                    <div>읽기 목록</div>
-                  </a>
-                  <a>
-                    <div>설정</div>
-                  </a>
-                  <a>
-                    <div>로그아웃</div>
-                  </a>
+                  <div>
+                    <a>
+                      <div>내 블로그</div>
+                    </a>
+                    <a>
+                      <div>임시 글</div>
+                    </a>
+                    <a>
+                      <div>읽기 목록</div>
+                    </a>
+                    <a>
+                      <div>설정</div>
+                    </a>
+                    <a>
+                      <div>로그아웃</div>
+                    </a>
+                  </div>
                 </div>
               )}
             </div>
@@ -197,6 +199,28 @@ const Header = () => {
                     <path d="M7 10l5 5 5-5z"></path>
                   </svg>
                 </div>
+
+                {openMenu && (
+                  <div className="menu">
+                    <div>
+                      <a>
+                        <div>내 블로그</div>
+                      </a>
+                      <a>
+                        <div>임시 글</div>
+                      </a>
+                      <a>
+                        <div>읽기 목록</div>
+                      </a>
+                      <a>
+                        <div>설정</div>
+                      </a>
+                      <a>
+                        <div>로그아웃</div>
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <button className="header-login-button" onClick={onClickLogin}>

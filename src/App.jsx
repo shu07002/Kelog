@@ -52,8 +52,9 @@ const Content = () => {
           location.pathname.startsWith("/posting")) && <Header />}
         {location.pathname === "/" && <NavigationBar />}
       </div>
-
-      <Router />
+      <div className="layout">
+        <Router />
+      </div>
     </div>
   );
 };

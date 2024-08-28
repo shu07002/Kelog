@@ -2,7 +2,6 @@
   width: 100%;
   display: grid;
   gap: 32px;
-  grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;
   padding: 0px;
   margin: 0px;
@@ -19,18 +18,11 @@
   }
 }
 @media (min-width: 1056px) {
+  .postlist {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .postlist > .postcard:hover {
     transform: translateY(-8px);
-  }
-}
-@media (min-width: 1024px) {
-  .postlist {
-    width: 1024px;
-  }
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-  .postlist {
-    width: 768px;
   }
 }
 .postlist > .postcard:hover {
