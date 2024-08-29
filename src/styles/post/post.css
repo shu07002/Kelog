@@ -252,24 +252,20 @@
   font-weight: 600;
   margin-bottom: 1rem;
 }
-.posting > .comment-section > .comment-input-window {
-  width: 100%;
-  resize: none;
-  padding: 1rem 1rem 1.5rem;
-  min-height: 6.125rem;
-  line-height: 1.75;
-  outline: none;
-  overflow-y: hidden;
-  border: 1px solid #F1F3F5;
-  background-color: #FFFFFF;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-}
-.posting > .comment-section > .write-comment {
+
+.write-comment {
   display: flex;
   flex-direction: row-reverse;
+  gap: 8px;
 }
-.posting > .comment-section > .write-comment > button {
+.write-comment > .cancle {
+  color: #12B886;
+  background-color: #F8F9FA;
+}
+.write-comment > .cancle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.write-comment > button {
   background-color: #12B886;
   color: #FFFFFF;
   padding: 0 1.25rem;
@@ -279,6 +275,9 @@
   border: none;
   font-weight: bold;
   border-radius: 4px;
+}
+.write-comment > button:hover {
+  background: #20C997;
 }
 
 .follow-btn {
@@ -354,12 +353,39 @@
   font-weight: bold;
   font-size: 1rem;
 }
-.comment-box > .re-comment > div {
+.comment-box > .re-comment > .re-comment-btn {
   display: inline-block;
 }
-.comment-box > .re-comment > div > svg {
+.comment-box > .re-comment > .re-comment-btn > svg {
   margin-right: 0.5rem;
 }
-.comment-box > .re-comment > div:hover {
+.comment-box > .re-comment > .re-comment-btn:hover {
   cursor: pointer;
+  color: #20C997;
+}
+.comment-box > .re-comment > .write-recomment-box {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.comment-box > .re-comment > .write-recomment-box > div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.comment-box > .re-comment > .write-recomment-box > div > button {
+  display: block;
+}
+
+.comment-input-window {
+  width: 100%;
+  resize: none;
+  padding: 1rem 1rem 1.5rem;
+  min-height: 6.125rem;
+  line-height: 1.75;
+  outline: none;
+  overflow-y: hidden;
+  border: 1px solid #F1F3F5;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
 }/*# sourceMappingURL=post.css.map */

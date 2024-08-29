@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/post/post.scss";
 
 const CommentItem = ({ comment }) => {
+  const [OpenRecomment, setOpenRecomment] = useState(false);
   return (
     <div className="comment-box">
       <div className="comment-info">
@@ -21,7 +22,10 @@ const CommentItem = ({ comment }) => {
       <div className="comment-content">{comment.content}</div>
 
       <div className="re-comment">
-        <div>
+        <div
+          className="re-comment-btn"
+          onClick={() => setOpenRecomment(!OpenRecomment)}
+        >
           <svg width="12" height="12" fill="none" viewBox="0 0 12 12">
             <path
               fill="currentColor"
@@ -36,6 +40,24 @@ const CommentItem = ({ comment }) => {
           </svg>
           <span>답글 버튼</span>
         </div>
+
+        {OpenRecomment && (
+          <div className="write-recomment-box">
+            <textarea
+              placeholder="댓글을 작성하세요"
+              className="comment-input-window"
+            ></textarea>
+            <div className="write-comment">
+              <button>댓글 작성</button>
+              <button
+                className="cancle"
+                onClick={() => setOpenRecomment(!OpenRecomment)}
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

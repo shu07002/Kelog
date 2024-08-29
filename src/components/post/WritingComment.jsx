@@ -47,7 +47,7 @@ const WritingComment = ({ post }) => {
         rows={1}
         ref={commentRef}
         value={writeComment}
-        className="comment-input-window"
+        className="comment-input-window inner-comment"
         onChange={onChangeCommentWindow}
         placeholder="댓글을 작성하세요"
       ></textarea>

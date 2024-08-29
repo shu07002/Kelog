@@ -1,13 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../styles/post/post.scss";
-import {
-  addDoc,
-  collection,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "../../firebase";
 import MDEditor from "@uiw/react-md-editor";
 import TopUserInfo from "./TopUserInfo";
@@ -67,7 +60,6 @@ const Post = ({ postId }) => {
     const handleScroll = () => {
       if (leftSideRef.current) {
         if (window.scrollY > titleRef.current.offsetHeight + 54) {
-          console.log("SDf", titleRef.current.clientHeight);
           leftSideRef.current.style.setProperty("position", "fixed");
           leftSideRef.current.style.setProperty("top", "112px");
         } else {

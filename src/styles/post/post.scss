@@ -272,39 +272,43 @@
             font-weight: 600;
             margin-bottom: 1rem;
         }
-
-        > .comment-input-window {
-            width: 100%;
-            resize: none;
-            padding: 1rem 1rem 1.5rem;
-            min-height: 6.125rem;
-            line-height: 1.75;
-            outline: none;
-            overflow-y:hidden;
-            border: 1px solid #F1F3F5;
-            background-color: #FFFFFF;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        > .write-comment {
-            display: flex;
-            flex-direction: row-reverse;
-
-            > button {
-                background-color: #12B886;
-                color: #FFFFFF;
-                padding: 0 1.25rem;
-                height: 2rem;
-                font-size: 1rem;
-                cursor: pointer;
-                border:none;
-                font-weight: bold;
-                border-radius: 4px;
-            }
-        }
     }
 }
+
+.write-comment {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 8px;
+
+    > .cancle {
+        color:#12B886;
+        background-color: #F8F9FA;
+
+        &:hover {
+            background: rgba(0,0,0,0.05);
+        }
+    }
+
+    > button {
+        background-color: #12B886;
+        color: #FFFFFF;
+        padding: 0 1.25rem;
+        height: 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        border:none;
+        font-weight: bold;
+        border-radius: 4px;
+
+        &:hover {
+            background: #20C997;
+        }
+    }
+
+    
+}
+
+
 
 .follow-btn {
     display: flex;
@@ -391,7 +395,7 @@
         font-weight: bold;
         font-size: 1rem;
 
-        > div {
+        > .re-comment-btn {
             display: inline-block;
 
             > svg {
@@ -400,8 +404,36 @@
     
             &:hover {
                 cursor: pointer;
+                color:#20C997;
             }
         }
 
+
+        > .write-recomment-box {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            > div{
+                display: flex;
+                flex-direction: row-reverse;
+                > button {
+                    display: block;
+                }
+            }
+        }
     }
+}
+
+.comment-input-window {
+    width: 100%;
+    resize: none;
+    padding: 1rem 1rem 1.5rem;
+    min-height: 6.125rem;
+    line-height: 1.75;
+    outline: none;
+    overflow-y:hidden;
+    border: 1px solid #F1F3F5;
+    background-color: #FFFFFF;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
 }
