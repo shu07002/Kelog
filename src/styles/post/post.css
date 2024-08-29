@@ -311,6 +311,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 100px;
+}
+.comment-list > .comment-box:not(:nth-child(1)) {
+  border-top: 1px solid #c5ced3;
 }
 
 .comment-box {
@@ -318,7 +322,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .comment-box > .comment-info {
   display: flex;
@@ -375,6 +380,9 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
+}
+.comment-box > .re-comment > .write-recomment-box > ul > .comment-box:not(:nth-child(1)) {
+  border-top: 1px solid #c5ced3;
 }
 .comment-box > .re-comment > .write-recomment-box > div {
   display: flex;

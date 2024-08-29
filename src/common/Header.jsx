@@ -3,7 +3,7 @@ import "../styles/header/header.scss";
 import LoginModal from "../components/Login/LoginModal";
 import { LoginModalPortal } from "../portal/LoginModalPortal";
 import { AuthContext } from "../context/AuthContext";
-import { auth, database } from "../firebase";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 

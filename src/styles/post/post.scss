@@ -343,7 +343,11 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    
+    margin-bottom: 100px;
+
+    > .comment-box:not(:nth-child(1)){
+        border-top: 1px solid #c5ced3;
+    }
 }
 
 .comment-box {
@@ -351,7 +355,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    
     
 
     > .comment-info {
@@ -422,6 +429,13 @@
             padding: 24px;
             display: flex;
             flex-direction: column;
+
+            > ul {
+                > .comment-box:not(:nth-child(1)){
+                    border-top: 1px solid #c5ced3;
+                }
+            }
+
             > div{
                 display: flex;
                 flex-direction: row-reverse;
