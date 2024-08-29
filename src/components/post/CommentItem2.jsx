@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import "../../styles/post/post.scss";
 import {
   addDoc,
   collection,
@@ -8,13 +6,14 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { database } from "../../firebase";
-import CommentItem2 from "./CommentItem2";
+import CommentItem3 from "./CommentItem3";
 
-const CommentItem = ({ comment }) => {
+const CommentItem2 = ({ comment }) => {
   const [OpenRecomment, setOpenRecomment] = useState(false);
-  const [writeComment2, setWriteComment2] = useState("");
-  const [commentList2, setCommentList2] = useState([]);
+  const [writeComment3, setWriteComment3] = useState("");
+  const [commentList3, setCommentList3] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +24,8 @@ const CommentItem = ({ comment }) => {
         );
 
         const commentSnapShot = await getDocs(commentQuery);
-        const commentList2 = commentSnapShot.docs.map((doc) => doc.data());
-        setCommentList2(commentList2);
+        const commentList3 = commentSnapShot.docs.map((doc) => doc.data());
+        setCommentList3(commentList3);
       } catch (err) {
         console.log(err);
       }
@@ -36,16 +35,16 @@ const CommentItem = ({ comment }) => {
   }, []);
 
   const onSubmit = async (e) => {
-    setWriteComment2("");
+    setWriteComment3("");
     e.preventDefault("");
 
     const CURRENT_USER = JSON.parse(
       window.localStorage.getItem("CURRENT_USER")
     );
 
-    const COMMENTER3 = {
+    const COMMENTER4 = {
       authorId: CURRENT_USER.nickname,
-      content: writeComment2,
+      content: writeComment3,
       createdAt: new Date().getTime(),
       profile_image_url: CURRENT_USER.profile_image_url,
       depth: 2,
@@ -55,20 +54,19 @@ const CommentItem = ({ comment }) => {
     try {
       const newCommentRef = await addDoc(
         collection(database, "comments"),
-        COMMENTER3
+        COMMENTER4
       );
 
       await updateDoc(newCommentRef, { id: newCommentRef.id });
 
-      setCommentList2([
-        ...commentList2,
-        { ...COMMENTER3, id: newCommentRef.id },
+      setCommentList3([
+        ...commentList3,
+        { ...COMMENTER4, id: newCommentRef.id },
       ]);
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <div className="comment-box">
       <div className="comment-info">
@@ -108,9 +106,9 @@ const CommentItem = ({ comment }) => {
             {OpenRecomment
               ? "숨기기"
               : `${
-                  commentList2.length === 0
+                  commentList3.length === 0
                     ? "답글 달기"
-                    : `${commentList2.length}개의 답글`
+                    : `${commentList3.length}개의 답글`
                 }`}
           </span>
         </div>
@@ -118,13 +116,13 @@ const CommentItem = ({ comment }) => {
         {OpenRecomment && (
           <div className="write-recomment-box">
             <ul>
-              {commentList2.map((comment2) => {
-                return <CommentItem2 key={comment2.id} comment={comment2} />;
+              {commentList3.map((comment3) => {
+                return <CommentItem3 key={comment3.id} comment={comment3} />;
               })}
             </ul>
             <textarea
-              value={writeComment2}
-              onChange={(e) => setWriteComment2(e.target.value)}
+              value={writeComment3}
+              onChange={(e) => setWriteComment3(e.target.value)}
               placeholder="댓글을 작성하세요"
               className="comment-input-window"
             ></textarea>
@@ -145,4 +143,4 @@ const CommentItem = ({ comment }) => {
   );
 };
 
-export default CommentItem;
+export default CommentItem2;

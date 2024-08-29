@@ -338,15 +338,20 @@
   gap: 4px;
 }
 .comment-box > .comment-info > .username-write-date > .username {
+  color: black;
   font-size: 1rem;
   font-weight: bold;
 }
 .comment-box > .comment-info > .username-write-date > .write-date {
+  font-weight: 400;
   font-size: 0.875rem;
   color: #868E96;
 }
 .comment-box > .comment-content {
   margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: black;
 }
 .comment-box > .re-comment {
   color: #12B886;

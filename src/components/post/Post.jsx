@@ -15,8 +15,6 @@ const Post = ({ postId }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [commentList, setCommentList] = useState([]);
 
-  useEffect(() => {}, []);
-
   const leftSideRef = useRef();
   const titleRef = useRef();
 
@@ -35,7 +33,7 @@ const Post = ({ postId }) => {
 
           const commentQuery = query(
             collection(database, "comments"),
-            where("postId", "==", postData.id)
+            where("parrentCommentId", "==", postData.id)
           );
 
           const userQuery = query(
@@ -44,6 +42,8 @@ const Post = ({ postId }) => {
           );
 
           const userSnapshot = await getDocs(userQuery);
+
+          console.log(userSnapshot.docs[0]);
           setCurrentUser(userSnapshot.docs[0]?.data());
 
           const commentSnapshot = await getDocs(commentQuery);
@@ -115,7 +115,7 @@ const Post = ({ postId }) => {
 
       <ul className="comment-list">
         {commentList.map((comment) => {
-          return <CommentItem key={comment.id} comment={comment} post={post} />;
+          return <CommentItem key={comment.id} comment={comment} />;
         })}
       </ul>
     </div>

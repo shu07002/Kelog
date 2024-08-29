@@ -21,13 +21,12 @@ const WritingComment = ({ post, commentList, setCommentList }) => {
     );
 
     const COMMENTER = {
-      postId: post.id,
       authorId: CURRENT_USER.nickname,
       content: writeComment,
       createdAt: new Date().getTime(),
       profile_image_url: CURRENT_USER.profile_image_url,
       depth: 1,
-      parrentCommentId: null,
+      parrentCommentId: post.id,
     };
 
     try {

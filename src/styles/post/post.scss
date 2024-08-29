@@ -375,11 +375,13 @@
             gap: 4px;
 
             > .username {
+                color: black;
                 font-size: 1rem;
                 font-weight: bold;
             }
 
             > .write-date {
+                font-weight: 400;
                 font-size: 0.875rem;
                 color: #868E96;
             }
@@ -388,6 +390,9 @@
 
     > .comment-content {
         margin-bottom: 1.5rem;
+        font-weight:400;
+        font-size: 1rem;
+        color: black;
     }
 
     > .re-comment {
