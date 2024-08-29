@@ -18,7 +18,8 @@
         right:0;
         z-index: 20;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        
         .normal-header {
         display: none;
         }
@@ -218,6 +219,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
+    > div {
+        width: 100%;
+        >div{
+            width: 100%;
+        }
+    }
     // 모바일과 테블릿에서만 적용되는 스타일
     @include headerCommon(20px, 12px 0);
 

@@ -1,27 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginModalPortal } from "../portal/LoginModalPortal";
 import LoginModal from "../components/Login/LoginModal";
 import { auth } from "../firebase";
 
-const CommonHeader = ({
-  location,
-  isLoggedIn,
-  onClickMenu,
-  openMenu,
-  menuRef,
-  closeMenuRef,
-  expand = false,
-  headerRef,
-  onClickMenuId,
-}) => {
+const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
   const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
   const [loginModal, setLoginModal] = useState(false);
   const navigate = useNavigate();
+  const scrollRef = useRef(136);
+  const [expand, setExpand] = useState(false);
 
+  const closeMenuRef = useRef();
+  const menuRef = useRef();
   const onClickLogo = () => {
     navigate("/");
   };
+
+  const [openMenu1, setOpenMenu1] = useState(false);
+  const [openMenu2, setOpenMenu2] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const clickOutside = (e) => {
+    if (
+      closeMenuRef.current &&
+      !closeMenuRef.current.contains(e.target) &&
+      menuRef.current &&
+      !menuRef.current.contains(e.target)
+    ) {
+      setOpenMenu1(false);
+      setOpenMenu2(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef?.current) {
+        if (window.scrollY >= scrollRef.current) {
+          headerRef.current.style.setProperty("transform", "translateY(-200%)");
+          headerRef.current.style.setProperty("transition", "transform 0.15s");
+        } else {
+          headerRef.current.style.removeProperty("transform");
+        }
+        if (window.scrollY > 80) {
+          scrollRef.current = window.scrollY;
+        }
+
+        if (window.scrollY > 136) setExpand(true);
+        else setExpand(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousedown", clickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousedown", clickOutside);
+    };
+  }, [headerRef]);
 
   const onClickLogin = () => {
     setLoginModal(!loginModal);
@@ -35,6 +72,25 @@ const CommonHeader = ({
       navigate("/");
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("openMenu state changed:", openMenu2);
+  }, [openMenu2]);
+
+  const onClickMenu = (type) => {
+    if (openMenu1 || openMenu2) {
+      if (type === 1) {
+        setOpenMenu1(!openMenu1);
+        setOpenMenu2(false);
+      } else if (type === 2) {
+        setOpenMenu2(!openMenu2);
+        setOpenMenu2(false);
+      }
+    } else {
+      if (type === 1) setOpenMenu1(!openMenu1);
+      else setOpenMenu2(!openMenu2);
     }
   };
 
@@ -85,7 +141,7 @@ const CommonHeader = ({
                 </svg>
               </div>
 
-              {openMenu && (
+              {(openMenu1 || openMenu2) && (
                 <div className="menu" ref={menuRef}>
                   <div>
                     <a>
