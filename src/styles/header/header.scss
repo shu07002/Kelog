@@ -217,13 +217,12 @@
 
 .header-layout {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     width: 100%;
 
     > div {
         width: 100%;
-        >div{
+        > div {
             width: 100%;
         }
     }

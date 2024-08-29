@@ -75,10 +75,6 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("openMenu state changed:", openMenu2);
-  }, [openMenu2]);
-
   const onClickMenu = (type) => {
     if (openMenu1 || openMenu2) {
       if (type === 1) {
