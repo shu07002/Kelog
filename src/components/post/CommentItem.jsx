@@ -1,8 +1,42 @@
 import React, { useState } from "react";
 import "../../styles/post/post.scss";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
+import { database } from "../../firebase";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, post }) => {
   const [OpenRecomment, setOpenRecomment] = useState(false);
+  const [writeComment2, setWriteComment2] = useState("");
+
+  const onSubmit = async (e) => {
+    setWriteComment2("");
+    e.preventDefault("");
+
+    const CURRENT_USER = JSON.parse(
+      window.localStorage.getItem("CURRENT_USER")
+    );
+
+    const COMMENTER2 = {
+      postId: post.id,
+      authorId: CURRENT_USER.nickname,
+      content: writeComment2,
+      createdAt: new Date().getTime(),
+      profile_image_url: CURRENT_USER.profile_image_url,
+      depth: 2,
+      parrentCommentId: comment.id,
+    };
+
+    try {
+      const newCommentRef = await addDoc(
+        collection(database, "comments"),
+        COMMENTER2
+      );
+
+      await updateDoc(newCommentRef, { id: newCommentRef.id });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="comment-box">
       <div className="comment-info">
@@ -38,17 +72,19 @@ const CommentItem = ({ comment }) => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <span>답글 버튼</span>
+          <span>{OpenRecomment ? "숨기기" : "답글 달기"}</span>
         </div>
 
         {OpenRecomment && (
           <div className="write-recomment-box">
             <textarea
+              value={writeComment2}
+              onChange={(e) => setWriteComment2(e.target.value)}
               placeholder="댓글을 작성하세요"
               className="comment-input-window"
             ></textarea>
             <div className="write-comment">
-              <button>댓글 작성</button>
+              <button onClick={onSubmit}>댓글 작성</button>
               <button
                 className="cancle"
                 onClick={() => setOpenRecomment(!OpenRecomment)}

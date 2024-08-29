@@ -107,11 +107,15 @@ const Post = ({ postId }) => {
 
       <OtherPost post={post} />
 
-      <WritingComment post={post} />
+      <WritingComment
+        post={post}
+        commentList={commentList}
+        setCommentList={setCommentList}
+      />
 
       <ul className="comment-list">
         {commentList.map((comment) => {
-          return <CommentItem key={comment.id} comment={comment} />;
+          return <CommentItem key={comment.id} comment={comment} post={post} />;
         })}
       </ul>
     </div>

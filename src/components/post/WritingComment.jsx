@@ -2,7 +2,7 @@ import { addDoc, collection, updateDoc } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { database } from "../../firebase";
 
-const WritingComment = ({ post }) => {
+const WritingComment = ({ post, commentList, setCommentList }) => {
   const [writeComment, setWriteComment] = useState("");
   const commentRef = useRef();
 
@@ -26,6 +26,8 @@ const WritingComment = ({ post }) => {
       content: writeComment,
       createdAt: new Date().getTime(),
       profile_image_url: CURRENT_USER.profile_image_url,
+      depth: 1,
+      parrentCommentId: null,
     };
 
     try {
@@ -35,6 +37,8 @@ const WritingComment = ({ post }) => {
       );
 
       await updateDoc(newCommentRef, { id: newCommentRef.id });
+
+      setCommentList([...commentList, { ...COMMENTER, id: newCommentRef.id }]);
     } catch (err) {
       console.log(err);
     }

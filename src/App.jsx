@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./common/Header";
 import Router from "./Router";
 import { BrowserRouter, useLocation } from "react-router-dom";
@@ -44,16 +44,24 @@ const App = () => {
 
 const Content = () => {
   const location = useLocation();
+  const backRef = useRef();
+
+  useEffect(() => {
+    if (location.pathname === "/")
+      backRef.current.style.setProperty("background", "#f8f9fa");
+  }, []);
 
   return (
     <div className="App">
-      <div className="layout">
-        {(location.pathname === "/" ||
-          location.pathname.startsWith("/posting")) && <Header />}
-        {location.pathname === "/" && <NavigationBar />}
-      </div>
-      <div className="layout">
-        <Router />
+      <div ref={backRef}>
+        <div className="layout">
+          {(location.pathname === "/" ||
+            location.pathname.startsWith("/posting")) && <Header />}
+          {location.pathname === "/" && <NavigationBar />}
+        </div>
+        <div className="layout">
+          <Router />
+        </div>
       </div>
     </div>
   );

@@ -8,18 +8,22 @@
     justify-content: center;
     align-items: center;
 
-    > .layout {
+    > div {
         width: 100%;
-
-        @include desktop {
-            max-width: $breakpoint-desktop;
+        > .layout {
+            width: 100%;
+            margin: 0 auto;
+    
+            @include desktop {
+                max-width: $breakpoint-desktop;
+            }
+    
+            @media screen and (max-width: 1055px) {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
         }
-
-        @media screen and (max-width: 1055px) {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-        
     }
 };
 
