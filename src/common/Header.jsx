@@ -6,6 +6,8 @@ import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import MainHeader from "./MainHeader";
+import ExpandingHeader from "./ExpandingHeader";
 
 const Header = () => {
   const scrollRef = useRef(136);
@@ -13,7 +15,6 @@ const Header = () => {
   const closeMenuRef = useRef();
   const menuRef = useRef();
 
-  const [loginModal, setLoginModal] = useState(false);
   const [expand, setExpand] = useState(false);
   const [openMenu1, setOpenMenu1] = useState(false);
   const [openMenu2, setOpenMenu2] = useState(false);
@@ -22,21 +23,6 @@ const Header = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-
-  const onClickLogin = () => {
-    setLoginModal(!loginModal);
-  };
-
-  const onLogout = async (e) => {
-    e.stopPropagation();
-    try {
-      await auth.signOut();
-      window.localStorage.removeItem("CURRENT_USER");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const clickOutside = (e) => {
     if (
@@ -79,10 +65,6 @@ const Header = () => {
     };
   }, []);
 
-  const onClickLogo = () => {
-    navigate("/");
-  };
-
   const onClickMenu = (type) => {
     if ((openMenu1 && type === 2) || (openMenu2 && type === 1)) {
       setOpenMenu1(!openMenu1);
@@ -96,180 +78,26 @@ const Header = () => {
     }
   };
 
-  const currentUser = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
-
   return (
     <div className="header-layout">
-      <header>
-        <h1 className="header-logo" onClick={onClickLogo}>
-          {location.pathname.startsWith("/posting") ? (
-            <div className="logo-and-nickname">
-              <div className="logo-box">K</div>
-              <div>{currentUser?.nickname}</div>
-            </div>
-          ) : (
-            "Kelog"
-          )}
-        </h1>
+      <MainHeader
+        isLoggedIn={isLoggedIn}
+        location={location}
+        onClickMenu={onClickMenu}
+        closeMenuRef={closeMenuRef}
+        openMenu1={openMenu1}
+        menuRef={menuRef}
+      />
 
-        <div className="header-buttons">
-          <div className="alarm">
-            <img
-              className="header-icons"
-              src="../../icons/bell-regular.svg"
-              alt="bell"
-            />
-          </div>
-
-          {isLoggedIn && currentUser ? (
-            <div className="loggedInDiv">
-              <button className="write" onClick={() => navigate("/write")}>
-                새 글 작성
-              </button>
-              <div
-                ref={closeMenuRef}
-                className="detail"
-                onClick={() => onClickMenu(1)}
-              >
-                <img src={currentUser.profile_image_url} alt="user-image" />
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 10l5 5 5-5z"></path>
-                </svg>
-              </div>
-
-              {openMenu1 && (
-                <div className="menu" ref={menuRef}>
-                  <div>
-                    <a>
-                      <div>내 블로그</div>
-                    </a>
-                    <a className="responsive-write">
-                      <div>새 글 작성</div>
-                    </a>
-                    <a>
-                      <div>임시 글</div>
-                    </a>
-                    <a>
-                      <div>읽기 목록</div>
-                    </a>
-                    <a>
-                      <div>설정</div>
-                    </a>
-                    <a>
-                      <div onClick={onLogout}>로그아웃</div>
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <button className="header-login-button" onClick={onClickLogin}>
-              로그인
-            </button>
-          )}
-        </div>
-
-        {loginModal && (
-          <LoginModalPortal>
-            <LoginModal onClickLogin={onClickLogin} />
-          </LoginModalPortal>
-        )}
-      </header>
-      <div className="header-expander" ref={headerRef}>
-        <header className={`${expand ? "expand-header" : "normal-header"}`}>
-          <h1 className="header-logo" onClick={onClickLogo}>
-            {location.pathname.startsWith("/posting") ? (
-              <div className="logo-and-nickname">
-                <div className="logo-box">K</div>
-                <div>{currentUser?.nickname}</div>
-              </div>
-            ) : (
-              "Kelog"
-            )}
-          </h1>
-
-          <div className="header-buttons">
-            <div className="alarm">
-              <img
-                className="header-icons"
-                src="../../icons/bell-regular.svg"
-                alt="bell"
-              />
-            </div>
-
-            {isLoggedIn && currentUser ? (
-              <div className="loggedInDiv">
-                <button
-                  className="write"
-                  onClick={() => (window.location.href = "/write")}
-                >
-                  새 글 작성
-                </button>
-                <div className="detail" onClick={() => onClickMenu(2)}>
-                  <img
-                    src="https://velcdn.com/images/user-thumbnail.png"
-                    alt="user-image"
-                  />
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 24 24"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M7 10l5 5 5-5z"></path>
-                  </svg>
-                </div>
-
-                {openMenu2 && (
-                  <div className="menu" ref={menuRef}>
-                    <div>
-                      <a>
-                        <div>내 블로그</div>
-                      </a>
-                      <a className="responsive-write">
-                        <div>새 글 작성</div>
-                      </a>
-                      <a>
-                        <div>임시 글</div>
-                      </a>
-                      <a>
-                        <div>읽기 목록</div>
-                      </a>
-                      <a>
-                        <div>설정</div>
-                      </a>
-                      <a>
-                        <div onClick={onLogout}>로그아웃</div>
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <button className="header-login-button" onClick={onClickLogin}>
-                로그인
-              </button>
-            )}
-          </div>
-
-          {loginModal && (
-            <LoginModalPortal>
-              <LoginModal onClickLogin={onClickLogin} />
-            </LoginModalPortal>
-          )}
-        </header>
-      </div>
+      <ExpandingHeader
+        location={location}
+        isLoggedIn={isLoggedIn}
+        onClickMenu={onClickMenu}
+        openMenu2={openMenu2}
+        menuRef={menuRef}
+        headerRef={headerRef}
+        expand={expand}
+      />
     </div>
   );
 };
