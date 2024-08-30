@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import "../styles/header/header.scss";
 import { AuthContext } from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-import MainHeader from "./MainHeader";
-import ExpandingHeader from "./ExpandingHeader";
+import CommonHeader from "./CommonHeader";
 
 const Header = () => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -14,10 +13,10 @@ const Header = () => {
   return (
     <div className="header-layout">
       <div>
-        <MainHeader isLoggedIn={isLoggedIn} location={location} />
+        <CommonHeader isLoggedIn={isLoggedIn} location={location} />
       </div>
       <div>
-        <ExpandingHeader
+        <CommonHeader
           location={location}
           isLoggedIn={isLoggedIn}
           headerRef={headerRef}

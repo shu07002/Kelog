@@ -74,6 +74,12 @@
                         display: block;
                     }
                 }
+
+                > .pushed-like > .like-btn {
+                    color: white;
+                    border: 1px solid #20C997;
+                    background-color: #20C997;
+                }
             }
         }
 
@@ -161,7 +167,22 @@
             border-radius: 100px;
             padding: 8px;
 
-            .heart {
+            > .liked-heart {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 48px;
+                height: 48px;
+                background-color: #20C997;
+                color: white;
+                border-radius: 100px;
+                border: 1px solid #20C997;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            > .empty-heart {
                 opacity: 0.5;
                 display: flex;
                 justify-content: center;

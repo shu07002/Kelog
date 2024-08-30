@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/post/post.scss";
 
-const TopUserInfo = ({ post }) => {
+const TopUserInfo = ({ post, likeseCount, isLiked, onClickHeart }) => {
   return (
     <div className="top-user-info">
       <div>
@@ -16,7 +16,10 @@ const TopUserInfo = ({ post }) => {
         <div className="follow-btn">
           <button>팔로우</button>
         </div>
-        <div className="like-div">
+        <div
+          className={isLiked ? "pushed-like" : "like-div"}
+          onClick={onClickHeart}
+        >
           <button className="like-btn">
             <svg className="small-like-svg" viewBox="0 0 24 24">
               <path
@@ -24,7 +27,7 @@ const TopUserInfo = ({ post }) => {
                 d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"
               ></path>
             </svg>
-            <span>{post.likes.length}</span>
+            <span>{likeseCount}</span>
           </button>
         </div>
       </div>

@@ -83,6 +83,11 @@
 .posting .posting-info > .top-user-info > .follow-like-btn > div > .like-btn > span {
   display: block;
 }
+.posting .posting-info > .top-user-info > .follow-like-btn > .pushed-like > .like-btn {
+  color: white;
+  border: 1px solid #20C997;
+  background-color: #20C997;
+}
 .posting .posting-info > div .posting-writer {
   font-weight: bold;
 }
@@ -156,7 +161,21 @@
   border-radius: 100px;
   padding: 8px;
 }
-.posting .like-share-box > div .heart {
+.posting .like-share-box > div > .liked-heart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: #20C997;
+  color: white;
+  border-radius: 100px;
+  border: 1px solid #20C997;
+}
+.posting .like-share-box > div > .liked-heart:hover {
+  opacity: 1;
+}
+.posting .like-share-box > div > .empty-heart {
   opacity: 0.5;
   display: flex;
   justify-content: center;
@@ -167,7 +186,7 @@
   border-radius: 100px;
   border: 1px solid #DEE2E6;
 }
-.posting .like-share-box > div .heart:hover {
+.posting .like-share-box > div > .empty-heart:hover {
   opacity: 1;
   border: 1px solid black;
 }

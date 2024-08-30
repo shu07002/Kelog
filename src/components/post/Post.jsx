@@ -1,6 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../styles/post/post.scss";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { database } from "../../firebase";
 import MDEditor from "@uiw/react-md-editor";
 import TopUserInfo from "./TopUserInfo";
@@ -10,6 +19,8 @@ import OtherPost from "./OtherPost";
 import WritingComment from "./WritingComment";
 import CommentItem from "./CommentItem";
 
+const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
+
 const Post = ({ postId }) => {
   const [post, setPost] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -17,6 +28,27 @@ const Post = ({ postId }) => {
 
   const leftSideRef = useRef();
   const titleRef = useRef();
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeseCount, setLikesCount] = useState(0);
+
+  const onClickHeart = async () => {
+    const likedRef = doc(database, "posts", post.id);
+    console.log(post.likes);
+
+    if (!isLiked) {
+      await updateDoc(likedRef, { likes: arrayUnion(CURRENT_USER.uid) });
+      setLikesCount(likeseCount + 1);
+    } else {
+      await updateDoc(likedRef, { likes: arrayRemove(CURRENT_USER.uid) });
+      setLikesCount(likeseCount - 1);
+    }
+
+    setIsLiked(!isLiked);
+  };
+
+  useEffect(() => {
+    if (post?.likes.some((like) => like === CURRENT_USER.uid)) setIsLiked(true);
+  }, [post]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +62,7 @@ const Post = ({ postId }) => {
 
         if (postData) {
           setPost(postData);
+          setLikesCount(postData.likes.length);
 
           const commentQuery = query(
             collection(database, "comments"),
@@ -89,9 +122,20 @@ const Post = ({ postId }) => {
       </div>
 
       <div className="posting-info">
-        <TopUserInfo post={post} />
+        <TopUserInfo
+          onClickHeart={onClickHeart}
+          post={post}
+          likeseCount={likeseCount}
+          isLiked={isLiked}
+        />
 
-        <AsideBar post={post} leftSideRef={leftSideRef} />
+        <AsideBar
+          post={post}
+          leftSideRef={leftSideRef}
+          likeseCount={likeseCount}
+          isLiked={isLiked}
+          onClickHeart={onClickHeart}
+        />
         {post.mainImage !== "" && (
           <div className="main-image">
             <img src={post.mainImage} alt="main_image" />

@@ -17,8 +17,6 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
     navigate("/");
   };
 
-  const [openMenu1, setOpenMenu1] = useState(false);
-  const [openMenu2, setOpenMenu2] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
   const clickOutside = (e) => {
@@ -28,8 +26,7 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
       menuRef.current &&
       !menuRef.current.contains(e.target)
     ) {
-      setOpenMenu1(false);
-      setOpenMenu2(false);
+      setOpenMenu(false);
     }
   };
 
@@ -75,18 +72,11 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
     }
   };
 
-  const onClickMenu = (type) => {
-    if (openMenu1 || openMenu2) {
-      if (type === 1) {
-        setOpenMenu1(!openMenu1);
-        setOpenMenu2(false);
-      } else if (type === 2) {
-        setOpenMenu2(!openMenu2);
-        setOpenMenu2(false);
-      }
+  const onClickMenu = () => {
+    if (openMenu) {
+      setOpenMenu(!openMenu);
     } else {
-      if (type === 1) setOpenMenu1(!openMenu1);
-      else setOpenMenu2(!openMenu2);
+      setOpenMenu(!openMenu);
     }
   };
 
@@ -118,11 +108,7 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
               <button className="write" onClick={() => navigate("/write")}>
                 새 글 작성
               </button>
-              <div
-                ref={closeMenuRef}
-                className="detail"
-                onClick={() => onClickMenu(onClickMenuId)}
-              >
+              <div ref={closeMenuRef} className="detail" onClick={onClickMenu}>
                 <img src={CURRENT_USER.profile_image_url} alt="user-image" />
                 <svg
                   stroke="currentColor"
@@ -137,7 +123,7 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
                 </svg>
               </div>
 
-              {(openMenu1 || openMenu2) && (
+              {openMenu && (
                 <div className="menu" ref={menuRef}>
                   <div>
                     <a>

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/post/post.scss";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { database } from "../../firebase";
 
-const AsideBar = ({ post, leftSideRef }) => {
+const AsideBar = ({
+  post,
+  leftSideRef,
+  onClickHeart,
+  isLiked,
+  likeseCount,
+}) => {
   return (
     <aside ref={leftSideRef} className="like-share-box">
       <div>
-        <div className="heart">
+        <div
+          className={`${isLiked ? "liked-heart" : "empty-heart"}`}
+          onClick={onClickHeart}
+        >
           <svg width="24" height="24" viewBox="0 0 24 24">
             <path
               fill="currentColor"
@@ -14,7 +25,7 @@ const AsideBar = ({ post, leftSideRef }) => {
           </svg>
         </div>
         <div className="like-count">
-          <p>{post.likes.length}</p>
+          <p>{likeseCount}</p>
         </div>
         <div className="share">
           <svg width="24" height="24" viewBox="0 0 24 24">
