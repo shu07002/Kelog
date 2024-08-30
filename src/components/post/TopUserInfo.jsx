@@ -29,14 +29,16 @@ const TopUserInfo = ({
   };
 
   useEffect(() => {
-    if (isFollowed) {
-      setText("팔로잉");
-      textRef.current.classList.remove("green");
-      textRef.current.classList.add("black");
-    } else {
-      setText("팔로우");
-      textRef.current.classList.remove("black");
-      textRef.current.classList.add("green");
+    if (textRef.current) {
+      if (isFollowed) {
+        setText("팔로잉");
+        textRef.current.classList.remove("green");
+        textRef.current.classList.add("black");
+      } else {
+        setText("팔로우");
+        textRef.current.classList.remove("black");
+        textRef.current.classList.add("green");
+      }
     }
   }, [isFollowed]);
 

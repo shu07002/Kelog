@@ -179,7 +179,12 @@ const Post = ({ postId }) => {
         <MDEditor.Markdown source={post.content} />
       </article>
 
-      <BottomUserInfo post={post} writer={writer} />
+      <BottomUserInfo
+        post={post}
+        writer={writer}
+        isFollowed={isFollowed}
+        onClickFollow={onClickFollow}
+      />
 
       <OtherPost post={post} />
 
