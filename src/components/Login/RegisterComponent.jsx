@@ -58,8 +58,8 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
         email: email,
         nickname: nickname,
         profile_image_url: "https://velcdn.com/images/user-thumbnail.png",
-        following_count: [],
-        follower_count: [],
+        following: [],
+        follower: [],
         cerated_at: Date.now(),
       };
 

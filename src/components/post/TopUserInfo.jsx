@@ -1,7 +1,45 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../styles/post/post.scss";
 
-const TopUserInfo = ({ post, likeseCount, isLiked, onClickHeart }) => {
+const TopUserInfo = ({
+  post,
+  likeseCount,
+  isLiked,
+  onClickHeart,
+  onClickFollow,
+  isFollowed,
+}) => {
+  const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
+
+  const [text, setText] = useState("");
+  const textRef = useRef(null);
+
+  const onMouseOver = () => {
+    if (isFollowed) {
+      setText("언팔로우");
+      textRef.current.classList.add("red");
+    }
+  };
+
+  const onMouseOut = () => {
+    if (isFollowed) {
+      setText("팔로잉");
+      textRef.current.classList.remove("red");
+    }
+  };
+
+  useEffect(() => {
+    if (isFollowed) {
+      setText("팔로잉");
+      textRef.current.classList.remove("green");
+      textRef.current.classList.add("black");
+    } else {
+      setText("팔로우");
+      textRef.current.classList.remove("black");
+      textRef.current.classList.add("green");
+    }
+  }, [isFollowed]);
+
   return (
     <div className="top-user-info">
       <div>
@@ -13,9 +51,19 @@ const TopUserInfo = ({ post, likeseCount, isLiked, onClickHeart }) => {
       </div>
 
       <div className="follow-like-btn">
-        <div className="follow-btn">
-          <button>팔로우</button>
-        </div>
+        {CURRENT_USER.nickname !== post.authorId && (
+          <div
+            className="follow-btn"
+            onClick={onClickFollow}
+            onMouseOver={onMouseOver}
+            onMouseOut={onMouseOut}
+          >
+            <button ref={textRef} className={isFollowed ? "black" : "green"}>
+              {text}
+            </button>
+          </div>
+        )}
+
         <div
           className={isLiked ? "pushed-like" : "like-div"}
           onClick={onClickHeart}

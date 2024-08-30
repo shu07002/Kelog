@@ -325,17 +325,13 @@
             background: #20C997;
         }
     }
-
-    
 }
-
-
 
 .follow-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     > button {
         background-color: white;
         font-size: 16px;
@@ -345,8 +341,6 @@
         padding: 1px 6px;
         font-weight: bold;
         border-radius: 16px;
-        color: #12B886;
-        border: 1px solid #12B886;
 
         @media (max-width: 1024px) {
             width: 80px;
@@ -354,6 +348,24 @@
             font-size: 16px;
         }
     }
+
+    > .green {
+        color: #12B886;
+        border: 1px solid #12B886;
+    }
+
+    > .red {
+        &:hover{        
+        color: #FF6B6B;
+        border: 1px solid #FF6B6B;
+        }
+    }
+
+    > .black {
+        color: black;
+        border: 1px solid black;
+    }
+    
 
 }
 

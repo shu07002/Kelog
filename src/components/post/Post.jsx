@@ -19,36 +19,60 @@ import OtherPost from "./OtherPost";
 import WritingComment from "./WritingComment";
 import CommentItem from "./CommentItem";
 
-const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
-
 const Post = ({ postId }) => {
+  const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
   const [post, setPost] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [writer, setWriter] = useState(null);
   const [commentList, setCommentList] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const leftSideRef = useRef();
   const titleRef = useRef();
+
   const [isLiked, setIsLiked] = useState(false);
   const [likeseCount, setLikesCount] = useState(0);
+
+  const [isFollowed, setIsFollowed] = useState(false);
 
   const onClickHeart = async () => {
     const likedRef = doc(database, "posts", post.id);
     console.log(post.likes);
 
     if (!isLiked) {
-      await updateDoc(likedRef, { likes: arrayUnion(CURRENT_USER.uid) });
+      await updateDoc(likedRef, { likes: arrayUnion() });
       setLikesCount(likeseCount + 1);
     } else {
-      await updateDoc(likedRef, { likes: arrayRemove(CURRENT_USER.uid) });
+      await updateDoc(likedRef, { likes: arrayRemove() });
       setLikesCount(likeseCount - 1);
     }
 
     setIsLiked(!isLiked);
   };
 
+  const onClickFollow = async () => {
+    const followingRef = doc(database, "users", currentUser.uid);
+    const followerRef = doc(database, "users", post.uid);
+
+    if (!isFollowed) {
+      await updateDoc(followingRef, { following: arrayUnion(post.uid) });
+      await updateDoc(followerRef, { follower: arrayUnion(currentUser.uid) });
+    } else {
+      await updateDoc(followingRef, { following: arrayRemove(post.uid) });
+      await updateDoc(followerRef, { follower: arrayRemove(currentUser.uid) });
+    }
+
+    setIsFollowed(!isFollowed);
+  };
+
   useEffect(() => {
     if (post?.likes.some((like) => like === CURRENT_USER.uid)) setIsLiked(true);
   }, [post]);
+
+  useEffect(() => {
+    console.log(currentUser, post);
+    if (currentUser?.following.some((userId) => userId === post?.uid))
+      setIsFollowed(true);
+  }, [currentUser]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,8 +84,16 @@ const Post = ({ postId }) => {
         const postSnapshot = await getDocs(postQuery);
         const postData = postSnapshot.docs[0]?.data();
 
-        if (postData) {
+        const currentUserQuery = query(
+          collection(database, "users"),
+          where("nickname", "==", CURRENT_USER.nickname)
+        );
+        const currentUserSnapshot = await getDocs(currentUserQuery);
+        const currentUserData = currentUserSnapshot.docs[0]?.data();
+
+        if (postData && currentUserData) {
           setPost(postData);
+          setCurrentUser(currentUserData);
           setLikesCount(postData.likes.length);
 
           const commentQuery = query(
@@ -69,15 +101,13 @@ const Post = ({ postId }) => {
             where("parrentCommentId", "==", postData.id)
           );
 
-          const userQuery = query(
+          const writerQuery = query(
             collection(database, "users"),
             where("nickname", "==", postData.authorId)
           );
 
-          const userSnapshot = await getDocs(userQuery);
-
-          console.log(userSnapshot.docs[0]);
-          setCurrentUser(userSnapshot.docs[0]?.data());
+          const writerSnapshot = await getDocs(writerQuery);
+          setWriter(writerSnapshot.docs[0]?.data());
 
           const commentSnapshot = await getDocs(commentQuery);
           const commentList = commentSnapshot.docs.map((doc) => doc.data());
@@ -124,9 +154,11 @@ const Post = ({ postId }) => {
       <div className="posting-info">
         <TopUserInfo
           onClickHeart={onClickHeart}
+          onClickFollow={onClickFollow}
           post={post}
           likeseCount={likeseCount}
           isLiked={isLiked}
+          isFollowed={isFollowed}
         />
 
         <AsideBar
@@ -147,7 +179,7 @@ const Post = ({ postId }) => {
         <MDEditor.Markdown source={post.content} />
       </article>
 
-      <BottomUserInfo post={post} currentUser={currentUser} />
+      <BottomUserInfo post={post} writer={writer} />
 
       <OtherPost post={post} />
 

@@ -1,12 +1,12 @@
 import React from "react";
 import "../../styles/post/post.scss";
 
-const BottomUserInfo = ({ post, currentUser }) => {
+const BottomUserInfo = ({ post, writer }) => {
   return (
     <section className="userInfo">
       <div className="userImage">
-        {currentUser && currentUser.profile_image_url ? (
-          <img src={`${currentUser.profile_image_url}`} alt="userImage" />
+        {writer && writer.profile_image_url ? (
+          <img src={`${writer.profile_image_url}`} alt="userImage" />
         ) : (
           <p>유저 이미지 없음</p>
         )}

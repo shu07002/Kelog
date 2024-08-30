@@ -36,6 +36,7 @@ const CommentItem = ({ comment }) => {
   }, []);
 
   const onSubmit = async (e) => {
+    if (writeComment2 === "") return;
     setWriteComment2("");
     e.preventDefault("");
 

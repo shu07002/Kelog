@@ -13,6 +13,7 @@ const WritingComment = ({ post, commentList, setCommentList }) => {
   };
 
   const onSubmit = async (e) => {
+    if (writeComment === "") return;
     setWriteComment("");
     e.preventDefault();
 

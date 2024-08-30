@@ -40,6 +40,7 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
         likes: [],
         comments: [],
         mainImage: imgFile,
+        uid: CURRENT_USER.uid,
       });
 
       await updateDoc(newPostRef, {
