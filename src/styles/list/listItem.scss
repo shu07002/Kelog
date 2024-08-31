@@ -114,6 +114,23 @@
             div {
                 display: flex;
                 gap: 4px;
+
+                > a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration-line: none;
+                    color: black;
+                    gap: 4px;
+
+                    > img {
+                        object-fit: cover;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        display: block;
+                        
+                        border-radius: 100px;
+                    }
+                }
                 
             }
 

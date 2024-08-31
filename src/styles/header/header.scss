@@ -173,20 +173,15 @@
                         > a {
                             display: block;
                             cursor: pointer;
-
-                            
+                            text-decoration-line: none;
+                            color: black;
                             &:hover {
                                 background: #F8F9FA;
                                 color:#12B886;
                             }
                             > div{
-                                padding: 0.75rem 1rem;
-
-                                
-                            }
-
-                            
-                            
+                                padding: 0.75rem 1rem; 
+                            } 
                         }
                     }
                     

@@ -4,7 +4,7 @@ import { LoginModalPortal } from "../portal/LoginModalPortal";
 import LoginModal from "../components/Login/LoginModal";
 import { auth } from "../firebase";
 
-const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
+const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
   const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
   const [loginModal, setLoginModal] = useState(false);
   const navigate = useNavigate();
@@ -126,10 +126,10 @@ const CommonHeader = ({ location, isLoggedIn, onClickMenuId, headerRef }) => {
               {openMenu && (
                 <div className="menu" ref={menuRef}>
                   <div>
-                    <a>
+                    <a href={`/@${CURRENT_USER.nickname}`}>
                       <div>내 블로그</div>
                     </a>
-                    <a className="responsive-write">
+                    <a href="/write" className="responsive-write">
                       <div>새 글 작성</div>
                     </a>
                     <a>

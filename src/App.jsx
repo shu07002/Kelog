@@ -56,7 +56,7 @@ const Content = () => {
       <div ref={backRef}>
         <div className="layout">
           {(location.pathname === "/" ||
-            location.pathname.startsWith("/posting")) && <Header />}
+            !location.pathname.startsWith("/write")) && <Header />}
           {location.pathname === "/" && <NavigationBar />}
         </div>
         <div className="layout">

@@ -100,43 +100,6 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.posting .userInfo {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 16rem 0 6rem 0;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid #E9ECEF;
-}
-@media (max-width: 1024px) {
-  .posting .userInfo {
-    margin-top: 8rem;
-    margin-bottom: 3rem;
-  }
-}
-@media (max-width: 768px) {
-  .posting .userInfo {
-    margin-top: 2rem;
-  }
-  .posting .userInfo > .userImage > img {
-    width: 5rem;
-    height: 5rem;
-  }
-}
-.posting .userInfo .userImage > img {
-  border-radius: 100px;
-}
-.posting .userInfo .user {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-}
-@media (max-width: 768px) {
-  .posting .userInfo .user > h2 {
-    font-size: 1.125rem;
-  }
-}
 .posting .like-share-box {
   position: relative;
   top: 2rem;
@@ -313,8 +276,6 @@
   padding: 1px 6px;
   font-weight: bold;
   border-radius: 16px;
-  color: #12B886;
-  border: 1px solid #12B886;
 }
 @media (max-width: 1024px) {
   .follow-btn > button {
@@ -322,6 +283,18 @@
     height: 24px;
     font-size: 16px;
   }
+}
+.follow-btn > .green {
+  color: #12B886;
+  border: 1px solid #12B886;
+}
+.follow-btn > .red:hover {
+  color: #FF6B6B;
+  border: 1px solid #FF6B6B;
+}
+.follow-btn > .black {
+  color: black;
+  border: 1px solid black;
 }
 
 .comment-list {
@@ -423,4 +396,42 @@
   background-color: #FFFFFF;
   font-size: 1rem;
   margin-bottom: 1.5rem;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 16rem 0 6rem 0;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #E9ECEF;
+}
+@media (max-width: 1024px) {
+  .userInfo {
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .userInfo {
+    margin-top: 2rem;
+  }
+  .userInfo > .userImage > img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+.userInfo .userImage > img {
+  border-radius: 100px;
+}
+.userInfo .user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+@media (max-width: 768px) {
+  .userInfo .user > h2 {
+    font-size: 1.125rem;
+  }
 }/*# sourceMappingURL=post.css.map */

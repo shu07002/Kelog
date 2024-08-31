@@ -166,6 +166,8 @@
 .header-layout header > .header-buttons .loggedInDiv > .menu > div > a {
   display: block;
   cursor: pointer;
+  text-decoration-line: none;
+  color: black;
 }
 .header-layout header > .header-buttons .loggedInDiv > .menu > div > a:hover {
   background: #F8F9FA;
@@ -348,6 +350,8 @@
   .header-layout header > .header-buttons .loggedInDiv > .menu > div > a {
     display: block;
     cursor: pointer;
+    text-decoration-line: none;
+    color: black;
   }
   .header-layout header > .header-buttons .loggedInDiv > .menu > div > a:hover {
     background: #F8F9FA;
