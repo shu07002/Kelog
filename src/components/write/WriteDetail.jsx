@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../styles/write/writeDetail.scss";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { database } from "../../firebase";
@@ -9,6 +9,10 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
   const [imgFile, setImgFile] = useState("");
   const [summary, setSummary] = useState(title);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSummary(title);
+  }, [title]);
 
   const saveImage = () => {
     const file = imgRef.current.files[0];
@@ -113,6 +117,7 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
 
           <div className="summary">
             <textarea
+              value={summary}
               defaultValue={title}
               className="summary-textarea"
               placeholder="당신의 포스트를 짧게 소개해보세요."

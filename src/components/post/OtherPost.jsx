@@ -30,8 +30,8 @@ const OtherPost = ({ post }) => {
 
   return (
     <div className="next-prev">
-      {otherPosts[0] && (
-        <a className="prev" href={`/posting/${otherPosts[0].id}`}>
+      {otherPosts[1] && (
+        <a className="prev" href={`/posting/${otherPosts[1].id}`}>
           <div className="arrow-svg">
             <svg
               stroke="currentColor"
@@ -47,15 +47,15 @@ const OtherPost = ({ post }) => {
           </div>
           <div className="other-post-info">
             <div>이전 포스트</div>
-            <h3>{otherPosts[0].title}</h3>
+            <h3>{otherPosts[1].title}</h3>
           </div>
         </a>
       )}
-      {otherPosts[1] && (
-        <a className="next" href={`/posting/${otherPosts[1].id}`}>
+      {otherPosts[0] && (
+        <a className="next" href={`/posting/${otherPosts[0].id}`}>
           <div className="other-post-info">
             <div>다음 포스트</div>
-            <h3>{otherPosts[1].title}</h3>
+            <h3>{otherPosts[0].title}</h3>
           </div>
           <div className="arrow-svg">
             <svg

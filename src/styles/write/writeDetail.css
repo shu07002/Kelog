@@ -49,7 +49,6 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
-  aspect-ratio: 48/24;
   background-color: #E9ECEF;
 }
 .detail-bg .detail > .left > .image-bg > .image-div {
@@ -59,6 +58,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.detail-bg .detail > .left > .image-bg > .image-div > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .detail-bg .detail > .left > .image-bg > button {
   background-color: white;
@@ -144,11 +149,4 @@
 
 #file {
   display: none;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }/*# sourceMappingURL=writeDetail.css.map */

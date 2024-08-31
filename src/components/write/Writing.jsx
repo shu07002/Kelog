@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
-import { database } from "../../firebase";
 import "../../styles/write/write.scss";
-import { addDoc, collection, updateDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 import WriteDetail from "./WriteDetail";
 
 const Writing = () => {
@@ -11,7 +8,6 @@ const Writing = () => {
   const [content, setContent] = useState("");
   const [editorHeight, setEditorHeight] = useState(window.innerHeight - 230);
   const [showWriteDetail, setShowWriteDetail] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleEditorHeight = () => {
