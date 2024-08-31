@@ -1,3 +1,7 @@
+.delete-aspect {
+  height: 85px;
+}
+
 .detail-bg {
   flex: 1;
   background-color: #F8F9FA;
@@ -5,10 +9,16 @@
   display: flex;
   justify-content: center;
 }
+@media (max-width: 482px) {
+  .detail-bg {
+    padding: 0 16px;
+  }
+}
 .detail-bg .detail {
+  flex: 1;
   display: flex;
   justify-content: center;
-  width: 450px;
+  max-width: 450px;
 }
 .detail-bg .detail > .left {
   display: flex;
@@ -39,16 +49,16 @@
   align-items: center;
   gap: 1rem;
   width: 100%;
+  aspect-ratio: 48/24;
   background-color: #E9ECEF;
 }
 .detail-bg .detail > .left > .image-bg > .image-div {
-  overflow: hidden;
-}
-.detail-bg .detail > .left > .image-bg > .image-div > img {
-  aspect-ratio: 48/23;
-  -o-object-fit: cover;
-     object-fit: cover;
   width: 100%;
+  aspect-ratio: 48/23;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .detail-bg .detail > .left > .image-bg > button {
   background-color: white;
@@ -134,4 +144,11 @@
 
 #file {
   display: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=writeDetail.css.map */

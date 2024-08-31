@@ -13,10 +13,14 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
   const saveImage = () => {
     const file = imgRef.current.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImgFile(reader.result);
-    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImgFile(reader.result);
+        imgRef.current.value = null;
+      };
+    }
   };
 
   const handleButtonClick = () => {
@@ -73,7 +77,7 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
           )}
 
           <div className={`image-bg ${imgFile !== "" && "delete-padding"}`}>
-            <div className="image-div">
+            <div className={`image-div ${imgFile === "" && "delete-aspect"}`}>
               {imgFile === "" ? (
                 <svg width="107" height="85" fill="none" viewBox="0 0 107 85">
                   <path
