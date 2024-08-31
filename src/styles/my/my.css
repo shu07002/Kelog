@@ -20,4 +20,46 @@
 .follow-btn {
   display: flex;
   justify-content: end;
+}
+
+.postBlock .postItem {
+  padding-top: 64px;
+}
+.postBlock .postItem .mainImageBlock a > img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.postBlock .postItem .postInfo > a {
+  text-decoration-line: none;
+  color: black;
+}
+.postBlock .postItem .postInfo > p {
+  margin-bottom: 2rem;
+}
+.postBlock .postItem .postInfo .postDetail {
+  color: #868e96;
+  display: flex;
+  align-items: center;
+}
+.postBlock .postItem .postInfo .postDetail > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  margin-right: 8px;
+  text-align: center;
+}
+.postBlock .postItem .postInfo .postDetail > svg {
+  display: block;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: 2px;
+}
+.postBlock .postItem .separate {
+  width: 100%;
+  height: 1px;
+  background-color: #f1f3f5;
+  margin-top: 128px;
 }/*# sourceMappingURL=my.css.map */

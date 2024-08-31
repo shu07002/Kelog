@@ -11,7 +11,7 @@ import {
 import { database } from "../../firebase";
 import CommentItem2 from "./CommentItem2";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, postId }) => {
   const [OpenRecomment, setOpenRecomment] = useState(false);
   const [writeComment2, setWriteComment2] = useState("");
   const [commentList2, setCommentList2] = useState([]);
@@ -51,6 +51,7 @@ const CommentItem = ({ comment }) => {
       profile_image_url: CURRENT_USER.profile_image_url,
       depth: 2,
       parrentCommentId: comment.id,
+      postId: postId,
     };
 
     try {
@@ -120,7 +121,13 @@ const CommentItem = ({ comment }) => {
           <div className="write-recomment-box">
             <ul>
               {commentList2.map((comment2) => {
-                return <CommentItem2 key={comment2.id} comment={comment2} />;
+                return (
+                  <CommentItem2
+                    key={comment2.id}
+                    comment={comment2}
+                    postId={postId}
+                  />
+                );
               })}
             </ul>
             <textarea

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CommentItem3 = ({ comment }) => {
+const CommentItem3 = ({ comment, postId }) => {
   return (
     <div className="comment-box">
       <div className="comment-info">

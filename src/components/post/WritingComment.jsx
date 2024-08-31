@@ -1,4 +1,10 @@
-import { addDoc, collection, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { database } from "../../firebase";
 
@@ -28,6 +34,7 @@ const WritingComment = ({ post, commentList, setCommentList }) => {
       profile_image_url: CURRENT_USER.profile_image_url,
       depth: 1,
       parrentCommentId: post.id,
+      postId: post.id,
     };
 
     try {

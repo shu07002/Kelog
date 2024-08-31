@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { database } from "../../firebase";
 import CommentItem3 from "./CommentItem3";
 
-const CommentItem2 = ({ comment }) => {
+const CommentItem2 = ({ comment, postId }) => {
   const [OpenRecomment, setOpenRecomment] = useState(false);
   const [writeComment3, setWriteComment3] = useState("");
   const [commentList3, setCommentList3] = useState([]);
@@ -50,6 +50,7 @@ const CommentItem2 = ({ comment }) => {
       profile_image_url: CURRENT_USER.profile_image_url,
       depth: 2,
       parrentCommentId: comment.id,
+      postId: postId,
     };
 
     try {
@@ -118,7 +119,13 @@ const CommentItem2 = ({ comment }) => {
           <div className="write-recomment-box">
             <ul>
               {commentList3.map((comment3) => {
-                return <CommentItem3 key={comment3.id} comment={comment3} />;
+                return (
+                  <CommentItem3
+                    key={comment3.id}
+                    comment={comment3}
+                    postId={postId}
+                  />
+                );
               })}
             </ul>
             <textarea

@@ -1,52 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/post/post.scss";
 import "../../styles/my/my.scss";
-import {
-  arrayRemove,
-  arrayUnion,
-  collection,
-  doc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "../../firebase";
+import MyPost from "./MyPost";
 
-const My = ({ nickname }) => {
+const My = ({ nickname, isFollowed, followersCount, user, onClickFollow }) => {
   //console.log(nickname);
   // nickname 값은 @ 붙은 값
 
-  const [user, setUser] = useState(null);
   const [text, setText] = useState("");
+  const [posts, setPosts] = useState([]);
 
   const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
 
   const textRef = useRef(null);
-
-  const [isFollowed, setIsFollowed] = useState(false);
-  const [followersCount, setFollowersCount] = useState(0);
-
-  const onClickFollow = async () => {
-    const followingRef = doc(database, "users", CURRENT_USER.uid);
-    const followerRef = doc(database, "users", user.uid);
-
-    if (!isFollowed) {
-      await updateDoc(followingRef, {
-        following: arrayUnion(user.uid),
-      });
-      await updateDoc(followerRef, { follower: arrayUnion(CURRENT_USER.uid) });
-      setFollowersCount(followersCount + 1);
-    } else {
-      await updateDoc(followingRef, {
-        following: arrayRemove(user.uid),
-      });
-      await updateDoc(followerRef, { follower: arrayRemove(CURRENT_USER.uid) });
-      setFollowersCount(followersCount - 1);
-    }
-
-    setIsFollowed(!isFollowed);
-  };
 
   const onMouseOver = () => {
     if (isFollowed) {
@@ -63,26 +31,6 @@ const My = ({ nickname }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userQuery = query(
-          collection(database, "users"),
-          where("nickname", "==", nickname.split("@")[1])
-        );
-
-        console.log(nickname.split("@"));
-        const userSnapshot = await getDocs(userQuery);
-        const userData = userSnapshot.docs[0]?.data();
-
-        if (userData) setUser(userData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     if (textRef.current) {
       if (isFollowed) {
         setText("팔로잉");
@@ -97,8 +45,22 @@ const My = ({ nickname }) => {
   }, [isFollowed]);
 
   useEffect(() => {
-    if (user?.follower.some((userId) => userId === CURRENT_USER.uid))
-      setIsFollowed(true);
+    if (user === null) return;
+    const fetchData = async () => {
+      const postQuery = query(
+        collection(database, "posts"),
+        where("uid", "==", user.uid)
+      );
+
+      const postQuerySnapshot = await getDocs(postQuery);
+      const postsData = postQuerySnapshot.docs.map((post) => post.data());
+      console.log(postsData);
+      if (postsData) {
+        setPosts(postsData);
+      }
+    };
+
+    fetchData();
   }, [user]);
 
   return (
@@ -135,6 +97,21 @@ const My = ({ nickname }) => {
           </button>
         </div>
       )}
+
+      <div className="postBlock">
+        {posts.map((post) => (
+          <div key={post.id} className="postItem">
+            {post.mainImage !== "" && (
+              <div className="mainImageBlock">
+                <a href={`/posting/${post.id}`}>
+                  <img className="mainImage" src={`${post.mainImage}`} />
+                </a>
+              </div>
+            )}
+            <MyPost post={post} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

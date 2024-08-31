@@ -196,7 +196,9 @@ const Post = ({ postId }) => {
 
       <ul className="comment-list">
         {commentList.map((comment) => {
-          return <CommentItem key={comment.id} comment={comment} />;
+          return (
+            <CommentItem key={comment.id} comment={comment} postId={post.id} />
+          );
         })}
       </ul>
     </div>
