@@ -54,7 +54,7 @@ const List = () => {
       collection(database, "posts"),
       where("createdAt", compare, Timestamp),
       orderBy("createdAt", "desc"),
-      limit(9)
+      limit(6)
     );
 
     if (lastVisibleRef.current) {
@@ -63,7 +63,7 @@ const List = () => {
         where("createdAt", compare, Timestamp),
         orderBy("createdAt", "desc"),
         startAfter(lastVisibleRef.current),
-        limit(9)
+        limit(6)
       );
     }
 
@@ -71,7 +71,7 @@ const List = () => {
 
     const lastPost = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-    if (querySnapshot.docs.length < 9) setHasMore(false);
+    if (querySnapshot.docs.length < 6) setHasMore(false);
 
     lastVisibleRef.current = lastPost;
 

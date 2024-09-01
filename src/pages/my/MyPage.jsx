@@ -40,25 +40,31 @@ const MyPage = () => {
   }, []);
 
   useEffect(() => {
-    if (user?.follower.some((userId) => userId === CURRENT_USER.uid))
+    if (user?.follower.some((userId) => userId === CURRENT_USER?.uid))
       setIsFollowed(true);
   }, [user]);
 
   const onClickFollow = async () => {
-    const followingRef = doc(database, "users", CURRENT_USER.uid);
+    if (!CURRENT_USER) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+    const followingRef = doc(database, "users", CURRENT_USER?.uid);
     const followerRef = doc(database, "users", user.uid);
 
     if (!isFollowed) {
       await updateDoc(followingRef, {
         following: arrayUnion(user.uid),
       });
-      await updateDoc(followerRef, { follower: arrayUnion(CURRENT_USER.uid) });
+      await updateDoc(followerRef, { follower: arrayUnion(CURRENT_USER?.uid) });
       setFollowersCount(followersCount + 1);
     } else {
       await updateDoc(followingRef, {
         following: arrayRemove(user.uid),
       });
-      await updateDoc(followerRef, { follower: arrayRemove(CURRENT_USER.uid) });
+      await updateDoc(followerRef, {
+        follower: arrayRemove(CURRENT_USER?.uid),
+      });
       setFollowersCount(followersCount - 1);
     }
 
