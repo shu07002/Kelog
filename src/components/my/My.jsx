@@ -54,7 +54,6 @@ const My = ({ nickname, isFollowed, followersCount, user, onClickFollow }) => {
 
       const postQuerySnapshot = await getDocs(postQuery);
       const postsData = postQuerySnapshot.docs.map((post) => post.data());
-      console.log(postsData);
       if (postsData) {
         setPosts(postsData);
       }

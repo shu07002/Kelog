@@ -67,8 +67,6 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
       await setDoc(userDoc, CURRENT_USER);
 
       window.localStorage.setItem("CURRENT_USER", JSON.stringify(CURRENT_USER));
-      console.log(user);
-      console.log("성공");
       onClickLogin();
       navigate("/");
     } catch (error) {
@@ -78,7 +76,7 @@ const RegisterComponent = ({ onClickLogin, onClickLR }) => {
         alert("비밀번호가 너무 쉬워요");
       } else if (error.code === "auth/email-already-in-use") {
         alert("이미 등록된 이메일입니다.");
-      } else console.log(error);
+      } else alert("유효한 입력이 아닙니다.");
     }
   };
 

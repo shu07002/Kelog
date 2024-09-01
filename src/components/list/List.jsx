@@ -45,11 +45,11 @@ const List = () => {
   const lastVisibleRef = useRef(null);
   const loadRef = useRef();
 
-  const ref = useRef(1);
+  useEffect(() => {
+    setPosts(posts);
+  }, [posts]);
 
   const getPosts = async (compare, Timestamp) => {
-    console.log(ref.current++);
-
     let q = query(
       collection(database, "posts"),
       where("createdAt", compare, Timestamp),
@@ -76,19 +76,16 @@ const List = () => {
     lastVisibleRef.current = lastPost;
 
     const postsData = querySnapshot.docs.map((doc) => doc.data());
-    console.log(postsData);
     return postsData;
   };
 
   useEffect(() => {
-    console.log(ref.current++);
     setPosts([]);
     lastVisibleRef.current = null;
     setHasMore(true);
   }, [dateFilter]);
 
   const filteredData = async () => {
-    console.log(ref.current++);
     switch (dateFilter) {
       case "오늘": {
         const posts = await getPosts(">=", startOfToday);
@@ -116,12 +113,6 @@ const List = () => {
         return null;
     }
   };
-
-  // useEffect(() => {
-  //   console.log(ref.current++);
-  //   lastVisibleRef.current = null;
-  //   filteredData();
-  // }, [dateFilter]);
 
   const onIntersection = (entries) => {
     const firstEntry = entries[0];

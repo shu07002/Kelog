@@ -34,6 +34,16 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    if (title === "") {
+      alert("제목이 없습니다.");
+      return;
+    }
+
+    if (content === "") {
+      alert("내용이 없습니다.");
+      return;
+    }
+
     const CURRENT_USER = JSON.parse(
       window.localStorage.getItem("CURRENT_USER")
     );
@@ -55,7 +65,6 @@ const WriteDetail = ({ title, content, setShowWriteDetail }) => {
         id: newPostRef.id,
       });
 
-      console.log("성공!!!!");
       alert("포스팅 했습니다.");
       navigate("/");
     } catch (error) {

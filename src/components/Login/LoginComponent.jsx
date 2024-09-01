@@ -29,11 +29,6 @@ const LoginComponent = ({ onClickLogin, onClickLR }) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-      const { uid, stsTokenManager } = user;
-
-      console.log({ uid, email, authToken: stsTokenManager });
-
-      console.log("성공");
       const currentUser = await findCurrentUser();
       window.localStorage.setItem(
         "CURRENT_USER",
@@ -43,7 +38,6 @@ const LoginComponent = ({ onClickLogin, onClickLR }) => {
       navigate("/");
     } catch (error) {
       alert("회원 정보가 없습니다.");
-      console.error(error);
     }
   };
 

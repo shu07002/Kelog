@@ -191,6 +191,11 @@
         display: flex;
         justify-content: space-between;
 
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 12px;
+        }
+
         > a {
             text-decoration-line: none;
             color:black;
@@ -215,16 +220,30 @@
         }
 
         .other-post-info {
+            flex: 1 1 0%;
+            min-width: 0px;
             > div {
                 font-size: 0.75rem;
                 font-weight: bold;
+                width: 100%;
             }
             > h3 {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                
                 margin: 0;
+                font-size: 18px;
+
+                @media (max-width: 768px) {
+                    font-size: 14px;
+                }
             }
         }
 
         > .prev {
+            min-width: 0px;
             display: flex;
             justify-content: start;
             > div {
@@ -233,9 +252,13 @@
         }
 
         >.next {
+            min-width: 0px;
             margin-left: 3rem;
             display: flex;
             justify-content: end;
+            @media (max-width: 768px) {
+                margin : 0;
+            }
             > div {
                 margin-left: 1rem;
                 text-align: right;;

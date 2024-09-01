@@ -40,7 +40,6 @@ const Post = ({ postId }) => {
       return;
     }
     const likedRef = doc(database, "posts", post.id);
-    console.log(post.likes);
 
     if (!isLiked) {
       await updateDoc(likedRef, { likes: arrayUnion() });
@@ -73,12 +72,10 @@ const Post = ({ postId }) => {
   };
 
   useEffect(() => {
-    console.log(post);
     if (post?.likes.some((like) => like === CURRENT_USER.uid)) setIsLiked(true);
   }, [post]);
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser?.following.some((userId) => userId === post?.uid))
       setIsFollowed(true);
   }, [currentUser]);

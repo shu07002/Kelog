@@ -64,7 +64,6 @@ const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
   }, [headerRef]);
 
   useEffect(() => {
-    console.log(location.pathname.split("/posting/")[1]);
     const fetchData = async () => {
       const postQuery = query(
         collection(database, "posts"),
@@ -91,7 +90,7 @@ const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
       window.localStorage.removeItem("CURRENT_USER");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      alert("로그아웃에 실패했습니다.");
     }
   };
 
