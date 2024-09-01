@@ -42,7 +42,7 @@ const LoginComponent = ({ onClickLogin, onClickLR }) => {
       onClickLogin();
       navigate("/");
     } catch (error) {
-      alert("실패");
+      alert("회원 정보가 없습니다.");
       console.error(error);
     }
   };
@@ -87,10 +87,6 @@ const LoginComponent = ({ onClickLogin, onClickLR }) => {
               />
               <button onClick={onSubmit}>로그인</button>
             </form>
-          </section>
-          <section>
-            <h4>소셜 계정으로 로그인</h4>
-            <div></div>
           </section>
         </div>
         <div className="moveToRegister">

@@ -35,6 +35,10 @@ const Post = ({ postId }) => {
   const [isFollowed, setIsFollowed] = useState(false);
 
   const onClickHeart = async () => {
+    if (!CURRENT_USER) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
     const likedRef = doc(database, "posts", post.id);
     console.log(post.likes);
 
@@ -50,6 +54,10 @@ const Post = ({ postId }) => {
   };
 
   const onClickFollow = async () => {
+    if (!CURRENT_USER) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
     const followingRef = doc(database, "users", currentUser.uid);
     const followerRef = doc(database, "users", post.uid);
 
@@ -65,11 +73,12 @@ const Post = ({ postId }) => {
   };
 
   useEffect(() => {
+    console.log(post);
     if (post?.likes.some((like) => like === CURRENT_USER.uid)) setIsLiked(true);
   }, [post]);
 
   useEffect(() => {
-    console.log(currentUser, post);
+    console.log(currentUser);
     if (currentUser?.following.some((userId) => userId === post?.uid))
       setIsFollowed(true);
   }, [currentUser]);
@@ -84,16 +93,19 @@ const Post = ({ postId }) => {
         const postSnapshot = await getDocs(postQuery);
         const postData = postSnapshot.docs[0]?.data();
 
-        const currentUserQuery = query(
-          collection(database, "users"),
-          where("nickname", "==", CURRENT_USER.nickname)
-        );
-        const currentUserSnapshot = await getDocs(currentUserQuery);
-        const currentUserData = currentUserSnapshot.docs[0]?.data();
-
-        if (postData && currentUserData) {
-          setPost(postData);
+        if (CURRENT_USER) {
+          const currentUserQuery = query(
+            collection(database, "users"),
+            where("nickname", "==", CURRENT_USER.nickname)
+          );
+          const currentUserSnapshot = await getDocs(currentUserQuery);
+          const currentUserData = currentUserSnapshot.docs[0]?.data();
           setCurrentUser(currentUserData);
+        }
+
+        if (postData) {
+          setPost(postData);
+
           setLikesCount(postData.likes.length);
 
           const commentQuery = query(
@@ -140,7 +152,7 @@ const Post = ({ postId }) => {
   }, []);
 
   if (!post) {
-    return <div>No post found.</div>;
+    return <div></div>;
   }
 
   return (

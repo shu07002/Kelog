@@ -53,7 +53,7 @@ const TopUserInfo = ({
       </div>
 
       <div className="follow-like-btn">
-        {CURRENT_USER.nickname !== post.authorId && (
+        {CURRENT_USER?.nickname !== post.authorId && (
           <div
             className="follow-btn"
             onClick={onClickFollow}

@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginModalPortal } from "../portal/LoginModalPortal";
 import LoginModal from "../components/Login/LoginModal";
-import { auth } from "../firebase";
+import { auth, database } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
   const CURRENT_USER = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
@@ -10,11 +11,16 @@ const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
   const navigate = useNavigate();
   const scrollRef = useRef(136);
   const [expand, setExpand] = useState(false);
+  const [post, setPost] = useState();
 
   const closeMenuRef = useRef();
   const menuRef = useRef();
   const onClickLogo = () => {
     navigate("/");
+  };
+
+  const onClickNickname = () => {
+    navigate(`/@${post?.authorId}`);
   };
 
   const [openMenu, setOpenMenu] = useState(false);
@@ -57,6 +63,23 @@ const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
     };
   }, [headerRef]);
 
+  useEffect(() => {
+    console.log(location.pathname.split("/posting/")[1]);
+    const fetchData = async () => {
+      const postQuery = query(
+        collection(database, "posts"),
+        where("id", "==", location.pathname.split("/posting/")[1])
+      );
+
+      const postQuerySnapshot = await getDocs(postQuery);
+      setPost(postQuerySnapshot.docs[0].data());
+    };
+
+    if (location.pathname.startsWith("/posting")) {
+      fetchData();
+    }
+  }, []);
+
   const onClickLogin = () => {
     setLoginModal(!loginModal);
   };
@@ -83,14 +106,16 @@ const CommonHeader = ({ location, isLoggedIn, headerRef }) => {
   return (
     <div className={headerRef ? "header-expander" : ""} ref={headerRef}>
       <header className={`${expand ? "expand-header" : "normal-header"}`}>
-        <h1 className="header-logo" onClick={onClickLogo}>
+        <h1 className="header-logo">
           {location.pathname.startsWith("/posting") ? (
             <div className="logo-and-nickname">
-              <div className="logo-box">K</div>
-              <div>{CURRENT_USER?.nickname}</div>
+              <div className="logo-box" onClick={onClickLogo}>
+                K
+              </div>
+              <div onClick={onClickNickname}>{post?.authorId}</div>
             </div>
           ) : (
-            "Kelog"
+            <span onClick={onClickLogo}>Kelog</span>
           )}
         </h1>
 

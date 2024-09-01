@@ -50,6 +50,7 @@
 }
 .postlist > .postcard .postcard-image-div a {
   height: 50px;
+  background-color: white;
 }
 .postlist > .postcard .no-display {
   display: none;
@@ -66,7 +67,7 @@
   justify-content: space-between;
   flex: 1;
   padding: 16px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #f1f3f5;
 }
 .postlist > .postcard > .postcard-content > a {
   text-decoration-line: none;

@@ -47,7 +47,7 @@ const BottomUserInfo = ({ post, writer, onClickFollow, isFollowed }) => {
         <h2>{post.authorId}</h2>
       </div>
       <div className="follow-btn">
-        {CURRENT_USER.nickname !== post.authorId && (
+        {CURRENT_USER?.nickname !== post.authorId && (
           <div
             className="follow-btn"
             onClick={onClickFollow}

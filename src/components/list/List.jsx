@@ -44,7 +44,6 @@ const List = () => {
   const [hasMore, setHasMore] = useState(true);
   const lastVisibleRef = useRef(null);
   const loadRef = useRef();
-  const mountRef = useRef(false);
 
   const ref = useRef(1);
 
